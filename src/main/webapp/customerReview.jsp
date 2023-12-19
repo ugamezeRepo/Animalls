@@ -29,6 +29,7 @@
 	}
 	//보여줄 페이지에 맞는 목록만 얻어오기
 	List<FileDto> list=FileDao.getInstance().getList(startRowNum, endRowNum);
+	
 	String id=(String)session.getAttribute("id");
 %>
 <!DOCTYPE html>
