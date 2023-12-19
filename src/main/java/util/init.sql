@@ -77,6 +77,7 @@ CREATE TABLE "PRODUCT_REVIEW" (
 	"content"			CLOB			NOT NULL,
 	"thumbnail"			VARCHAR2(100)   NULL,
 	"rating"			NUMBER(2)		NOT NULL CONSTRAINT chk_product_review_rating CHECK ("rating" in (1,2,3,4,5,6,7,8,9,10)),
+	"like"				NUMBER(10) 		DEFAULT 0,
 	"created_at"		DATE			NOT NULL,
 	"updated_at"		DATE			NOT NULL,
 	CONSTRAINT fk_product_review_product FOREIGN KEY ("product_id")
