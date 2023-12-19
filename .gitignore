@@ -139,4 +139,6 @@ $RECYCLE.BIN/
 
 # untrack build directory 
 /build
+
+/src/bin
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse
