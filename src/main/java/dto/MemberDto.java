@@ -1,6 +1,5 @@
 package dto;
 
-import dto.MemberDto.MemberDtoBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
