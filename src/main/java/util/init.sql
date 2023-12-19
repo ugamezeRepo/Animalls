@@ -30,6 +30,7 @@ CREATE TABLE "MEMBER" (
     "member_id"         VARCHAR2(50)    PRIMARY KEY,
     "delivery_id"       NUMBER(10),
     "password"          VARCHAR2(50)    NOT NULL,
+    "name"              VARCHAR2(20)    NOT NULL, 
     "nickname"          VARCHAR2(50)    NOT NULL,
     "role"              VARCHAR2(20)    DEFAULT 'user' CONSTRAINT chk_member_role CHECK ("role" IN ('user', 'seller', 'admin')),
     "phone_number"      VARCHAR2(20)    NOT NULL, -- 010-1234-5678
