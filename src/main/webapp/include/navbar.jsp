@@ -6,18 +6,15 @@
 	String currentPage=request.getParameter("current");
 %>
 
-<header class="p-3 mb-3 border-bottom">
+<header class="p-3 border-bottom">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-	        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-vector-pen" viewBox="0 0 16 16">
-			  <path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"/>
-			  <path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"/>
-			</svg>
+	        <i class='fas fa-dog' style='font-size:36px'></i>
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 link-secondary">브랜드</a></li>
+          <li><a href="#" class="nav-link px-2 link-body-emphasis">브랜드</a></li>
           <li><a href="#" class="nav-link px-2 link-body-emphasis">제품</a></li>
           <li><a href="#" class="nav-link px-2 link-body-emphasis">커뮤니티</a></li>
           <li><a href="#" class="nav-link px-2 link-body-emphasis">고객지원</a></li>
