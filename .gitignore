@@ -7,6 +7,7 @@
 # 예를 들어 java17 에서 개발한것을 java11 에서 사용할수도 있고
 # 이클립스로 개발한것을 인텔리J 에서 사용할수도 있는데 설정 파일을 같이 commit 해서 올리면 사용이 곤란해 집니다. 
 
+
 /.metadata/
 
 .classpath
@@ -133,4 +134,9 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# keep WEB-INF jar
+!/src/main/webapp/WEB-INF/lib/*
+
+# untrack build directory 
+/build
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse
