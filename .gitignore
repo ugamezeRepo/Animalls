@@ -137,4 +137,6 @@ $RECYCLE.BIN/
 # keep WEB-INF jar
 !/src/main/webapp/WEB-INF/lib/*
 
+# untrack build directory 
+/build
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse
