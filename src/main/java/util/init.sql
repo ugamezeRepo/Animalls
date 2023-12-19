@@ -37,7 +37,7 @@ CREATE TABLE "MEMBER" (
     "rank"              VARCHAR2(20)    DEFAULT 'bronze' CONSTRAINT chk_member_rank CHECK ("rank" IN ('bronze', 'silver', 'gold', 'diamond')),
     "profile_image"     CLOB,
     "email_verified"    NUMBER(1)       DEFAULT 0 CONSTRAINT chk_member_email_verified CHECK ("email_verified" IN (0, 1)),
-    "registerd_date"    DATE            NOT NULL, 
+    "registered_date"    DATE            NOT NULL, 
     CONSTRAINT fk_member_delivery FOREIGN KEY ("delivery_id")
         REFERENCES "DELIVERY_ADDRESS" ("delivery_id")
         ON DELETE CASCADE
