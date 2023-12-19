@@ -6,8 +6,9 @@ DROP TABLE "PRODUCT_REVIEW" CASCADE CONSTRAINTS;
 DROP TABLE "CART_ITEM" CASCADE CONSTRAINTS; 
 DROP TABLE "ORDER" CASCADE CONSTRAINTS; 
 DROP TABLE "ORDER_ITEM" CASCADE CONSTRAINTS; 
+
 DROP SEQUENCE "DELIVERY_ADDRESS_SEQ"; 
-DROP SEQUENCE "MEMBER_SEQ"; 
+-- DROP SEQUENCE "MEMBER_SEQ"; 
 DROP SEQUENCE "PRODUCT_SEQ";
 DROP SEQUENCE "PRODUCT_OPTION_SEQ"; 
 DROP SEQUENCE "PRODUCT_REVIEW_SEQ"; 
@@ -16,6 +17,7 @@ DROP SEQUENCE "ORDER_SEQ";
 DROP SEQUENCE "ORDER_ITEM_SEQ";
 
 
+-- 회원 기본 배송 주소
 CREATE TABLE "DELIVERY_ADDRESS" (
 	"delivery_id"		NUMBER(10)		PRIMARY KEY,
 	"postal_address"	NUMBER(5)		NOT NULL,
@@ -32,7 +34,7 @@ CREATE TABLE "MEMBER" (
     "password"          VARCHAR2(50)    NOT NULL,
     "nickname"          VARCHAR2(50)    NOT NULL,
     "role"              VARCHAR2(20)    DEFAULT 'user' CONSTRAINT chk_member_role CHECK ("role" IN ('user', 'seller', 'admin')),
-    "phone_number"      VARCHAR2(20)    NOT NULL,
+    "phone_number"      VARCHAR2(20)    NOT NULL, -- 010-1234-5678
     "rank"              VARCHAR2(20)    DEFAULT 'bronze' CONSTRAINT chk_member_rank CHECK ("rank" IN ('bronze', 'silver', 'gold', 'diamond')),
     "profile_image"     CLOB,
     "email_verified"    NUMBER(1)       DEFAULT 0 CONSTRAINT chk_member_email_verified CHECK ("email_verified" IN (0, 1)),
@@ -40,7 +42,7 @@ CREATE TABLE "MEMBER" (
         REFERENCES "DELIVERY_ADDRESS" ("delivery_id")
         ON DELETE CASCADE
 );
-CREATE SEQUENCE "MEMBER_SEQ"; 
+-- CREATE SEQUENCE "MEMBER_SEQ"; 
 
 CREATE TABLE "PRODUCT" (
     "product_id"    NUMBER(10)      PRIMARY KEY,
@@ -50,6 +52,8 @@ CREATE TABLE "PRODUCT" (
     "description"   CLOB            NOT NULL,
     "org_price"     NUMBER(10)      NOT NULL,
     "sale_price"    NUMBER(10)      NULL,
+    "sales_state"   VARCHAR2(20)    DEFAULT 'on_sale' CONSTRAINT chk_product_sales_sate CHECK ("sales_state" IN ('on_sale', 'sold_out', 'sales_end')),
+    "thumbnail"		VARCHAR2(100),  -- thumbnail url
     CONSTRAINT fk_product_seller FOREIGN KEY ("seller_id")
         REFERENCES "MEMBER" ("member_id")
         ON DELETE CASCADE
@@ -110,10 +114,13 @@ CREATE SEQUENCE "CART_ITEM_SEQ";
 CREATE TABLE "ORDER" (
 	"order_id"			NUMBER(10)		PRIMARY KEY,
 	"postal_address"	NUMBER(5)		NOT NULL,
+	"state"				VARCHAR2(20) 	DEFAULT 'preparing' CONSTRAINT chk_order_state CHECK ("state" in ('preparing', 'delivery_done', 'devliery_postpone', 'take_back', 'exchange')),
 	"address"			VARCHAR2(50)	NOT NULL,
 	"detailed_address"	VARCHAR2(50)	NOT NULL,
 	"delivery_message"	VARCHAR2(100)	NULL,
-	"payment_method"	NUMBER			NULL
+	"payment_method"	NUMBER			NULL,
+	"message"			VARCHAR2(100)   NULL
+	"ordered_date"		DATE			NOT NULL
 );
 CREATE SEQUENCE "ORDER_SEQ";
 
