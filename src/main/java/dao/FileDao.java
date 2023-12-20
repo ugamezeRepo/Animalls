@@ -25,16 +25,15 @@ public class FileDao {
 		try {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문
-			String sql = "INSERT INTO board_file"
-					+ "	(num, writer, title, orgFileName, saveFileName, fileSize, regdate)"
-					+ " VALUES(board_file_seq.NEXTVAL,?,?,?,?,?,SYSDATE)";
+			String sql = "INSERT INTO UPLOAD"
+					+ "	(upload_id, uploader_id , org_filename, save_filename, fileSize, uploaded_at)"
+					+ " VALUES(UPLOAD_SEQ.NEXTVAL,?,?,?,?,SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 내용이 있으면 바인딩
-			pstmt.setString(1, dto.getWriter());
-			pstmt.setString(2, dto.getTitle());
-			pstmt.setString(3, dto.getOrgFileName());
-			pstmt.setString(4, dto.getSaveFileName());
-			pstmt.setLong(5, dto.getFileSize());
+			pstmt.setString(1, dto.getUploader_id());
+			pstmt.setString(2, dto.getOrg_filename());
+			pstmt.setString(3, dto.getSave_filename());
+			pstmt.setLong(4, dto.getFilesize());
 					
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -63,7 +62,7 @@ public class FileDao {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문
 			String sql = "SELECT MAX(ROWNUM) AS count"
-					+ "	FROM board_file";
+					+ "	FROM UPLOAD";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩할 내용이 있으면 여기서 한다.
 
@@ -96,9 +95,9 @@ public class FileDao {
 		try {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문
-			String sql = "SELECT num, writer, title, orgFileName, saveFileName,fileSize, regdate"
-					+ " FROM board_file"
-					+ " ORDER BY NUM DESC";
+			String sql = "SELECT upload_id, uploader_id , org_filename, save_filename, filesize, uploaded_at"
+					+ " FROM UPLOAD"
+					+ " ORDER BY upload_id DESC";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩할 내용이 있으면 여기서 한다.
 
@@ -107,13 +106,12 @@ public class FileDao {
 			//반복문 돌면서 
 			while (rs.next()) {
 				FileDto dto =new FileDto();
-				dto.setNum(rs.getInt("num"));
-				dto.setTitle(rs.getString("title"));
-				dto.setOrgFileName(rs.getString("orgFileName"));
-				dto.setFileSize(rs.getLong("fileSize"));
-				dto.setSaveFileName(rs.getString("saveFileName"));
-				dto.setRegdate(rs.getString("regdate"));
-				dto.setWriter(rs.getString("writer"));
+				dto.setUpload_id(rs.getInt("upload_id"));
+				dto.setOrg_filename("org_filename");
+				dto.setUploader_id(rs.getString("uploader_id"));
+				dto.setSave_filename(rs.getString("save_filename"));
+				dto.setFilesize(rs.getLong("filesize"));
+				dto.setUploaded_at(rs.getString("uploaded_at"));
 				list.add(dto);
 				
 			}
@@ -145,9 +143,9 @@ public class FileDao {
 					+ " FROM"
 					+ "	(SELECT result1.*, ROWNUM AS rnum"
 					+ "	FROM"
-					+ "		(SELECT num, writer, title , orgFileName,saveFileName, fileSize, regdate"
-					+ "		FROM board_file"
-					+ "		ORDER BY num DESC) result1)"
+					+ "		(SELECT upload_id, uploader_id , org_filename, save_filename, filesize, uploaded_at"
+					+ "		FROM UPLOAD"
+					+ "		ORDER BY upload_id DESC) result1)"
 					+ " WHERE rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩할 내용이 있으면 여기서 한다.
@@ -158,13 +156,12 @@ public class FileDao {
 			//반복문 돌면서 
 			while (rs.next()) {
 				FileDto dto =new FileDto();
-				dto.setNum(rs.getInt("num"));
-				dto.setTitle(rs.getString("title"));
-				dto.setOrgFileName(rs.getString("orgFileName"));
-				dto.setFileSize(rs.getLong("fileSize"));
-				dto.setSaveFileName(rs.getString("saveFileName"));
-				dto.setRegdate(rs.getString("regdate"));
-				dto.setWriter(rs.getString("writer"));
+				dto.setUpload_id(rs.getInt("upload_id"));
+				dto.setOrg_filename("org_filename");
+				dto.setUploader_id(rs.getString("uploader_id"));
+				dto.setSave_filename(rs.getString("save_filename"));
+				dto.setFilesize(rs.getLong("filesize"));
+				dto.setUploaded_at(rs.getString("uploaded_at"));
 				list.add(dto);
 				
 			}
@@ -191,9 +188,9 @@ public class FileDao {
 		try {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문
-			String sql = "SELECT num, writer, title, orgFileName, saveFileName, fileSize, regdate"
-					+ " FROM board_file"
-					+ " WHERE NUM=?";
+			String sql = "SELECT upload_id, uploader_id , org_filename, save_filename, filesize, uploaded_at"
+					+ " FROM UPLOAD"
+					+ " WHERE upload_id=?";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩할 내용이 있으면 여기서 한다.
 			pstmt.setInt(1, num);
@@ -202,13 +199,12 @@ public class FileDao {
 			//반복문 돌면서 
 			while (rs.next()) {
 				dto=new FileDto();
-				dto.setNum(rs.getInt("num"));
-				dto.setTitle(rs.getString("title"));
-				dto.setOrgFileName(rs.getString("orgFileName"));
-				dto.setFileSize(rs.getInt("fileSize"));
-				dto.setSaveFileName(rs.getString("saveFileName"));
-				dto.setWriter(rs.getString("writer"));
-				dto.setRegdate(rs.getString("regdate"));
+				dto.setUpload_id(rs.getInt("upload_id"));
+				dto.setOrg_filename("org_filename");
+				dto.setUploader_id(rs.getString("uploader_id"));
+				dto.setSave_filename(rs.getString("save_filename"));
+				dto.setFilesize(rs.getLong("filesize"));
+				dto.setUploaded_at(rs.getString("uploaded_at"));
 
 			}
 		} catch (Exception e) {
@@ -233,8 +229,8 @@ public class FileDao {
 		try {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문
-			String sql = "DELETE from board_file"
-					+ " WHERE num=?";
+			String sql = "DELETE from UPLOAD"
+					+ " WHERE upload_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rowCount = pstmt.executeUpdate();
