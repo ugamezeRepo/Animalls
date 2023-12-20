@@ -11,14 +11,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductDto {
+public class ProductOptionDto {
+	private int option_id;
 	private int product_id;
-	private String seller_id;
-	private String category;
-	private String title;
 	private String description;
-	private int org_price;
-	private int sale_price;
-	private String sales_state;
-	private String thumbnail;
+	private int additional_price;
 }
