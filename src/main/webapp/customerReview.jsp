@@ -140,22 +140,23 @@
 		    <li><button class="dropdown-item" type="button">별1점</button></li>
 		  </ul>
 			</div>
-		 	<form class="mb-3" name="myform" id="myform" method="post">
+		 	<form action="" class="mb-3" name="myform" id="myform" method="post">
 			<fieldset>
 				<span class="text-bold">별점을 선택해주세요</span>
-				<input type="radio" name="reviewStar" value="5" id="rate1"><label
-					for="rate1">★</label>
-				<input type="radio" name="reviewStar" value="4" id="rate2"><label
-					for="rate2">★</label>
-				<input type="radio" name="reviewStar" value="3" id="rate3"><label
-					for="rate3">★</label>
-				<input type="radio" name="reviewStar" value="2" id="rate4"><label
-					for="rate4">★</label>
-				<input type="radio" name="reviewStar" value="1" id="rate5"><label
-					for="rate5">★</label>
+				<input type="radio" name="reviewStar" value="5" id="rate5">
+				<label for="rate5">★</label>
+				<input type="radio" name="reviewStar" value="4" id="rate4">
+				<label for="rate4">★</label>
+				<input type="radio" name="reviewStar" value="3" id="rate3">
+				<label for="rate3">★</label>			
+				<input type="radio" name="reviewStar" value="2" id="rate2">
+				<label for="rate2">★</label>
+				<input type="radio" name="reviewStar" value="1" id="rate1">
+				<label for="rate1">★</label>		
 			</fieldset>
-				<textarea class="col-auto form-control" type="text" id="reviewContents"
-						  placeholder="잘좀써줘"></textarea>			
+				<textarea class="col-auto form-control mb-2" type="text" id="reviewContents" name="content"
+						  placeholder="잘좀써줘"></textarea>	
+				<button type="submit" class="btn btn-success">제출</button>	
 			</form>
 			<ul class="page-list">
 				<c:if test="${startPageNum ne 1 }">

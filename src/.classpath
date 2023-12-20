@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="main/java"/>
-	<classpathentry kind="lib" path="C:/Users/acorn/Desktop/git fork/Acorn project/Animalls/src/main/webapp/WEB-INF/lib/lombok-1.18.30.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>

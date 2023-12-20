@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderDto {
+public class OrderRequestDto {
 	private int order_id;
 	private int postal_address;
 	private String state;
