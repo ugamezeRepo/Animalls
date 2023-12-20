@@ -8,6 +8,16 @@ import dto.OrderRequestDto;
 import util.DbcpBean;
 
 public class OrderRequestDao {
+	private static OrderRequestDao dao;
+	private OrderRequestDao() {}
+	public static OrderRequestDao getInstance() {
+		if(dao==null) {
+			dao=new OrderRequestDao();
+		}
+		return dao;
+	}
+	
+	
 	public OrderRequestDto getData(int orderId) {
 		OrderRequestDto dto = new OrderRequestDto();
 		Connection conn = null;

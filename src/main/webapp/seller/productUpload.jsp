@@ -17,9 +17,9 @@
 	ProductDto dto=new ProductDto();
 	dto.setTitle(title);
 	dto.setCategory(category);
-	dto.setOrg_price(org_price);
-	dto.setSale_price(sale_price);
-	dto.setSales_state(sales_state);
+	dto.setOrgPrice(org_price);
+	dto.setSalePrice(sale_price);
+	dto.setSalesState(sales_state);
 	dto.setDescription(description);
 	
 	boolean isSuccess=ProductDao.getInstance().insert(dto);

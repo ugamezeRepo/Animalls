@@ -8,6 +8,14 @@ import dto.CartItemDto;
 import util.DbcpBean;
 
 public class CartItemDao {
+	private static CartItemDao dao;
+	private CartItemDao() {}
+	public static CartItemDao getInstance() {
+		if(dao==null) {
+			dao=new CartItemDao();
+		}
+		return dao;
+	}
 	
 	public CartItemDto getData(int cartItemId) {
 		CartItemDto dto = new CartItemDto();
