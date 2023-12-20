@@ -21,19 +21,19 @@ public class MemberDao {
 			conn = new DbcpBean().getConn();
 			// 실행할 sql 문
 			String sql = "INSERT INTO MEMBER" + 
-					" ( member_id, delivery_id, password, nickname,role, phone_number, rank, profile_image, email_verified)" + 
-					" VALUES ( ?, ?, ?, ?)";
+					" (member_id, delivery_id, password, name, nickname, phone_number, profile_image, email_verified, registered_date)" + 
+					" VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			// ? 에 바인딩 할 내용이 있으면 바인딩
 			pstmt.setString(1, dto.getMemberId());
 			pstmt.setInt(2, dto.getDeliveryId());
 			pstmt.setString(3, dto.getPassword());
-			pstmt.setString(4, dto.getNickname());
-			pstmt.setString(5, dto.getRole());
+			pstmt.setString(4, dto.getName());
+			pstmt.setString(5, dto.getNickname());
 			pstmt.setString(6, dto.getPhoneNumber());
-			pstmt.setString(7, dto.getRank());
-			pstmt.setString(8, dto.getProfileImage());
-			pstmt.setBoolean(9, dto.isEmailVerified());
+			pstmt.setString(7, dto.getProfileImage());
+			pstmt.setBoolean(8, dto.isEmailVerified());
+			pstmt.setString(9, dto.getRegisteredDate());
 
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -53,19 +53,21 @@ public class MemberDao {
 			conn = new DbcpBean().getConn();
 			// 실행할 sql 문
 			String sql = "UPDATE MEMBER" + 
-					" SET delivery_id=?, password=?, nickname=?, role=?, phone_number=?, rank=?, profile_image=?, email_verified=?" + 
+					" SET delivery_id=?, password=?, nickname=?, name=?, role=?, phone_number=?, rank=?, profile_image=?, email_verified=?, registered_date=?" + 
 					" WHERE member_id=?";
 			pstmt = conn.prepareStatement(sql);
 			// ? 에 바인딩 할 내용이 있으면 바인딩
 			pstmt.setInt(1, dto.getDeliveryId());
 			pstmt.setString(2, dto.getPassword());
 			pstmt.setString(3, dto.getNickname());
-			pstmt.setString(4, dto.getRole());
-			pstmt.setString(5, dto.getPhoneNumber());
-			pstmt.setString(6, dto.getRank());
-			pstmt.setString(7, dto.getProfileImage());
-			pstmt.setBoolean(8, dto.isEmailVerified());
-			pstmt.setString(9, dto.getMemberId());
+			pstmt.setString(4, dto.getName());
+			pstmt.setString(5, dto.getRole());
+			pstmt.setString(6, dto.getPhoneNumber());
+			pstmt.setString(7, dto.getRank());
+			pstmt.setString(8, dto.getProfileImage());
+			pstmt.setBoolean(9, dto.isEmailVerified());
+			pstmt.setString(10, dto.getRegisteredDate());
+			pstmt.setString(11, dto.getMemberId());
 
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -109,7 +111,7 @@ public class MemberDao {
 		try {
 			conn = new DbcpBean().getConn();
 			// 실행할 sql 문
-			String sql = "SELECT delivery_id, password, nickname,role, phone_number, rank, profile_image, email_verified" + 
+			String sql = "SELECT delivery_id, password, nickname, name, role, phone_number, rank, profile_image, email_verified" + 
 					" FROM MEMBER" + 
 					" WHERE member_id=?";
 			pstmt = conn.prepareStatement(sql);
@@ -125,11 +127,13 @@ public class MemberDao {
 				dto.setDeliveryId(rs.getInt("delivery_id"));
 	            dto.setPassword(rs.getString("password"));
 	            dto.setNickname(rs.getString("nickname"));
+	            dto.setName(rs.getString("name"));
 	            dto.setRole(rs.getString("role"));
 	            dto.setPhoneNumber( rs.getString("phone_number"));
 	            dto.setRank(rs.getString("rank"));
 	            dto.setProfileImage(rs.getString("profile_image"));
 	            dto.setEmailVerified(rs.getBoolean("email_verified"));
+	            dto.setRegisteredDate(rs.getString("registered_date"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

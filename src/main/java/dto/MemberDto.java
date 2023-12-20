@@ -17,10 +17,12 @@ public class MemberDto {
 	private String memberId; 
 	private int deliveryId; 
 	private String password;
+	private String name;
 	private String nickname; 
 	private String role;
 	private String phoneNumber;
 	private String rank; 
 	private String profileImage; 
 	private boolean emailVerified; 
+	private String registeredDate;
 }

@@ -6,6 +6,7 @@ DROP TABLE "PRODUCT_REVIEW" CASCADE CONSTRAINTS;
 DROP TABLE "CART_ITEM" CASCADE CONSTRAINTS; 
 DROP TABLE "ORDER" CASCADE CONSTRAINTS; 
 DROP TABLE "ORDER_ITEM" CASCADE CONSTRAINTS; 
+DROP TABLE "UPLOAD" CASCADE CONSTRAINTS; 
 
 DROP SEQUENCE "DELIVERY_ADDRESS_SEQ"; 
 DROP SEQUENCE "PRODUCT_SEQ";
@@ -14,7 +15,7 @@ DROP SEQUENCE "PRODUCT_REVIEW_SEQ";
 DROP SEQUENCE "CART_ITEM_SEQ";
 DROP SEQUENCE "ORDER_SEQ";
 DROP SEQUENCE "ORDER_ITEM_SEQ";
-
+DROP SEQUENCE "UPLOAD_SEQ";
 
 CREATE TABLE "DELIVERY_ADDRESS" (
 	"delivery_id"		NUMBER(10)		PRIMARY KEY,
@@ -23,7 +24,6 @@ CREATE TABLE "DELIVERY_ADDRESS" (
 	"address_detail"	VARCHAR2(50)	NULL
 );
 CREATE SEQUENCE "DELIVERY_ADDRESS_SEQ"; 
-
 
 CREATE TABLE "MEMBER" (
     "member_id"         VARCHAR2(50)    PRIMARY KEY,
@@ -36,7 +36,7 @@ CREATE TABLE "MEMBER" (
     "rank"              VARCHAR2(20)    DEFAULT 'bronze' CONSTRAINT chk_member_rank CHECK ("rank" IN ('bronze', 'silver', 'gold', 'diamond')),
     "profile_image"     CLOB,
     "email_verified"    NUMBER(1)       DEFAULT 0 CONSTRAINT chk_member_email_verified CHECK ("email_verified" IN (0, 1)),
-    "registerd_date"    DATE            NOT NULL, 
+    "registered_date"    DATE            NOT NULL, 
     CONSTRAINT fk_member_delivery FOREIGN KEY ("delivery_id")
         REFERENCES "DELIVERY_ADDRESS" ("delivery_id")
         ON DELETE CASCADE
@@ -139,4 +139,18 @@ CREATE TABLE  "ORDER_ITEM" (
 		ON DELETE CASCADE
 );
 CREATE SEQUENCE "ORDER_ITEM_SEQ"; 
+
+
+CREATE TABLE "UPLOAD" (
+	"upload_id" NUMBER(10) PRIMARY KEY, 
+	"uploader_id" VARCHAR2(50),  
+	"org_filename" VARCHAR2(100),
+	"save_filename" VARCHAR2(100),
+	"filesize" NUMBER(10),
+	"uploaded_at" DATE NOT NULL, 
+	CONSTRAINT fk_upload_uploader FOREIGN KEY ("uploader_id")
+		REFERENCES "MEMBER" ("member_id")
+		ON DELETE CASCADE
+);
+CREATE SEQUENCE "UPLOAD_SEQ";
 
