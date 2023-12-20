@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>판매자 상품등록</title>
+<title>/seller/productUpload_form.jsp</title>
 </head>
 <body>
 	<div class="container">
