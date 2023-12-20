@@ -4,7 +4,7 @@
 	//어느 페이지에 포함되었는지 정보를 얻어오기
 	String currentPage=request.getParameter("current");
 %>
-
+<link href="/Animalls/css/footer.css" rel="stylesheet">
   <footer class="footer bg-dark text-white p-4">
       <div class="container">
 	      <div class="row">

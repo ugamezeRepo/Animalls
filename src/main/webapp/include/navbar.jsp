@@ -21,36 +21,37 @@
           <li><a href="#" class="nav-link px-2 link-body-emphasis">커뮤니티</a></li>
           <li><a href="#" class="nav-link px-2 link-body-emphasis">고객지원</a></li>
           <li><a href="#" class="nav-link px-2 link-body-emphasis">정기배송</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">고객리뷰</a></li>
+          <li><a href="customerReview.jsp" class="nav-link px-2 link-body-emphasis">고객리뷰</a></li>
         </ul>
 
         <form action="" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
           <input type="search" class="form-control" placeholder="검색어를 입력해주세요" name="">
         </form>
-		
-		<div class="dropdown text-end">
-          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          </a>
-          <ul class="dropdown-menu text-small">
-            <li><a class="dropdown-item" href="myPage.jsp">My Page</a></li>
-            <li><a class="dropdown-item" href="cart.jsp">Cart</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-          </ul>
-        </div>
-		
-        <div class="dropdown text-end">
-          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          </a>
-          <ul class="dropdown-menu text-small">
-            <li><a class="dropdown-item" href="myPage.jsp">My Page</a></li>
-            <li><a class="dropdown-item" href="cart.jsp">Cart</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-          </ul>
-        </div>
+        
+		<%if(id != null) {%>
+			<div class="dropdown text-end">
+	          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+	            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+	          </a>
+	          <ul class="dropdown-menu text-small">
+	            <li><a class="dropdown-item" href="myPage.jsp">My Page</a></li>
+	            <li><a class="dropdown-item" href="cart.jsp">Cart</a></li>
+	            <li><hr class="dropdown-divider"></li>
+	            <li><a class="dropdown-item" href="#">Sign out</a></li>
+	          </ul>
+	        </div>
+		<%} else {%>
+			<div class="dropdown text-end">
+	          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+	            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+	          </a>
+	          <ul class="dropdown-menu text-small">
+	            <li><a class="dropdown-item" href="login.jsp">Login</a></li>
+	            <li><a class="dropdown-item" href="signUp.jsp">Sign Up</a></li>
+	          </ul>
+	        </div>
+		<%} %>
+        
       </div>
     </div>
   </header>

@@ -30,8 +30,6 @@
 	}
 </style>
 <link href="/Animalls/css/carousel.css" rel="stylesheet">
-<link href="/Animalls/css/footer.css" rel="stylesheet">
-
 </head>
 <body>
 	<jsp:include page="/include/navbar.jsp">
@@ -88,56 +86,56 @@
 	  </div>
 		
 	  
-	  <div class="container" style="margin-bottom:110px;">
+	  <div class="container mb-5">
 	  <h2>고객 Pick</h2>
 	    <div class="row">
 	    
-	      <div class="col-lg-3 mb-5 mt-5">
+	      <div class="col-lg-3 mb-auto">
 		    <a class="text-center" href="#">
 		     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
 			     <title>Placeholder</title>
 			     <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
 		     </svg>
 		    </a>
-	        <h4 class="fw-normal mt-2 text-left">제품명</h4>
-	        <p class="text-left d-inline-block mr-3">가격</p>
-	        <p class="d-inline-block">리뷰</p>
+	        <h5 class="fw-normal mt-2 text-left">피부모질 닥터독 사료2kg</h5>
+	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto">32,500원</p>
+	        <p class="d-block mb-3">리뷰 : 3,751 | ★ 4.7</p>
 	      </div>
 	      
-	      <div class="col-lg-3 mb-5 mt-5">
+	      <div class="col-lg-3 mb-auto">
 		    <a class="text-center" href="#">
 		     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
 			     <title>Placeholder</title>
 			     <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
 		     </svg>
 		    </a>
-	        <h4 class="fw-normal mt-2 text-left">제품명</h4>
-	        <p class="text-left d-inline-block mr-3">가격</p>
-	        <p class="d-inline-block">리뷰</p>
+	        <h5 class="fw-normal mt-2 text-left">피부모질 닥터독 사료2kg</h5>
+	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto">32,500원</p>
+	        <p class="d-block mb-3">리뷰 : 3,751 | ★ 4.7</p>
 	      </div>
 	      
-	      <div class="col-lg-3 mb-5 mt-5">
+	      <div class="col-lg-3 mb-auto">
 		    <a class="text-center" href="#">
 		     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
 			     <title>Placeholder</title>
 			     <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
 		     </svg>
 		    </a>
-	        <h4 class="fw-normal mt-2 text-left">제품명</h4>
-	        <p class="text-left d-inline-block mr-3">가격</p>
-	        <p class="d-inline-block">리뷰</p>
+	        <h5 class="fw-normal mt-2 text-left">피부모질 닥터독 사료2kg</h5>
+	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto">32,500원</p>
+	        <p class="d-block mb-3">리뷰 : 3,751 | ★ 4.7</p>
 	      </div>
 	      
-	      <div class="col-lg-3 mb-5 mt-5">
+	      <div class="col-lg-3 mb-auto">
 		    <a class="text-center" href="#">
 		     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
 			     <title>Placeholder</title>
 			     <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
 		     </svg>
 		    </a>
-	        <h4 class="fw-normal mt-2 text-left">제품명</h4>
-	        <p class="text-left d-inline-block mr-3">가격</p>
-	        <p class="d-inline-block">리뷰</p>
+	        <h5 class="fw-normal mt-2 text-left">피부모질 닥터독 사료2kg</h5>
+	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto">32,500원</p>
+	        <p class="d-block mb-3">리뷰 : 3,751 | ★ 4.7</p>
 	      </div>
 	      
 	    </div>
