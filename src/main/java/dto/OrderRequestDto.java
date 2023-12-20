@@ -12,12 +12,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class OrderRequestDto {
-	private int order_id;
-	private int postal_address;
+	private int orderId;
+	private int postalAddress;
 	private String state;
-	private String detailed_address;
-	private String delivery_message;
-	private int payment_method;
+	private String address;
+	private String detailedAddress;
+	private String deliveryMessage;
+	private int paymentMethod;
 	private String message;
-	private String ordered_date;
+	private String orderedDate;
 }
