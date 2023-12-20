@@ -1,10 +1,12 @@
+<%@page import="dao.ProductDao"%>
+<%@page import="dto.ProductDto"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.UserDao"%>
 <%@page import="dto.UserDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<UserDto> list=UserDao.getInstance().getList();
+	List<UserDto> list=ProductDao.getInstance().getList();
 %>
 <!DOCTYPE html>
 <html>
@@ -31,7 +33,7 @@
 				</tr>
 			</thead>
 			<tbody>
-			<%for(UserDto tmp:list){ %>
+			<%for(ProductDto tmp:List){ %>
 				<tr>
 					<td><%=tmp.getProduct_id() %></td>
 					<td><%=tmp.getThumbnail() %></td>
