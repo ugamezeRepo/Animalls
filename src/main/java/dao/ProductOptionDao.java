@@ -30,10 +30,10 @@ public class ProductOptionDao {
 				//반복문 돌면서 
 				while (rs.next()) {
 					ProductOptionDto dto = new ProductOptionDto();
-					dto.setProduct_id(product_id);
-					dto.setOption_id(rs.getInt("option_id"));
+					dto.setProductId(product_id);
+					dto.setOptionId(rs.getInt("option_id"));
 					dto.setDescription(rs.getString("description"));
-					dto.setAdditional_price(rs.getInt("additional_price"));
+					dto.setAdditionalPrice(rs.getInt("additional_price"));
 					list.add(dto);
 				}
 			} catch (Exception e) {

@@ -28,14 +28,14 @@ public class ProductDao {
 			//반복문 돌면서 
 			while (rs.next()) {
 			
-			dto.setProduct_id(product_id);
-			dto.setSeller_id(rs.getString("seller_id"));
+			dto.setProductId(product_id);
+			dto.setSellerId(rs.getString("seller_id"));
 			dto.setCategory(rs.getString("category"));
 			dto.setTitle(rs.getString("title"));
 			dto.setDescription(rs.getString("description"));
-			dto.setOrg_price(rs.getInt("org_price"));
-			dto.setSale_price(rs.getInt("sale_price"));
-			dto.setSales_state(rs.getString("sales_state"));
+			dto.setOrgPrice(rs.getInt("org_price"));
+			dto.setSalePrice(rs.getInt("sale_price"));
+			dto.setSalesState(rs.getString("sales_state"));
 			dto.setThumbnail(rs.getString("thumbnail"));
 			
 			}
