@@ -1,10 +1,7 @@
 package dao;
 
 import java.sql.Connection;
-<<<<<<< HEAD
 
-=======
->>>>>>> 914fc4e (product,product_option,cart_item dto,dao 추가)
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
