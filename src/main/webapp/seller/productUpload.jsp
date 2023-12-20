@@ -1,3 +1,5 @@
+<%@page import="dao.ProductDao"%>
+<%@page import="dto.ProductDto"%>
 <%@page import="dao.UserDao"%>
 <%@page import="dto.UserDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,12 +9,12 @@
 
 	String title=request.getParameter("title");
 	String category=request.getParameter("category");
-	String org_price=request.getParameter("org_price");
-	String sale_price=request.getParameter("sale_price");
+	int org_price=Integer.parseInt(request.getParameter("org_price"));
+	int sale_price=Integer.parseInt(request.getParameter("sale_price"));
 	String sales_state=request.getParameter("sales_state");
 	String description=request.getParameter("description");
 	
-	UserDto dto=new UserDto();
+	ProductDto dto=new ProductDto();
 	dto.setTitle(title);
 	dto.setCategory(category);
 	dto.setOrg_price(org_price);
@@ -20,7 +22,7 @@
 	dto.setSales_state(sales_state);
 	dto.setDescription(description);
 	
-	boolean isSuccess=UserDao.getInstance().insert(dto);
+	boolean isSuccess=ProductDao.getInstance().insert(dto);
 %>
 <!DOCTYPE html>
 <html>
