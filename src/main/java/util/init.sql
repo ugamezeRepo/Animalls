@@ -75,7 +75,6 @@ CREATE TABLE PRODUCT_REVIEW (
 	review_id		NUMBER(10)		PRIMARY KEY,
 	product_id		NUMBER(10),
 	reviewer_id		VARCHAR2(50),
-	title			VARCHAR2(20)	NOT	NULL,
 	content			CLOB			NOT NULL,
 	thumbnail		VARCHAR2(100)   NULL,
 	rating			NUMBER(2)		NOT NULL CONSTRAINT chk_product_review_rating CHECK (rating in (1,2,3,4,5,6,7,8,9,10)),
