@@ -137,8 +137,8 @@ public class CartItemDao {
 		try {
 			conn=new DbcpBean().getConn();
 			String sql="INSERT INTO CART_ITEM"
-					+ " (buyer_id, product_id, option_id,amount)"
-					+ " VALUES(?,?,?,?)";
+					+ " (cart_item_id, buyer_id, product_id, option_id, amount)"
+					+ " VALUES(CART_ITEM_SEQ.NEXTVAL,?,?,?,?)";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getBuyerId());
 			pstmt.setInt(2, dto.getProductId());
