@@ -1,5 +1,10 @@
+<%@page import="dao.ProductDao"%>
+<%@page import="dto.ProductDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ProductDto dto = ProductDao.getInstance().getData(1);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +40,7 @@
 						</span>
 					</div>
 					<a href="" name="saryo1">
-						<img src=""/>
+						<img src="<%=dto.getThumbnail()%>"/>
 					</a>
 				</div>
 				<div class="description"></div>
