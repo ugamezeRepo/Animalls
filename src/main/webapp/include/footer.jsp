@@ -44,8 +44,8 @@
 	                  </p>
 	                  <div>
 	                  	<a href="http://shop1.hucheum.cafe24.com/board/faq/list.html?cate_no=304">FAQ</a>
-	                      <a href="http://shop1.hucheum.cafe24.com/board/qna/list.html?cate_no=301">1:1 문의</a>
-	                      <a href="http://shop1.hucheum.cafe24.com/board/urgency/list.html?cate_no=299">마케팅제휴문의</a>
+	                    <a href="http://shop1.hucheum.cafe24.com/board/qna/list.html?cate_no=301">1:1 문의</a>
+	                    <a href="http://shop1.hucheum.cafe24.com/board/urgency/list.html?cate_no=299">마케팅제휴문의</a>
 	                  </div>
 	              </div>
 	          </div>

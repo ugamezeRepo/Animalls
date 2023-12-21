@@ -140,18 +140,26 @@
 	    </div>
 	  </div>
 	  
-	  <div id="app" class="container">
-	  	<image-slider>
-			<p>
-				<a @click="prev">Previous</a> || <a @click="next">Next</a>
-			</p>
-			<div v-for="number in [currentNumber] transition="fade">
-				<img :src="images[Math.abs(currentNumber) % images.length]" v-on:mouseover="stopRotation" v-on:mouseout="startRotation"	/>
+	<div id="app" class="container">
+		<div class="slide-container">
+			<button @click="moveSlideToLeft">
+				<img src="" />
+			</button>
+			<div class="slide-window">
+				<div class="slide" 
+				     :class="{ slide-active': transitionOn }" 
+				     :style="{transform: 'translate3d(' + slideCoord + 'px, 0, 0)',}">
+				  <SlideCard v-for="card in cardArray" :key="card.name" /></div>
 			</div>
-		</image-slider>
-	  </div>
+		</div>
+		
+		<button @click="moveSlideToRight">
+			<img src=""/>
+		</button>
+	</div>
 		
 	</main>
+	
 	<jsp:include page="/include/footer.jsp">
 		<jsp:param value="index" name="current"/>
 	</jsp:include>
