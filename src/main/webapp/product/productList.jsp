@@ -1,3 +1,4 @@
+<%@page import="java.util.stream.Collectors"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.ProductDao"%>
 <%@page import="dto.ProductDto"%>
@@ -5,6 +6,12 @@
     pageEncoding="UTF-8"%>
 <%
 	List<ProductDto> list = ProductDao.getInstance().getList();
+	
+	
+	String category = request.getParameter("category");
+	if(category!=null){
+		list = list.stream().filter(c->c.getCategory().equals(category)).collect(Collectors.toList());
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -22,35 +29,35 @@
 	<div class="category">
 		<h3>Category</h3>
 			<ul class="menuCategory">
-				<li><a href="${pageContext.request.contextPath}/product/foodList.jsp">food</a></li>
-				<li><a href="${pageContext.request.contextPath}/product/clothesList.jsp">clothes</a></li>
-				<li><a href="${pageContext.request.contextPath}/product/bathList.jsp">bath</a></li>
+				<li><a href="${pageContext.request.contextPath}/product/productList.jsp?category=food">food</a></li>
+				<li><a href="${pageContext.request.contextPath}/product/productList.jsp?category=clothes">clothes</a></li>
+				<li><a href="${pageContext.request.contextPath}/product/productList.jsp?category=bath">bath</a></li>
 			</ul>
 	</div>
 	<div class="product">
 		<h3>Product</h3>
 			<ul class="prdList">
-				<%for(ProductDto tmp:list){ %>
-				<li>
-					<div class="thumbnail">
-						<a href="${pageContext.request.contextPath}/product/productDetail.jsp?productId=<%=tmp.getProductId()%>">
-							<img src="<%=tmp.getThumbnail() %>" width="100px" height="150px"/>
-						</a>
-					</div>
-					<div class="description">
-					 	<strong class="name">
-					 		<a href="${pageContext.request.contextPath}/product/productDetail.jsp?productId=<%=tmp.getProductId()%>"><%=tmp.getTitle() %></a>
-					 	</strong>
-					 	<ul class="price">
-					 		<%if(tmp.getSalesState().equals("on_sale")) {%>
-						 		<li><%=tmp.getSalePrice() %></li>
-						 		<li><%=tmp.getOrgPrice() %></li>
-					 		<%}else{ %>
-					 			<li><%=tmp.getOrgPrice() %></li>
-					 		<%} %>
-					 	</ul>
-					</div>
-				</li>
+				<%for(ProductDto tmp:list){%>
+							<li>
+								<div class="thumbnail">
+									<a href="${pageContext.request.contextPath}/productDetail.jsp?productId=<%=tmp.getProductId()%>">
+										<img src="<%=tmp.getThumbnail() %>" width="100px" height="150px"/>
+									</a>
+								</div>
+								<div class="description">
+								 	<strong class="name">
+								 		<a href="${pageContext.request.contextPath}/productDetail.jsp?productId=<%=tmp.getProductId()%>"><%=tmp.getTitle() %></a>
+								 	</strong>
+								 	<ul class="price">
+								 		<%if(tmp.getSalesState().equals("on_sale")) {%>
+									 		<li><%=tmp.getSalePrice() %></li>
+									 		<li><%=tmp.getOrgPrice() %></li>
+								 		<%}else{ %>
+								 			<li><%=tmp.getOrgPrice() %></li>
+								 		<%} %>
+								 	</ul>
+								</div>
+							</li>
 				<%} %>
 			</ul>
 	</div>
