@@ -1,9 +1,10 @@
+<%@page import="java.util.List"%>
 <%@page import="dao.ProductDao"%>
 <%@page import="dto.ProductDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ProductDto dto = ProductDao.getInstance().getData(1);
+	List<ProductDto> list = ProductDao.getInstance().getList();
 %>
 <!DOCTYPE html>
 <html>
@@ -18,18 +19,18 @@
 <%--(++)총 개수 표시, 정렬 --%>
 <div class="container">
 	<div class="category">
-		<ul>
-			<li class="xans-element- xans-product xans-product-displaycategory  xans-record-">
-				<a href="">
-					"사료"
-					<span class="count displaynone">()</span>
+		<ul class="menuCategory">
+			<li ><!-- li*3 -->
+				<a href=""><%--category 링크 --%>
+					"Food"
 				</a>
 			</li>
 		</ul>
 	</div>
 	<div class="product">
-		<ul>
-			<li id="" class="xans-record-">
+		<ul class="prdList">
+			<%for(ProductDto tmp:list){ %>
+			<li>
 				<div class="thumbnail">
 					<div class="inner"><%--클릭하면 뭔가 호출됨(장바구니, 찜) --%>
 						<span class="basket">
@@ -39,12 +40,21 @@
 							<img src="" alt="" />
 						</span>
 					</div>
-					<a href="" name="saryo1">
-						<img src="<%=dto.getThumbnail()%>"/>
+					<a href="" name="<%=tmp.getProductId()%>">
+						<img src="<%=tmp.getThumbnail()%>"/>
 					</a>
 				</div>
-				<div class="description"></div>
+				<div class="description">
+				 	<strong class="name">
+				 		<a href=""><%=tmp.getTitle() %></a><!-- detail 링크 -->
+				 	</strong>
+				 	<ul class="price">
+				 		<li>판매가</li>
+				 		<li>정가</li>
+				 	</ul>
+				</div>
 			</li>
+			<%} %>
 		</ul>
 	</div>
 </div>
