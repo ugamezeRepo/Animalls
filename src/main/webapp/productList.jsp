@@ -31,7 +31,7 @@
 				<li>
 					<div class="thumbnail">
 						<a href="${pageContext.request.contextPath}/productDetail.jsp?productId=<%=tmp.getProductId()%>">
-							<img src="https://okdoctordog.com/web/product/big/202303/ac327ab3d8874c40784298ed18023e68.jpg"/>
+							<img src="<%=tmp.getThumbnail() %>" width="100px" height="150px"/>
 						</a>
 					</div>
 					<div class="description">
