@@ -23,7 +23,7 @@
 					</div>
 					<%-- title--%>
 					<div class="titleArea">
-						<h1>상품명fdsf</h1>
+						<h1>상품명</h1>
 						<%--한다면 여기에 찜(잠시 보류)--%>
 					</div>
 					<div class="priceArea">
