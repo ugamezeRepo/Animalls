@@ -6,7 +6,7 @@
 %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <link href="/Animalls/css/footer.css" rel="stylesheet">
-  <footer class="footer bg-dark text-white p-4">
+  <footer class="footer p-4">
       <div class="container">
 	      <div class="row">
 	      	<div class="col-sm-8">
