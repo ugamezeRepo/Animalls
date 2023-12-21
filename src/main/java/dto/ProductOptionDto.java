@@ -12,8 +12,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class ProductOptionDto {
-	private int option_id;
-	private int product_id;
+	private int optionId;
+	private int productId;
 	private String description;
-	private int additional_price;
+	private int additionalPrice;
 }

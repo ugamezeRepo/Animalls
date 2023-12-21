@@ -26,7 +26,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title
+<title>로그인</title>
 </head>
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 	<main class="form-signin w-100 m-auto">

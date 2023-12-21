@@ -12,13 +12,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class ProductDto {
-	private int product_id;
-	private String seller_id;
+	private int productId;
+	private String sellerId;
 	private String category;
 	private String title;
 	private String description;
-	private int org_price;
-	private int sale_price;
-	private String sales_state;
+	private int orgPrice;
+	private int salePrice;
+	private String salesState;
 	private String thumbnail;
 }
