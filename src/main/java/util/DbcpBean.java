@@ -16,8 +16,7 @@ public class DbcpBean {
 			// datasource 가져오는 부분 수정
 			DataSource ds = (DataSource)envContext.lookup("jdbc/animalls");
 			conn = ds.getConnection();
-		}catch(Exception e) {
-			e.printStackTrace();
+		}catch(Exception e) { 
 		}
 	}
 	//Connection 객체를 리턴해주는 메소드
