@@ -123,7 +123,7 @@ public class MemberDao {
 		try {
 			conn = new DbcpBean().getConn();
 			// 실행할 sql 문
-			String sql = "SELECT delivery_id, password, nickname, name, role, phone_number, rank, profile_image, email_verified" + 
+			String sql = "SELECT delivery_id, password, nickname, name, role, phone_number, rank, profile_image, email_verified, registered_date" + 
 					" FROM MEMBER" + 
 					" WHERE member_id=?";
 			pstmt = conn.prepareStatement(sql);
