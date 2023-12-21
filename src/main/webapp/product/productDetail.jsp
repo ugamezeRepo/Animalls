@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>productDetail.jsp</title>
 </head>
 <body>
 	<div class="wrap">
@@ -17,13 +17,14 @@
 					<%--경로 --%>
 					<div>
 						<ol>
-							<li><a href="">home</a></li>
+							<li><a href="${pageContext.request.contextPath}/index.jsp">home</a></li>
+							<li><a href="${pageContext.request.contextPath}/productList.jsp">제품</a>
 						</ol>
 					</div>
 					<%-- title--%>
 					<div class="titleArea">
-						<h1>상품명</h1>
-						<%--한다면 여기에 찜 --%>
+						<h1>상품명fdsf</h1>
+						<%--한다면 여기에 찜(잠시 보류)--%>
 					</div>
 					<div class="priceArea">
 						<p>할인가(정가)<span>원</span></p>
@@ -41,8 +42,8 @@
 						
 					</div>
 					<div class="btnWrap">
-						<a href="">장바구니</a>
-						<a href="">구매하기</a>
+						<a href="${pageContext.request.contextPath}/cart.jsp">장바구니</a>
+						<a href="${pageContext.request.contextPath}/payment.jsp">구매하기</a>
 					</div>
 				</div>
 			</div>
