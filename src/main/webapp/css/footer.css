@@ -6,3 +6,13 @@
 .footer .right{
 	float:right;
 }
+.footer {
+	color:#aaaba6;
+	background-color: #292626;
+}
+.footer a:link {
+	color:#aaaba6;
+}
+.footer a:visited {
+	color:#aaaba6;
+}
