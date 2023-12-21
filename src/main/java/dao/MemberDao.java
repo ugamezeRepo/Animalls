@@ -18,6 +18,7 @@ public class MemberDao {
 		if (dao == null) {
 			dao = new MemberDao();
 		}
+		
 		return dao;
 	}
 	
@@ -29,12 +30,10 @@ public class MemberDao {
 		int rowCount = 0;
 		try {
 			conn = new DbcpBean().getConn();
-			// 실행할 sql 문
 			String sql = "INSERT INTO MEMBER" + 
-					" (member_id, delivery_id, password, name, nickname, role, phone_number, rank, profile_image, email_verified, registered_date)" + 
-					" VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
+					" (member_id, delivery_id, password, name, nickname, role, phone_number, rank, profile_image, email, email_verified, registered_date)" + 
+					" VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
-			// ? 에 바인딩 할 내용이 있으면 바인딩
 			pstmt.setString(1, dto.getMemberId());
 			pstmt.setInt(2, dto.getDeliveryId());
 			pstmt.setString(3, dto.getPassword());
@@ -44,15 +43,16 @@ public class MemberDao {
 			pstmt.setString(7, dto.getPhoneNumber());
 			pstmt.setString(8, dto.getRank());
 			pstmt.setString(9, dto.getProfileImage());
-			pstmt.setBoolean(10, dto.isEmailVerified());
-			pstmt.setString(11, dto.getRegisteredDate());
-
+			pstmt.setString(10, dto.getEmail());
+			pstmt.setBoolean(11, dto.isEmailVerified());
+			pstmt.setString(12, dto.getRegisteredDate());
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeResource(conn, pstmt);
 		}
+		
 		return rowCount > 0;
 	}
 	
@@ -63,12 +63,10 @@ public class MemberDao {
 		int rowCount = 0;
 		try {
 			conn = new DbcpBean().getConn();
-			// 실행할 sql 문
 			String sql = "UPDATE MEMBER" + 
-					" SET delivery_id=?, password=?, nickname=?, name=?, role=?, phone_number=?, rank=?, profile_image=?, email_verified=?, registered_date=?" + 
+					" SET delivery_id=?, password=?, nickname=?, name=?, role=?, phone_number=?, rank=?, profile_image=?, email, email_verified=?" + 
 					" WHERE member_id=?";
 			pstmt = conn.prepareStatement(sql);
-			// ? 에 바인딩 할 내용이 있으면 바인딩
 			pstmt.setInt(1, dto.getDeliveryId());
 			pstmt.setString(2, dto.getPassword());
 			pstmt.setString(3, dto.getNickname());
@@ -77,16 +75,16 @@ public class MemberDao {
 			pstmt.setString(6, dto.getPhoneNumber());
 			pstmt.setString(7, dto.getRank());
 			pstmt.setString(8, dto.getProfileImage());
-			pstmt.setBoolean(9, dto.isEmailVerified());
-			pstmt.setString(10, dto.getRegisteredDate());
+			pstmt.setString(9, dto.getEmail());
+			pstmt.setBoolean(10, dto.isEmailVerified());
 			pstmt.setString(11, dto.getMemberId());
-
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeResource(conn, pstmt);
 		}
+		
 		return rowCount > 0;
 	}
 	
@@ -97,11 +95,9 @@ public class MemberDao {
 		int rowCount = 0;
 		try {
 			conn = new DbcpBean().getConn();
-			// 실행할 sql 문
 			String sql = "DELETE FROM MEMBER" + 
 					" WHERE member_id=?";
 			pstmt = conn.prepareStatement(sql);
-			// ? 에 바인딩 할 내용이 있으면 바인딩
 			pstmt.setString(1, memberId);
 
 			rowCount = pstmt.executeUpdate();
@@ -110,6 +106,7 @@ public class MemberDao {
 		} finally {
 			closeResource(conn, pstmt);
 		}
+		
 		return rowCount > 0;
 	}
 	
@@ -118,21 +115,15 @@ public class MemberDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		MemberDto dto = null;
 		try {
 			conn = new DbcpBean().getConn();
-			// 실행할 sql 문
-			String sql = "SELECT delivery_id, password, nickname, name, role, phone_number, rank, profile_image, email_verified, registered_date" + 
+			String sql = "SELECT delivery_id, password, nickname, name, role, phone_number, rank, profile_image, email, email_verified, registered_date" + 
 					" FROM MEMBER" + 
 					" WHERE member_id=?";
 			pstmt = conn.prepareStatement(sql);
-			// ? 에 바인딩할 내용이 있으면 여기서 한다.
 			pstmt.setString(1, memberId);
-
-			// query 문 수행하고 결과(ResultSet) 얻어내기
 			rs = pstmt.executeQuery();
-			// 반복문 돌면서
 			if (rs.next()) {
 				dto = new MemberDto();
 				dto.setMemberId(memberId);
@@ -144,6 +135,7 @@ public class MemberDao {
 	            dto.setPhoneNumber( rs.getString("phone_number"));
 	            dto.setRank(rs.getString("rank"));
 	            dto.setProfileImage(rs.getString("profile_image"));
+	            dto.setEmail(rs.getString("email"));
 	            dto.setEmailVerified(rs.getBoolean("email_verified"));
 	            dto.setRegisteredDate(rs.getString("registered_date"));
 			}
@@ -152,6 +144,7 @@ public class MemberDao {
 		} finally {
 			closeResource(conn, pstmt, rs);
 		}
+		
 		return dto;
 	}
 	
@@ -159,24 +152,18 @@ public class MemberDao {
 	public List<MemberDto> getList() {
 		List<MemberDto> list = new ArrayList<>();
 		MemberDto dto = null;
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 		try {
-			// DbcpBean() 객체를 이용해서 Connection 객체 하나 얻어내기(Connection pool에서 하나 꺼내오기)
 			conn = new DbcpBean().getConn();
-			String sql = "SELECT member_id, delivery_id, password, name, nickname, role, phone_number, rank, profile_image, email_verified" +
+			String sql = "SELECT member_id, delivery_id, password, name, nickname, role, phone_number, rank, profile_image, email, email_verified, registered_date" +
 					" FROM MEMBER" +
 					" ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
-			// query문 수행하고 결과(ResultSet) 얻어내기
 			rs = pstmt.executeQuery();
 			
-			// 반복문 돌면서
 			while (rs.next()) {
-				// MemberDto 객체에 각 회원의 정보를 담아
 	            dto = new MemberDto();
 	            dto.setMemberId(rs.getString("member_id"));
 	            dto.setDeliveryId(rs.getInt("delivery_id"));
@@ -187,10 +174,10 @@ public class MemberDao {
 	            dto.setPhoneNumber( rs.getString("phone_number"));
 	            dto.setRank(rs.getString("rank"));
 	            dto.setProfileImage(rs.getString("profile_image"));
+	            dto.setEmail(rs.getString("email"));
 	            dto.setEmailVerified(rs.getBoolean("email_verified"));
 	            dto.setRegisteredDate(rs.getString("registered_date"));
 	            
-	            // ArrayList 객체에 누적
 	            list.add(dto);
 			}
 		} catch (Exception e) {

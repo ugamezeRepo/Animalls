@@ -23,6 +23,7 @@ public class MemberDto {
 	private String phoneNumber;
 	private String rank; 
 	private String profileImage; 
+	private String email;
 	private boolean emailVerified; 
 	private String registeredDate;
 }
