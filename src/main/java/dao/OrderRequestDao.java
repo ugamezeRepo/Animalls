@@ -149,8 +149,8 @@ public class OrderRequestDao {
 		try {
 			conn=new DbcpBean().getConn();
 			String sql="INSERT INTO ORDER_REQUEST"
-					+ " (postal_address,state,address,detailed_address,delivery_message,payment_method,message,ordered_date)"
-					+ " VALUES(?,?,?,?,?,?,?,SYSDATE)";
+					+ " (order_id, postal_address,state,address,detailed_address,delivery_message,payment_method,message,ordered_date)"
+					+ " VALUES(ORDER_REQUEST_SEQ.NEXTVAL, ?,?,?,?,?,?,?,SYSDATE)";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getPostalAddress());
 			pstmt.setString(2, dto.getState());

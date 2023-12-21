@@ -144,8 +144,8 @@ int rowCount=0;
 try {
 	conn=new DbcpBean().getConn();
 	String sql="INSERT INTO ORDER_REQUEST_ITEM"
-			+ " (order_id,product_id,option_id,amount)"
-			+ " VALUES(?,?,?,?)";
+			+ " (order_item_id, order_id,product_id,option_id,amount)"
+			+ " VALUES(ORDER_REQUEST_ITEM_SEQ.NEXTVAL,?,?,?,?)";
 	pstmt=conn.prepareStatement(sql);
 	pstmt.setInt(1, dto.getOrderId());
 	pstmt.setInt(2, dto.getProductId());
