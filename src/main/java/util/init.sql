@@ -50,7 +50,7 @@ CREATE TABLE PRODUCT (
     description   CLOB            NOT NULL,
     org_price     NUMBER(10)      NOT NULL,
     sale_price    NUMBER(10)      NULL,
-    sales_state   VARCHAR2(20)    DEFAULT 'on_sale' CONSTRAINT chk_product_sales_sate CHECK (sales_state IN ('on_sale', 'sold_out', 'sales_end')),
+    sales_state   VARCHAR2(20)    DEFAULT 'on_sale' CONSTRAINT chk_product_sales_state CHECK (sales_state IN ('on_sale', 'sold_out', 'sales_end')),
     thumbnail		VARCHAR2(100),  -- thumbnail url
     CONSTRAINT fk_product_seller FOREIGN KEY (seller_id)
         REFERENCES MEMBER (member_id)
@@ -152,4 +152,3 @@ CREATE TABLE UPLOAD (
 		ON DELETE CASCADE
 );
 CREATE SEQUENCE UPLOAD_SEQ;
-

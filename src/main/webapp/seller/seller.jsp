@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>/seller/seller.jsp</title>
 </head>
 <body>
-
+	<div class="container">
+		<ul>
+			<li><a href="${pageContext.request.contextPath}/seller/productList.jsp">상품 목록보기</a></li>
+		</ul>
+	</div>
 </body>
 </html>
