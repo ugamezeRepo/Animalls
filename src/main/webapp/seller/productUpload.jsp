@@ -16,7 +16,7 @@
 	String description=request.getParameter("description");
 	
 	ProductDto dto=new ProductDto();
-	dto.setSeller_id(seller_id);
+	dto.setSellerId(seller_id);
 	dto.setTitle(title);
 	dto.setCategory(category);
 	dto.setOrgPrice(org_price);

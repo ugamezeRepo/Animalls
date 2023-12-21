@@ -6,11 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-<<<<<<< HEAD
-	List<ProductDto> list=ProductDao.getInstance().getList();
-=======
 	List<ProductDto> list = ProductDao.getInstance().getList();
->>>>>>> 76e8cc70d79e82e229d71a5366574614db9762fc
 %>
 <!DOCTYPE html>
 <html>
@@ -47,10 +43,10 @@
 					<td><%=tmp.getSalePrice() %></td>
 					<td><%=tmp.getSalesState() %></td>
 					<td><%=tmp.getDescription() %></td>
-					<td><a href="updateform.jsp?product_id=<%=tmp.getProduct_id()%>">수정</a></td>
+					<td><a href="updateform.jsp?product_id=<%=tmp.getProductId()%>">수정</a></td>
 					<td>
 						<form action="productDelete.jsp" method="post">
-							<input type="hidden" name="product_id" value="<%=tmp.getProduct_id()%>"/>
+							<input type="hidden" name="product_id" value="<%=tmp.getProductId()%>"/>
 							<button type="submit">삭제</button>
 						</form>
 					</td>
