@@ -10,6 +10,16 @@ import dto.MemberDto;
 import util.DbcpBean;
 
 public class MemberDao {
+	private static MemberDao dao;
+
+	private MemberDao() {}
+	
+	public static MemberDao getInstance() {
+		if (dao == null) {
+			dao = new MemberDao();
+		}
+		return dao;
+	}
 	
 	// CRUD
 	// 추가
@@ -21,8 +31,8 @@ public class MemberDao {
 			conn = new DbcpBean().getConn();
 			// 실행할 sql 문
 			String sql = "INSERT INTO MEMBER" + 
-					" (member_id, delivery_id, password, name, nickname, phone_number, profile_image, email_verified, registered_date)" + 
-					" VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
+					" (member_id, delivery_id, password, name, nickname, role, phone_number, rank, profile_image, email_verified, registered_date)" + 
+					" VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			// ? 에 바인딩 할 내용이 있으면 바인딩
 			pstmt.setString(1, dto.getMemberId());
@@ -30,10 +40,12 @@ public class MemberDao {
 			pstmt.setString(3, dto.getPassword());
 			pstmt.setString(4, dto.getName());
 			pstmt.setString(5, dto.getNickname());
-			pstmt.setString(6, dto.getPhoneNumber());
-			pstmt.setString(7, dto.getProfileImage());
-			pstmt.setBoolean(8, dto.isEmailVerified());
-			pstmt.setString(9, dto.getRegisteredDate());
+			pstmt.setString(6, dto.getRole());
+			pstmt.setString(7, dto.getPhoneNumber());
+			pstmt.setString(8, dto.getRank());
+			pstmt.setString(9, dto.getProfileImage());
+			pstmt.setBoolean(10, dto.isEmailVerified());
+			pstmt.setString(11, dto.getRegisteredDate());
 
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -111,7 +123,7 @@ public class MemberDao {
 		try {
 			conn = new DbcpBean().getConn();
 			// 실행할 sql 문
-			String sql = "SELECT delivery_id, password, nickname, name, role, phone_number, rank, profile_image, email_verified" + 
+			String sql = "SELECT delivery_id, password, nickname, name, role, phone_number, rank, profile_image, email_verified, registered_date" + 
 					" FROM MEMBER" + 
 					" WHERE member_id=?";
 			pstmt = conn.prepareStatement(sql);
@@ -155,7 +167,7 @@ public class MemberDao {
 		try {
 			// DbcpBean() 객체를 이용해서 Connection 객체 하나 얻어내기(Connection pool에서 하나 꺼내오기)
 			conn = new DbcpBean().getConn();
-			String sql = "SELECT member_id, delivery_id, password, nickname,role, phone_number, rank, profile_image, email_verified" +
+			String sql = "SELECT member_id, delivery_id, password, name, nickname, role, phone_number, rank, profile_image, email_verified" +
 					" FROM MEMBER" +
 					" ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
@@ -169,12 +181,14 @@ public class MemberDao {
 	            dto.setMemberId(rs.getString("member_id"));
 	            dto.setDeliveryId(rs.getInt("delivery_id"));
 	            dto.setPassword(rs.getString("password"));
+	            dto.setName(rs.getString("name"));
 	            dto.setNickname(rs.getString("nickname"));
 	            dto.setRole(rs.getString("role"));
 	            dto.setPhoneNumber( rs.getString("phone_number"));
 	            dto.setRank(rs.getString("rank"));
 	            dto.setProfileImage(rs.getString("profile_image"));
 	            dto.setEmailVerified(rs.getBoolean("email_verified"));
+	            dto.setRegisteredDate(rs.getString("registered_date"));
 	            
 	            // ArrayList 객체에 누적
 	            list.add(dto);
