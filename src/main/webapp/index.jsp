@@ -16,10 +16,20 @@
 	.bold		{ font-weight: 700 }
 	.bolder		{ font-weight: 800 }
 	.light		{ font-weight: 300 }
+	
+	.fade-transition {
+    transition: all 0.8s ease;
+    overflow: hidden;
+    visibility: visible;
+    opacity: 1;
+    position: absolute;
+	}
+	.fade-enter, .fade-leave {
+	    opacity: 0;
+	    visibility: hidden;
+	}
 </style>
 <link href="/Animalls/css/carousel.css" rel="stylesheet">
-<link href="/Animalls/css/footer.css" rel="stylesheet">
-
 </head>
 <body>
 	<jsp:include page="/include/navbar.jsp">
@@ -74,58 +84,90 @@
 	      <span class="visually-hidden">Next</span>
 	    </button>
 	  </div>
-	
-	  <div class="container marketing">
+		
+	  
+	  <div class="container mb-5">
+	  <h2>고객 Pick</h2>
 	    <div class="row">
-	      <div class="col-lg-3">
-		    <a class="" href="#">
-		     <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+	    
+	      <div class="col-lg-3 mb-auto">
+		    <a class="text-center" href="#">
+		     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+			     <title>Placeholder</title>
+			     <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+		     </svg>
 		    </a>
-	        <h4 class="fw-normal">제품명</h4>
-	        <p>가격</p>
-	        <p>리뷰</p>
-	      </div><!-- /.col-lg-4 -->
+	        <h5 class="fw-normal mt-2 text-left">피부모질 닥터독 사료2kg</h5>
+	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto">32,500원</p>
+	        <p class="d-block mb-3">리뷰 : 3,751 | ★ 4.7</p>
+	      </div>
 	      
-	      <div class="col-lg-3">
-		    <a class="" href="#">
-		     <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+	      <div class="col-lg-3 mb-auto">
+		    <a class="text-center" href="#">
+		     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+			     <title>Placeholder</title>
+			     <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+		     </svg>
 		    </a>
-	        <h4 class="fw-normal">제품명</h4>
-	        <p>가격</p>
-	        <p>리뷰</p>
-	      </div><!-- /.col-lg-4 -->
+	        <h5 class="fw-normal mt-2 text-left">피부모질 닥터독 사료2kg</h5>
+	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto">32,500원</p>
+	        <p class="d-block mb-3">리뷰 : 3,751 | ★ 4.7</p>
+	      </div>
 	      
-	      <div class="col-lg-3">
-		    <a class="" href="#">
-		     <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+	      <div class="col-lg-3 mb-auto">
+		    <a class="text-center" href="#">
+		     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+			     <title>Placeholder</title>
+			     <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+		     </svg>
 		    </a>
-	        <h4 class="fw-normal">제품명</h4>
-	        <p>가격</p>
-	        <p>리뷰</p>
-	      </div><!-- /.col-lg-4 -->
+	        <h5 class="fw-normal mt-2 text-left">피부모질 닥터독 사료2kg</h5>
+	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto">32,500원</p>
+	        <p class="d-block mb-3">리뷰 : 3,751 | ★ 4.7</p>
+	      </div>
 	      
-	      <div class="col-lg-3">
-		    <a class="" href="#">
-		     <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+	      <div class="col-lg-3 mb-auto">
+		    <a class="text-center" href="#">
+		     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
+			     <title>Placeholder</title>
+			     <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+		     </svg>
 		    </a>
-	        <h4 class="fw-normal">제품명</h4>
-	        <p>가격</p>
-	        <p>리뷰</p>
-	      </div><!-- /.col-lg-4 -->
+	        <h5 class="fw-normal mt-2 text-left">피부모질 닥터독 사료2kg</h5>
+	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto">32,500원</p>
+	        <p class="d-block mb-3">리뷰 : 3,751 | ★ 4.7</p>
+	      </div>
 	      
 	    </div>
+	  </div>
+	  
+	  <div id="app" class="container">
+	  	<image-slider>
+			<p>
+				<a @click="prev">Previous</a> || <a @click="next">Next</a>
+			</p>
+			<div v-for="number in [currentNumber] transition="fade">
+				<img :src="images[Math.abs(currentNumber) % images.length]" v-on:mouseover="stopRotation" v-on:mouseout="startRotation"	/>
+			</div>
+		</image-slider>
+	  </div>
+		
 	</main>
-	
-	<div class="swiper-container">
-	   
-	</div>
-	
-	
-	
 	<jsp:include page="/include/footer.jsp">
 		<jsp:param value="index" name="current"/>
 	</jsp:include>
 	
-	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el : "#app",
+            data : {
+            	
+            },
+            methods:{
+            	
+             }
+        });
+    </script>
 </body>
 </html>
