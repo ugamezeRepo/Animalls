@@ -86,6 +86,7 @@ public class DeliveryAddressDao {
 				+ "VALUES ( delivery_address_seq.NEXTVAL, ?, ?, ?)";
 		Connection conn = null; 
 		PreparedStatement pstmt = null; 
+		ResultSet rs = null; 
 		boolean result = false; 
 		
 		try	{
@@ -94,7 +95,12 @@ public class DeliveryAddressDao {
 			pstmt.setInt(1, dto.getPostalAddress());
 			pstmt.setString(2, dto.getAddress());
 			pstmt.setString(3, dto.getAddressDetail());
-			result = pstmt.executeUpdate() > 0;
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				result = true; 
+				int deliveryId = rs.getInt("delivery_id");
+				dto.setDeliveryId(deliveryId);
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
