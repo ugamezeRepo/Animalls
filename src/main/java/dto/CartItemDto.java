@@ -12,9 +12,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class CartItemDto {
-	private int cart_item_id;
-	private String buyer_id;
-	private int product_id;
-	private int option_id;
+	private int cartItemId;
+	private String buyerId;
+	private int productId;
+	private int optionId;
 	private int amount;
 }

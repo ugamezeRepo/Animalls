@@ -3,11 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	int product_id=Integer.parseInt(request.getParameter("product_id"));
+	int productId=Integer.parseInt(request.getParameter("product_id"));
 	
 	ProductDto dto=new ProductDto();
-	dto.setProduct_id(product_id);
-	boolean isSuccess=ProductDao.getInstance().delete(dto);
+	dto.setProductId(productId);
+	boolean isSuccess=ProductDao.getInstance().delete(productId);
 	
 	if(isSuccess){
 		String cPath=request.getContextPath();

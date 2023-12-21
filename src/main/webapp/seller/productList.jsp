@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<UserDto> list=ProductDao.getInstance().getList();
+	List<ProductDto> list = ProductDao.getInstance().getList();
 %>
 <!DOCTYPE html>
 <html>
@@ -33,15 +33,15 @@
 				</tr>
 			</thead>
 			<tbody>
-			<%for(ProductDto tmp:List){ %>
+			<%for(ProductDto tmp:list){ %>
 				<tr>
-					<td><%=tmp.getProduct_id() %></td>
+					<td><%=tmp.getProductId() %></td>
 					<td><%=tmp.getThumbnail() %></td>
 					<td><%=tmp.getTitle() %></td>
 					<td><%=tmp.getCategory() %></td>
-					<td><%=tmp.getOrg_price() %></td>
-					<td><%=tmp.getSale_price() %></td>
-					<td><%=tmp.getSales_state() %></td>
+					<td><%=tmp.getOrgPrice() %></td>
+					<td><%=tmp.getSalePrice() %></td>
+					<td><%=tmp.getSalesState() %></td>
 					<td><%=tmp.getDescription() %></td>
 				</tr>
 			<%} %>

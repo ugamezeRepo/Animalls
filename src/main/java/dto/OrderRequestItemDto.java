@@ -11,10 +11,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderItemDto {
-	private int order_item_id;
-	private int order_id;
-	private int product_id;
-	private int option_id;
+public class OrderRequestItemDto {
+	private int orderItemId;
+	private int orderId;
+	private int productId;
+	private int optionId;
 	private int amount;
 }
