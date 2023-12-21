@@ -9,6 +9,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css">
+
 <style>
 	body		{ font-family: 'NanumSquare', sans-serif }
 	.normal		{ font-weight: 400 }
@@ -28,7 +29,8 @@
 	    visibility: hidden;
 	}
 </style>
-<link href="/Animalls/css/carousel.css" rel="stylesheet">
+<link href="/Animalls/css/carousel.css" rel="stylesheet" type="text/css">
+<link href="/Animalls/css/slider.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<jsp:include page="/include/navbar.jsp">
@@ -140,22 +142,19 @@
 	    </div>
 	  </div>
 	  
-	<div id="app" class="container">
-		<div class="slide-container">
-			<button @click="moveSlideToLeft">
-				<img src="" />
-			</button>
-			<div class="slide-window">
-				<div class="slide" 
-				     :class="{ slide-active': transitionOn }" 
-				     :style="{transform: 'translate3d(' + slideCoord + 'px, 0, 0)',}">
-				  <SlideCard v-for="card in cardArray" :key="card.name" /></div>
-			</div>
-		</div>
-		
-		<button @click="moveSlideToRight">
-			<img src=""/>
-		</button>
+	<div id="slider">  
+	  <div class="slider">
+	    <ul class="slides" :style="{left:-width*current+'px'}">
+	      <li v-for="(slide,i) in slides">
+	        <img :src="slide" alt="">
+	      </li>
+	    </ul>
+	    <ul class="bullets">
+	      <li v-for="(slide,i) in slides" @click="selectSlide(i)" v-html="i==current ? '&#9679;' : '&omicron;'"></li>
+	    </ul>
+	    <a class="prev" href="#" @click.prevent="prevSlide">&#x25C0;</a>
+	    <a class="next" href="#" @click.prevent="nextSlide">&#x25B6;</a>
+	  </div>
 	</div>
 		
 	</main>
@@ -166,15 +165,57 @@
 	
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-        new Vue({
-            el : "#app",
-            data : {
-            	
-            },
-            methods:{
-            	
-             }
-        });
+    new Vue({
+    	  el:'#slider',
+    	  data: {       
+    	    slides: [
+    	      '/Animalls/assets/slider/slider1.png', 
+    	      '/Animalls/assets/slider/slider2.png',
+    	      '/Animalls/assets/slider/slider3.png',
+    	      '/Animalls/assets/slider/slider4.png',
+    	      '/Animalls/assets/slider/slider5.png',
+    	      '/Animalls/assets/slider/slider1.png', 
+    	      '/Animalls/assets/slider/slider2.png',
+    	      '/Animalls/assets/slider/slider3.png',
+    	      '/Animalls/assets/slider/slider4.png',
+    	      '/Animalls/assets/slider/slider5.png',
+    	    ],
+    	    current: 0,
+    	    width: 150,
+    	    timer: 0,
+    	  },
+    	  methods: {
+    	    nextSlide: function() {
+    	      this.current++;
+    	      if (this.current >= this.slides.length)
+    	        this.current = 0;
+    	      this.resetPlay();
+    	    },
+    	    prevSlide: function() {
+    	      this.current--;
+    	      if (this.current < 0)
+    	        this.current = this.slides.length - 1;
+    	      this.resetPlay();
+    	    },
+    	    selectSlide: function(i) {
+    	      this.current = i;
+    	      this.resetPlay();
+    	    },
+    	    resetPlay: function() {
+    	      clearInterval(this.timer);
+    	      this.play();
+    	    },
+    	    play: function() {
+    	      let app = this;
+    	      this.timer = setInterval(function() {
+    	        app.nextSlide();
+    	      }, 2000);
+    	    }
+    	  },
+    	  created: function() {
+    	    this.play();
+    	  }
+    	});
     </script>
 </body>
 </html>
