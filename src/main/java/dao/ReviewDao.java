@@ -10,6 +10,14 @@ import dto.ReviewDto;
 import util.DbcpBean;
 
 public class ReviewDao {
+	private static ReviewDao dao;
+	private  ReviewDao() {}
+	public static ReviewDao getInstance() {
+		if(dao==null) {
+			dao=new  ReviewDao();
+		}
+		return dao;
+	}
 
 	public boolean insert(ReviewDto dto) {
 		Connection conn = null;
