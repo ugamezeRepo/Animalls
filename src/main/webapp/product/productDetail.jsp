@@ -1,12 +1,18 @@
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.ProductOptionDao"%>
+<%@page import="dto.ProductOptionDto"%>
 <%@page import="dao.ProductDao"%>
 <%@page import="dto.ProductDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
-    int productId = 1;
+    int productId = Integer.parseInt(request.getParameter("productId"));
     
 	ProductDto dto = ProductDao.getInstance().getData(productId);
+	
+	List<ProductOptionDto> optionList = ProductOptionDao.getInstance().getList();
 	
 %>
 <%--위 코드는 아직 productId 값을 받을게 없어서 임시로 1 설정--%>
@@ -32,13 +38,13 @@
 				<div class="thumbnail">
 					<div class="imgArea">
 						<%--썸네일 각 항목별로 div 메인이미지, 다른이미지(ui)--%>
-						<img src="https://okdoctordog.com/web/product/big/202303/ac327ab3d8874c40784298ed18023e68.jpg">
+						<img src="<%=dto.getThumbnail()%>" width="300px" height="300px">
 					</div>
 					
 					<div class="smallImgArea xans-element- xans-product xans-product-addimage listImg">
 						<ul>
 							<li>
-								<img src="https://okdoctordog.com/web/product/small/202303/a045bb9f4970dbb45ca9888f57e8739c.jpg">
+								<img src="<%=dto.getThumbnail()%>" width="60px" height="60px">
 							</li>
 						</ul>
 					</div>
@@ -49,7 +55,7 @@
 					<div>
 						<ul>
 							<li><a href="${pageContext.request.contextPath}/index.jsp">home</a></li>
-							<li><a href="${pageContext.request.contextPath}/productList.jsp">제품</a>
+							<li><a href="${pageContext.request.contextPath}/product/productList.jsp">제품</a>
 						</ul>
 					</div>
 					
@@ -95,14 +101,13 @@
 							 			<select id="tmp">
 							 				<option value="*" selected >-[필수] 같이 구매하기 선택-</option>
 							 				<option value="**" disabled>----------------------------------</option>
-							 				<option value="noneSelect">선택안함</option>
-							 				<option value="그레인 연어 1.6kg">그레인 연어 1.6kg</option> <%--option 추가 필요 --%>
-							 				<option value="그레인 오리 1.6kg">그레인 오리 1.6kg</option>
-							 				<option value="그레인 연어 3.2kg">그레인 연어 3.2kg</option>
-							 				<option value="그레인 오리 3.2kg">그레인 오리 3.2kg</option>
+							 				<%for(ProductOptionDto tmp:optionList){ 
+							 					if(tmp.getProductId()==productId || tmp.getProductId()==0){%>
 							 				
+							 					<option value="<%=tmp.getOptionId()%>"><%=tmp.getDescription() %>(+<%=tmp.getAdditionalPrice() %>)</option>
 							 				
-							 				
+							 					<%}%>
+							 			<%} %>
 							 			</select>
 							 		
 							 		</td>
