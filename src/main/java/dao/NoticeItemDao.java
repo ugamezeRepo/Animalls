@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import dto.NoticeItemDto;
@@ -21,7 +22,38 @@ public class NoticeItemDao {
 	}
 	
 	private NoticeItemDao() {}
-
+	
+	public static int getPaginationCount() {
+		return PAGINATION_COUNT;
+	}
+	
+	public int getTotalPostCount() {
+		String sql = "SELECT COUNT(*) cnt FROM NOTICE_ITEM";
+		Connection conn = null; 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null; 
+		int ret = -1; 
+		try {
+			conn = new DbcpBean().getConn();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				ret = rs.getInt("cnt");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}		
+		return ret; 
+	}
+	
 	public boolean insert(NoticeItemDto dto) {
 		String sql = "INSERT INTO NOTICE_ITEM (notice_item_id, writer_id, notice_title, notice_content, created_at) "
 				+ "VALUES(NOTICE_ITEM_SEQ.NEXTVAL, ?, ?, ?, SYSDATE)";
@@ -105,15 +137,17 @@ public class NoticeItemDao {
 	public List<NoticeItemDto> getList(int page) {
 		String sql = "SELECT notice_item_id, writer_id, notice_title, notice_content, created_at "
 					+ "FROM ("
-					+ "		SELECT notice_item_id, writer_id, notice_title, notice_content, created_at "
+					+ "		SELECT notice_item_id, writer_id, notice_title, notice_content, created_at, ROWNUM rnum"
 					+ "		FROM NOTICE_ITEM "
 					+ "		ORDER BY notice_item_id DESC "
 					+ ") "
-					+ "WHERE ROWNUM BETWEEN ? AND ?"; 
+					+ "WHERE rnum BETWEEN ? AND ?"
+					+ "ORDER BY notice_item_id DESC ";
+
 		Connection conn = null; 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<NoticeItemDto> ret = null; 
+		List<NoticeItemDto> ret = new ArrayList<>(); 
 		try {
 			conn = new DbcpBean().getConn();
 			pstmt = conn.prepareStatement(sql);
@@ -124,7 +158,6 @@ public class NoticeItemDao {
 			pstmt.setInt(1, startRowNum);
 			pstmt.setInt(2, endRowNum);
 			rs = pstmt.executeQuery();
-			ret = new ArrayList<NoticeItemDto>();
 			while (rs.next()) {
 				int noticeItemId = rs.getInt("notice_item_id");
 				String writerId = rs.getString("writer_id"); 
@@ -134,6 +167,7 @@ public class NoticeItemDao {
 				NoticeItemDto dto = new NoticeItemDto(noticeItemId,  writerId, noticeTitle, noticeContent, createdAt);
 				ret.add(dto);
 			}
+			ret.sort(Comparator.comparing(NoticeItemDto::getNoticeItemId, Comparator.reverseOrder()));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
