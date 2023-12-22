@@ -13,6 +13,10 @@
 	if (dto != null) {
 		if (dto.getPassword().equals(password)) {
 			session.setAttribute("memberId", memberId);
+			session.setAttribute("password", password);
+			String asd = (String)session.getAttribute("memberId");
+			String asd2 = (String)session.getAttribute("password");
+			System.out.printf("ID: %s || PWD: %s%n", asd, asd2);
 			isLoginSuccess = true;
 		}
 	}

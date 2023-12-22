@@ -13,15 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter({"/protected/*"})
+@WebFilter({"/protected/*/*"})
 public class LoginFilter implements Filter{
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
-		
+		HttpSession session = req.getSession();		
 		String memberId = (String)session.getAttribute("memberId");
 		if (memberId != null) { 
 			chain.doFilter(request, response);
