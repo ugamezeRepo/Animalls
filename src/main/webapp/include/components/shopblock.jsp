@@ -9,16 +9,15 @@
 	String title = URLConverter.decode(request.getParameter("title"));
 	String subTitle = URLConverter.decode(request.getParameter("subTitle"));
 	String description = URLConverter.decode(request.getParameter("description"));
+	String style = URLConverter.decode("style");
 %>
 
-
-<div class="col" style="height: 320px;">
-	<div  class="w-100 h-100 p-4">
-		<div class="w-100 h-100 border d-flex flex-column justify-content-center mx-auto text-center">
+<div class="mq-100">
+	<div class="p-2 pt-4 pb-4 m-2 border">
+		<div class="text-center">
 			<div style="height: 48px;">
 				<img class="object-fit-contain" src="<%= src %>" />
 			</div>
-			
 			<div class="h5"><%= title %></div>
 			<div class="h6"><%= subTitle %></div>
 			<small>
