@@ -9,7 +9,6 @@
 	String title = URLConverter.decode(request.getParameter("title"));
 	String subTitle = URLConverter.decode(request.getParameter("subTitle"));
 	String description = URLConverter.decode(request.getParameter("description"));
-	String style = URLConverter.decode("style");
 %>
 
 <div class="mq-100">
