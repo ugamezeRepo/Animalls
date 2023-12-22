@@ -23,12 +23,12 @@ public class ReviewDao {
 					+ " VALUES(SEQUENCE PRODUCT_REVIEW_SEQ,?,?,?,?,?,?,?,SYSDATE,SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 내용이 있으면 바인딩
-			pstmt.setInt(1,dto.getProduct_id());
-			pstmt.setString(2, dto.getReviewer_id());
+			pstmt.setInt(1,dto.getProductId());
+			pstmt.setString(2, dto.getReviewerId());
 			pstmt.setString(3,dto.getContent());
 			pstmt.setString(4,dto.getThumbnail());
 			pstmt.setInt(5, dto.getRating());
-			pstmt.setInt(6, dto.getLike_count());	
+			pstmt.setInt(6, dto.getLikeCount());	
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,9 +62,9 @@ public class ReviewDao {
 			//? 에 바인딩 할 내용이 있으면 바인딩
 			pstmt.setString(1, dto.getContent());
 			pstmt.setString(2, dto.getThumbnail());
-			pstmt.setString(3, dto.getUpdated_at());
+			pstmt.setString(3, dto.getUpdatedAt());
 			pstmt.setInt(4, dto.getRating());
-			pstmt.setInt(5, dto.getReview_id());
+			pstmt.setInt(5, dto.getReviewId());
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -134,15 +134,15 @@ public class ReviewDao {
 			//반복문 돌면서 
 			while (rs.next()) {
 				dto = new ReviewDto();
-				dto.setReview_id(review_id);
-				dto.setProduct_id(rs.getInt("product_id"));
-				dto.setReviewer_id(rs.getString("reviewer_id"));
+				dto.setReviewId(review_id);
+				dto.setProductId(rs.getInt("product_id"));
+				dto.setReviewerId(rs.getString("reviewer_id"));
 				dto.setContent(rs.getString("content"));
 				dto.setThumbnail(rs.getString("thumbnail"));
 				dto.setRating(rs.getInt("rating"));
-				dto.setLike_count(rs.getInt("like_count"));
-				dto.setCreated_at(rs.getString("created_at"));
-				dto.setUpdated_at(rs.getString("updated_at"));
+				dto.setLikeCount(rs.getInt("like_count"));
+				dto.setCreatedAt(rs.getString("created_at"));
+				dto.setUpdatedAt(rs.getString("updated_at"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -178,15 +178,15 @@ public class ReviewDao {
 			//반복문 돌면서 
 			while (rs.next()) {
 				ReviewDto dto =new ReviewDto();
-				dto.setReview_id(rs.getInt("review_id"));
-				dto.setProduct_id(rs.getInt("product_id"));
-				dto.setReviewer_id(rs.getString("reviewer_id"));
+				dto.setReviewId(rs.getInt("review_id"));
+				dto.setProductId(rs.getInt("product_id"));
+				dto.setReviewerId(rs.getString("reviewer_id"));
 				dto.setContent(rs.getString("content"));
 				dto.setThumbnail(rs.getString("thumbnail"));
 				dto.setRating(rs.getInt("rating"));
-				dto.setLike_count(rs.getInt("like_count"));
-				dto.setCreated_at(rs.getString("created_at"));
-				dto.setUpdated_at(rs.getString("updated_at"));
+				dto.setLikeCount(rs.getInt("like_count"));
+				dto.setCreatedAt(rs.getString("created_at"));
+				dto.setUpdatedAt(rs.getString("updated_at"));
 				list.add(dto);
 			}
 		} catch (Exception e) {
