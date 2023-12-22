@@ -115,14 +115,75 @@ li{
 	
 			<br />
 			<strong class="text-primary"><%= sellerName %></strong>님의 가장 잘팔린 상품들 <small>3개월 기준(예시)</small>
+		<div class="container">
+		<div id="foodCarousel" class="carousel slide" data-bs-touch="false">
+				  <div class="carousel-inner">
+				    <div class="carousel-item active">
+				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/1.png" class="d-block w-10" alt="best-food">
+				    </div>
+				    <div class="carousel-item">
+				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/2.png" class="d-block w-10" alt="best-food">
+				    </div>
+				    <div class="carousel-item">
+				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/3.png" class="d-block w-10" alt="best-food">
+				    </div>
+				  </div>
+				  <button class="carousel-control-prev" type="button" data-bs-target="#foodCarousel" data-bs-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="visually-hidden">Previous</span>
+				  </button>
+				  <button class="carousel-control-next" type="button" data-bs-target="#foodCarousel" data-bs-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="visually-hidden">Next</span>
+				  </button>
+			  </div>
+			  <br />
+			  
+			  <div id="clothesCarousel" class="carousel slide" data-bs-touch="false">
+				  <div class="carousel-inner">
+				    <div class="carousel-item active">
+				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/4.png" class="d-block w-10" alt="best-clothes">
+				    </div>
+				    <div class="carousel-item">
+				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/5.png" class="d-block w-10" alt="best-clothes">
+				    </div>
+				    <div class="carousel-item">
+				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/6.png" class="d-block w-10" alt="best-clothes">
+				    </div>
+				  </div>
+				  <button class="carousel-control-prev" type="button" data-bs-target="#clothesCarousel" data-bs-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="visually-hidden">Previous</span>
+				  </button>
+				  <button class="carousel-control-next" type="button" data-bs-target="#clothesCarousel" data-bs-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="visually-hidden">Next</span>
+				  </button>
+			  </div>
+			  <br />
+			 
+			 <div id="bathCarousel" class="carousel slide" data-bs-touch="false">
+				  <div class="carousel-inner">
+				    <div class="carousel-item active">
+				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/11.png" class="d-block w-10" alt="best-bath">
+				    </div>
+				    <div class="carousel-item">
+				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/12.png" class="d-block w-10" alt="best-bath">
+				    </div>
+				    <div class="carousel-item">
+				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/13.png" class="d-block w-10" alt="best-bath">
+				    </div>
+				  </div>
+				  <button class="carousel-control-prev" type="button" data-bs-target="#bathCarousel" data-bs-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="visually-hidden">Previous</span>
+				  </button>
+				  <button class="carousel-control-next" type="button" data-bs-target="#bathCarousel" data-bs-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="visually-hidden">Next</span>
+				  </button>
+		</div>		
 			
-			<div class="container">
-				<img width="256" src="${pageContext.request.contextPath}/assets/shop-blocks/3.png" alt="best-food" />음식
-				<img width="256" src="${pageContext.request.contextPath}/assets/shop-blocks/5.png" alt="best-clothes" />옷
-				<img width="256" src="${pageContext.request.contextPath}/assets/shop-blocks/7.png" alt="best-bath" />목욕용품
-			</div>
-			
-	
-	
+	  </div>
 </body>
 </html>
