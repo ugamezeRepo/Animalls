@@ -1,6 +1,39 @@
+<%@page import="dto.MemberDto"%>
+<%@page import="dao.MemberDao"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.NoticeItemDao"%>
+<%@page import="dto.NoticeItemDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%
+	final int PAGE_GROUP_SIZE = 5; 
+	final int PAGINATION_COUNT = NoticeItemDao.getPaginationCount();
+
+
+	
+	String strPage = request.getParameter("page"); 
+	int numPage = 1;
+	
+	int totalPost = NoticeItemDao.getInstance().getTotalPostCount();
+	int lastPostPage = (totalPost + PAGINATION_COUNT - 1) / PAGINATION_COUNT;
+	int lastPostPageGroup = (lastPostPage + PAGE_GROUP_SIZE - 1) / PAGE_GROUP_SIZE;
+	
+	try {
+		int tmpNumPage= Integer.parseInt(strPage);
+		if (tmpNumPage <= 0 || tmpNumPage > lastPostPage) {
+			throw new AssertionError("invalid page number");
+		}
+		numPage = tmpNumPage;
+	}catch(Exception e) {
+	}
+	
+	List<NoticeItemDto> noticeItems = NoticeItemDao.getInstance().getList(numPage);
+	int currentPageGroup = (numPage + PAGE_GROUP_SIZE - 1) / PAGE_GROUP_SIZE; 
+	
+	int pageGroupStart = (currentPageGroup - 1) * PAGE_GROUP_SIZE + 1;
+	int pageGroupEnd = Math.min(pageGroupStart + PAGE_GROUP_SIZE - 1, lastPostPage);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +48,8 @@
 	</jsp:include>
 	<div class="container my-4">
 		<h1>공지사항</h1>
-		<div>
-			<table class="table ">
+		<div class="my-4">
+			<table class="table">
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -25,11 +58,11 @@
 					</tr>
 				</thead>
 				<tbody>
-				<%for () {%>
+				<%for (NoticeItemDto item : noticeItems) {%>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td><%= item.getNoticeItemId() %></td>
+						<td><%= item.getNoticeTitle() %></td>
+						<td><%= item.getCreatedAt() %></td>
 					</tr>
 				<%} %>
 				</tbody>
@@ -38,16 +71,16 @@
 		
 		<nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-center">
-		    <li class="page-item disabled">
-		      <a class="page-link" href="#" tabindex="-1">Previous</a>
+		    <li class="page-item <%= currentPageGroup == 1 ? "disabled" : "" %>">
+		      <a class="page-link" href="noticeBoard.jsp?page=<%= pageGroupStart - 1 %>"  tabindex="-1">Previous</a>
 		    </li>
-		    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-		    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link" href="#">3</a></li>
-		    <li class="page-item"><a class="page-link" href="#">4</a></li>
-		    <li class="page-item"><a class="page-link" href="#">5</a></li>
-		    <li class="page-item">
-		      <a class="page-link" href="#">Next</a>
+		    
+		    <% for (int i = pageGroupStart; i <= pageGroupEnd; i++) { %>
+		    	<li class="page-item <%= numPage == i ? "active" : ""%>"><a class="page-link" href="noticeBoard.jsp?page=<%= i %>"><%= i %></a></li>
+		    <% } %>
+
+		    <li class="page-item <%= currentPageGroup == lastPostPageGroup ? "disabled" : "" %>">
+		      <a class="page-link" href="noticeBoard.jsp?page=<%= pageGroupEnd + 1 %>">Next</a>
 		    </li>
 		  </ul>
 		</nav>
