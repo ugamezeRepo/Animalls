@@ -98,14 +98,19 @@
 		text-decoration: underline;
 		font-weight: bold;
 	}
+	.paging-container {
+    /* 페이징 부분에 대한 스타일을 지정 */
+    margin-bottom: 75px; /* 예시: 페이징 부분과 다음 내용 간의 간격 조절 */
+}
 </style>
 </style>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </head>
 <body>
+	<jsp:include page="include/navbar.jsp"></jsp:include>
 	<div class="container">
-	<h1>Review</h1>
+		<h1>Review</h1>
 		<hr style="border-top: 2px solid black; margin-top: 10px;"> <!-- 검정색 선 추가 -->
 		<nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3">
 		  <ul class="nav nav-pills">
@@ -138,8 +143,9 @@
 		    <li><button class="dropdown-item" type="button">별2점</button></li>
 		    <li><button class="dropdown-item" type="button">별1점</button></li>
 		  </ul>
-			</div>
-		 	<form action="protected/review_insert.jsp" class="mb-3" name="myform" id="myform" method="post">
+		</div>
+		<div>
+			<form action="protected/review_insert.jsp" class="mb-3" name="myform" id="myform" method="post">
 				<fieldset>
 					<span class="text-bold">별점을 선택해주세요</span>
 					<input type="radio" name="reviewStar" value="5" id="rate5">
@@ -154,9 +160,12 @@
 					<label for="rate1">★</label>		
 				</fieldset>
 				<textarea class="col-auto form-control mb-2" type="text" id="reviewContents" name="content"
-						  placeholder="잘좀써줘"></textarea>	
-				<button type="submit" class="btn btn-success">제출</button>	
-			</form>
+						  placeholder="잘좀써줘" readonly></textarea>	
+				<button type="submit" class="btn btn-success">수정</button>	
+				<button type="submit" class="btn btn-danger">삭제</button>	
+			</form> 
+		</div><%-- 여기까지 쓴글 목록입니다 --%>
+		<div class="paging-container">
 			<ul class="page-list">
 				<c:if test="${startPageNum ne 1 }">
 					<li>
@@ -183,6 +192,37 @@
 					</li>
 				</c:if>
 			</ul>
-	</div>		
+		</div>
+		
+		<div> 
+			<form action="protected/review_insert.jsp" class="mb-3" name="myform" id="myform" method="post">
+				<fieldset>
+					<span class="text-bold">별점을 선택해주세요</span>
+					<input type="radio" name="reviewStar" value="5" id="rate5">
+					<label for="rate5">★</label>
+					<input type="radio" name="reviewStar" value="4" id="rate4">
+					<label for="rate4">★</label>
+					<input type="radio" name="reviewStar" value="3" id="rate3">
+					<label for="rate3">★</label>			
+					<input type="radio" name="reviewStar" value="2" id="rate2">
+					<label for="rate2">★</label>
+					<input type="radio" name="reviewStar" value="1" id="rate1">
+					<label for="rate1">★</label>		
+				</fieldset>
+				<textarea class="col-auto form-control mb-2" type="text" id="reviewContents" name="content"
+						  placeholder="잘좀써줘" ></textarea>	
+				<button type="submit" class="btn btn-success">제출</button>	
+			</form> 
+		</div><%-- 제출할폼 입니다 --%>
+	</div>
+
+	<jsp:include page="include/footer.jsp"></jsp:include>		
 </body>
+<script>
+	if(id===null){
+		document.querySelector("#myform").addEventLister("click",()=>{
+			contet
+		})
+	}
+</script>
 </html>
