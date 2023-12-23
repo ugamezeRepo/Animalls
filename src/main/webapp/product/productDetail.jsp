@@ -25,6 +25,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 </head>
 <body>
 	<jsp:include page="/include/navbar.jsp">
@@ -41,14 +43,18 @@
 						<img src="<%=dto.getThumbnail()%>" width="300px" height="300px">
 					</div>
 					
-					<div class="smallImgArea xans-element- xans-product xans-product-addimage listImg">
-						<ul>
+					<div class="smallImgArea xans-element- xans-product xans-product-addimage listImg">	
+						<ul> <%--썸네일 하단 상세 그림 구현 예정 --%>
 							<li>
 								<img src="<%=dto.getThumbnail()%>" width="60px" height="60px">
 							</li>
 						</ul>
+						<button type="button">
+							<span class="blind">다음</span>
+						</button>
 					</div>
 				</div>
+				
 				
 				<div class="infoArea">
 					<%--경로 --%>
@@ -98,9 +104,10 @@
 							 	<tr>
 							 		
 							 		<td>
-							 			<select id="tmp">
+							 			<select id="tmp" option_style="select" required="true" >
 							 				<option value="*" selected >-[필수] 같이 구매하기 선택-</option>
 							 				<option value="**" disabled>----------------------------------</option>
+							 				<option value="non_select">선택 안함</option>
 							 				<%for(ProductOptionDto tmp:optionList){ 
 							 					if(tmp.getProductId()==productId || tmp.getProductId()==0){%>
 							 				
@@ -119,11 +126,36 @@
 					</div>
 					
 					
-					<div class="totalProducts">
-						<table>
-						
+					<div class="totalProducts" id="optionProducts">
+						<table border="1" summary>
+							<colgroup>
+								<col style="width:284px;">
+							</colgroup>
+							
+							<thead>
+								<tr>
+									<th scope="col">상품명</th>
+									<th scope="col">개수</th>
+									<th scope="col">가격</th>
+								</tr>
+							</thead>
+							
+							<tbody class="displaynone">
+								<td></td>
+								<td>
+									<span class="quantity">
+										<input id="quantity" name="quantity_detail" type="text">
+										<strong>{{count}}</strong>
+										<button @click="plus" class="quantity_up"><a><img src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_up.gif" alt="수량증가"></a></button>
+										<button @click="minus" class="quantity_down"><a><img src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_down.gif" alt="수량감소"></a></button>
+										
+									
+									</span>
+								</td>
+							</tbody>
 						</table>
 					</div>
+					
 					
 					<div class="totalPrice">
 						총 금액
@@ -156,7 +188,22 @@
 			</div>
 		</div>
 	</div>
-	
+	<script>
+						new Vue({
+							el:'#quantity',
+							data:{
+								count:0
+							},
+							methods:{
+								plus:function(){
+									this.count++;
+								},
+								minus:function(){
+									this.count--;
+								}
+							}
+						});
+					</script>
 	<jsp:include page="/include/footer.jsp">
 		<jsp:param value="index" name="current"/>
 	</jsp:include>
