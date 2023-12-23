@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%
-	int totalProductCount = 100; 
+	int totalProductCount = 40; 
 	String sampleName = "[정기배송] 위장 닥터독 사료 2kg";
 %>
 <!DOCTYPE html>
@@ -46,56 +46,23 @@
 			</div>
 		</div>
 		
-		<div class="row">
-			<div class="col">
-				<div >
-					<img src="/Animalls/assets/regular-delivery/delivery-sample-img.png" alt="" />	
-				</div>
-				<div >
-					<sub><%= sampleName %></sub>
-					<div class="d-flex justify-content-between">
-						<h1>300</h1>
-						<sub>1000</sub>
+		<div class="row my-4 g-0">		
+			<% for (int i = 0 ; i < totalProductCount; i++) { %>
+				<div class="col pr-4" style="max-width: 320px;">
+					<div >
+						<img src="/Animalls/assets/regular-delivery/delivery-sample-img.png" alt="" />	
+					</div>
+					<div >
+						<sub><%= sampleName %></sub>
+						<div class="d-flex align-items-end">
+							<div id="sale-price" class="fs-3 fw-bold my-0">33,000</div>
+							<div id="org-price" class="fs-6 text-secondary text-decoration-line-through my-0 px-2">200,000</div>
+							
+						</div>
 					</div>
 				</div>
-			</div>
 			
-			<div class="col">
-				<div >
-					<img src="/Animalls/assets/regular-delivery/delivery-sample-img.png" alt="" />	
-				</div>
-				<div >
-					<sub><%= sampleName %></sub>
-					<div class="d-flex justify-content-between">
-						<h1>300</h1>
-						<sub>1000</sub>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div >
-					<img src="/Animalls/assets/regular-delivery/delivery-sample-img.png" alt="" />	
-				</div>
-				<div >
-					<sub><%= sampleName %></sub>
-					<div class="d-flex justify-content-between">
-						<h1>300</h1>
-						<sub>1000</sub>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div >
-					<img src="/Animalls/assets/regular-delivery/delivery-sample-img.png" alt="" />	
-				</div>
-				<div >
-					<sub><%= sampleName %></sub>
-					<div class="d-flex justify-content-between">
-						<h1>300원</h1>
-						<sub class="text-decoration-line-throught"></sub>
-					</div>
-				</div>
-			</div>
+			<%} %>
 		</div>
 	</div>
 	
