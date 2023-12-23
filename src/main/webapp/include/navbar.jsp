@@ -21,7 +21,7 @@
           <li><a href="productList.jsp" class="nav-link px-2 link-body-emphasis">제품</a></li>
           <li><a href="#" class="nav-link px-2 link-body-emphasis">커뮤니티</a></li>
           <li><a href="noticeBoard.jsp" class="nav-link px-2 link-body-emphasis">고객지원</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">정기배송</a></li>
+          <li><a href="regularDelivery.jsp" class="nav-link px-2 link-body-emphasis">정기배송</a></li>
           <li><a href="customerReview.jsp" class="nav-link px-2 link-body-emphasis">고객리뷰</a></li>
         </ul>
 
