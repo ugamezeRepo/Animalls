@@ -184,9 +184,65 @@
 					</li>
 					
 				</div>
+			<div class="xans-element- xans-product xans-product-additional">
+				<ul class="detail_menu" style="display:none;"> <%--첫 화면에서 아래로 스크롤 할 때 나옴 --%>
+					<div class="detail_list">
+						<li> <a href="">상세정보</a> </li>
+						<li> <a href="">리뷰<span>()</span></a> </li>
+						<li> <a href="">상품 Q&A<span>()</span></a> </li>
+						<li> <a href="">상품 구매 안내</a> </li>
+					</div>
+				</ul>
+				
+				<div id="product_details" class="ec-base-tab gFlex">
+					<div class="menu_area">
+						<ul class="menu">
+							<li class="selected"> <%--위치이동 하기--%>
+								<a href="selected">상세정보</a>
+							</li>
+							<li>
+								<a href="#product_reviews">리뷰<span>()</span></a>
+							</li>
+							<li>
+								<a href="#product_QnA">Q&A<span>()</span></a>
+							</li>
+							<li>
+								<a href="#product_inf">상품구매안내</a>
+							</li>
+						</ul>
+					
+					</div>
+					<div class="cont">
+						<p align="center"><img src="https://okdoctordog.com/openImg/2022/notice/notice_all_officialmark.png"></p>
+						<p align="center"><img src="https://hucheum.openhost.cafe24.com/openImg/2022/food/grainfree/detail_food_gf_tuna.jpg"></p>
+					</div>
+				</div>
+				
+				<div id="product_reviews" class="ec-base-tab gFlex">
+					<div class="board">
+						<div class="detail_tab_tit">
+						TEST
+						</div>
+						<div class="crema-product-reviews crema-applied" data-widget-id="2" data-installation-id="22" data-product-code="670" data-install-method="smart" data-applied-widgets="[&quot;.crema-product-reviews&quot;]" style="margin-top: 32px; margin-bottom: 32px;"><iframe id="crema-product-reviews-2" src="https://review1.cre.ma/okdoctordog.com/products/reviews?product_code=670&amp;iframe_id=crema-product-reviews-2&amp;widget_id=2&amp;widget_style=&amp;app=0&amp;parent_url=https%3A%2F%2Fokdoctordog.com%2Fproduct%2F%25EB%258B%25A5%25ED%2584%25B0%25EB%258F%2585-%25EA%25B7%25B8%25EB%25A0%2588%25EC%259D%25B8%25ED%2594%2584%25EB%25A6%25AC-%25EC%25B0%25B8%25EC%25B9%2598-%25EC%2582%25AC%25EB%25A3%258C-16kg%2F670%2Fcategory%2F278%2Fdisplay%2F1%2F&amp;nonmember_token=&amp;secure_device_token=V2fa89584a4963c512fa6a0c471fec954b315b553e04a818122d04aa6d39e9b39175b0153b49f59ac3a27ad07aa18e130f&amp;iframe=1" height="0" width="100%" scrolling="no" allowtransparency="true" frameborder="0" name="crema-product-reviews-2-1703338154709" style="display: block; visibility: visible; height: 1996px;"></iframe>
+						TEST
+						</div>
+					</div>
+				</div>
+				
+				<div id="product_QnA" class="ec-base-tab gFlex">
+				
+				</div>
+				
+				<div id="product_info" class="ec-base-tab gFlex">
+				
+				</div>
+				
+				
+			</div>
 			
 			</div>
 		</div>
+		
 	</div>
 	<script>
 						new Vue({
