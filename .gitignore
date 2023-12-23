@@ -141,4 +141,7 @@ $RECYCLE.BIN/
 /build
 
 /src/bin
+
+# untrack properties file
+mail.properties
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse
