@@ -11,7 +11,7 @@ import util.DbcpBean;
 
 public class FileDao {
 	private static FileDao dao;
-	private FileDao() {}
+	private  FileDao() {}
 	public static FileDao getInstance() {
 		if(dao==null) {
 			dao=new FileDao();
@@ -30,9 +30,9 @@ public class FileDao {
 					+ " VALUES(UPLOAD_SEQ.NEXTVAL,?,?,?,?,SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 내용이 있으면 바인딩
-			pstmt.setString(1, dto.getUploader_id());
-			pstmt.setString(2, dto.getOrg_filename());
-			pstmt.setString(3, dto.getSave_filename());
+			pstmt.setString(1, dto.getUploaderId());
+			pstmt.setString(2, dto.getOrgFilename());
+			pstmt.setString(3, dto.getSaveFilename());
 			pstmt.setLong(4, dto.getFilesize());
 					
 			rowCount = pstmt.executeUpdate();
@@ -106,12 +106,12 @@ public class FileDao {
 			//반복문 돌면서 
 			while (rs.next()) {
 				FileDto dto =new FileDto();
-				dto.setUpload_id(rs.getInt("upload_id"));
-				dto.setOrg_filename("org_filename");
-				dto.setUploader_id(rs.getString("uploader_id"));
-				dto.setSave_filename(rs.getString("save_filename"));
+				dto.setUploadId(rs.getInt("upload_id"));
+				dto.setOrgFilename("org_filename");
+				dto.setUploaderId(rs.getString("uploader_id"));
+				dto.setSaveFilename(rs.getString("save_filename"));
 				dto.setFilesize(rs.getLong("filesize"));
-				dto.setUploaded_at(rs.getString("uploaded_at"));
+				dto.setUploadedAt(rs.getString("uploaded_at"));
 				list.add(dto);
 				
 			}
@@ -156,12 +156,12 @@ public class FileDao {
 			//반복문 돌면서 
 			while (rs.next()) {
 				FileDto dto =new FileDto();
-				dto.setUpload_id(rs.getInt("upload_id"));
-				dto.setOrg_filename("org_filename");
-				dto.setUploader_id(rs.getString("uploader_id"));
-				dto.setSave_filename(rs.getString("save_filename"));
+				dto.setUploadId(rs.getInt("upload_id"));
+				dto.setOrgFilename("org_filename");
+				dto.setUploaderId(rs.getString("uploader_id"));
+				dto.setSaveFilename(rs.getString("save_filename"));
 				dto.setFilesize(rs.getLong("filesize"));
-				dto.setUploaded_at(rs.getString("uploaded_at"));
+				dto.setUploadedAt(rs.getString("uploaded_at"));
 				list.add(dto);
 				
 			}
@@ -199,12 +199,12 @@ public class FileDao {
 			//반복문 돌면서 
 			while (rs.next()) {
 				dto=new FileDto();
-				dto.setUpload_id(rs.getInt("upload_id"));
-				dto.setOrg_filename("org_filename");
-				dto.setUploader_id(rs.getString("uploader_id"));
-				dto.setSave_filename(rs.getString("save_filename"));
+				dto.setUploadId(rs.getInt("upload_id"));
+				dto.setOrgFilename("org_filename");
+				dto.setUploaderId(rs.getString("uploader_id"));
+				dto.setSaveFilename(rs.getString("save_filename"));
 				dto.setFilesize(rs.getLong("filesize"));
-				dto.setUploaded_at(rs.getString("uploaded_at"));
+				dto.setUploadedAt(rs.getString("uploaded_at"));
 
 			}
 		} catch (Exception e) {

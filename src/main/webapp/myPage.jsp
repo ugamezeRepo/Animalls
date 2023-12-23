@@ -25,13 +25,24 @@
 .shop-block {
 	height: 320px;
 }
+.bcl div:nth-child(11){
+	opacity:0;
+}
+.bcl div:nth-child(12){
+	opacity:0;
+}
+@media (max-width:768px) {
+  .mq-100 {
+    width:100%;
+  }
+
 
 </style>
 </head>
 
 <body>
 	<jsp:include page="/include/navbar.jsp">
-		<jsp:param value="index" name="current"/>
+		<jsp:param value="myPage" name="current"/>
 	</jsp:include>
 	
 	<div class="container my-5">
@@ -93,8 +104,8 @@
 			</div>
 		</div>
 		
-		<div class="m-2">
-			<div class="row">
+		<div class="mt-4 mb-4 bcl">
+			<div class="d-flex flex-wrap justify-content-between">
 				<jsp:include page="/include/components/shopblock.jsp">
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/1.png"/>
 				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.1\") %>"/>
@@ -127,9 +138,7 @@
 				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
 				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
 				</jsp:include>
-			</div>	
 			
-			<div class="row">
 				<jsp:include page="/include/components/shopblock.jsp">
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/6.png"/>
 				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.6\") %>"/>
@@ -162,8 +171,23 @@
 				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
 				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
 				</jsp:include>
-			</div>	
-		</div>
+				<jsp:include page="/include/components/shopblock.jsp">
+					<jsp:param name="style" value="<%= URLEncoder.encode(\"opacity:0;\", \"UTF-8\") %>" />
+				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/10.png"/>
+				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.10\") %>"/>
+				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
+				</jsp:include>
+				<jsp:include page="/include/components/shopblock.jsp">
+					<jsp:param name="style" value="<%= URLEncoder.encode(\"opacity:0;\", \"UTF-8\") %>" />
+				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/10.png"/>
+				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.10\") %>"/>
+				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
+				</jsp:include>
+			</div>
+		</div> <!-- / mt-4 -->
+		
 	</div>
 	
 	<jsp:include page="/include/footer.jsp">
