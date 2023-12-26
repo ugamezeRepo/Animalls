@@ -3,9 +3,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	//어느 페이지에 포함되었는지 정보를 얻어오기
-	String currentPage=request.getParameter("current");
+	String currentPage = request.getParameter("current");
 	//아이디 값
-	String id = (String)session.getAttribute("id");
+	String memberId = (String)session.getAttribute("memberId");
 %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
@@ -29,7 +29,7 @@
           <input type="search" class="form-control" placeholder="검색어를 입력해주세요" name="">
         </form>
         
-		<%if(id != null) {%>
+		<%if(memberId != null) {%>
 			<div class="dropdown text-end">
 	          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 	            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -38,7 +38,7 @@
 	            <li><a class="dropdown-item" href="myPage.jsp">My Page</a></li>
 	            <li><a class="dropdown-item" href="cart.jsp">Cart</a></li>
 	            <li><hr class="dropdown-divider"></li>
-	            <li><a class="dropdown-item" href="#">Sign out</a></li>
+	            <li><a class="dropdown-item" href="member/logout.jsp">Sign out</a></li>
 	          </ul>
 	        </div>
 		<%} else {%>
@@ -47,8 +47,8 @@
 	            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
 	          </a>
 	          <ul class="dropdown-menu text-small">
-	            <li><a class="dropdown-item" href="login.jsp">Login</a></li>
-	            <li><a class="dropdown-item" href="signUp.jsp">Sign Up</a></li>
+	            <li><a class="dropdown-item" href="member/login_form.jsp">Login</a></li>
+	            <li><a class="dropdown-item" href="member/signup_form.jsp">Sign Up</a></li>
 	          </ul>
 	        </div>
 		<%} %>

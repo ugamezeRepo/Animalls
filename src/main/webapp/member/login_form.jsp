@@ -13,10 +13,10 @@
 	if(cooks != null){
 		for(Cookie tmp: cooks){
 			String key=tmp.getName();
-			if(key.equals("savedId")){
+			if(key.equals("savedMemberId")){
 				savedId=tmp.getValue();
 			}
-			if(key.equals("savedPwd")){
+			if(key.equals("savedPassword")){
 				savedPwd=tmp.getValue();
 			}
 		}
