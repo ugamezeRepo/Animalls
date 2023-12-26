@@ -22,7 +22,7 @@
 					<div class="mb-2">
 						<label class="form-label" for="memberId">아이디</label>
 						<input class="form-control" type="text" name="memberId" id="memberId" />
-						<small class="form-text">5글자~10글자 이내로 입력하세요</small>
+						<small class="form-text">(영문소문자/숫자, 4~16자)</small>
 						<div class="valid-feedback">사용 가능한 아이디입니다.</div>
 						<div class="invalid-feedback">사용할 수 없는 아이디입니다.</div>
 					</div>
@@ -31,7 +31,7 @@
 					<div class="mb-2">
 						<label class="form-label" for="password">비밀번호</label>
 						<input class="form-control" type="password" name="password" id="password" />
-						<div class="form-text">특수문자를 하나 이상 추가하세요.</div>
+						<div class="form-text">(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8자~16자)</div>
 						<div class="invalid-feedback">비밀번호를 확인하세요.</div>
 					</div>
 					<div class="mb-2">
@@ -119,8 +119,8 @@
 				: document.getElementById("submitBtn").setAttribute("disabled", "");
 		}
 		
-		// 아이디 유효성 검사
-		const reg_memberId = /^.{5,10}$/;
+		// 아이디 유효성 검사 (영문소문자/숫자, 4~16자)
+		const reg_memberId = /^[a-z0-9]{4,16}$/;
 		const id = document.getElementById("memberId");
 		id.addEventListener("blur", ()=>{
 			if (!reg_memberId.test(id.value)) {
@@ -131,7 +131,7 @@
 			fetch("${pageContext.request.contextPath}/member/check_memberId.jsp?member=" + id.value)
 			.then(res => res.json())
 			.then(data => {
-				id.classList.remove({"is-valid", "is-invalid"});
+				id.classList.remove("is-valid", "is-invalid");
 				if (data.canUse) {
 					id.classList.add("is-valid");
 					isValid.id = true;
@@ -143,12 +143,24 @@
 			});
 		});
 		
-		// 비밀번호 유효성 검사
-		const reg_password = /[\W]/;
+		// 비밀번호 유효성 검사 (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 8자~16자)
+		// - 공백, 아이디, 동일 및 연속된 문자 및 숫자 불가능
+		const reg_password1 = /[a-z]/ig;
+		const reg_password2 = /[0-9]/g;
+		const reg_password3 = /[~`!@#$%^&*()_\-={}[\]|;:<>,.?/]/;
+		const pwd = document.getElementById("password");
+		const pwd2 = document.getElementById("password2");
+		
 		const checkPwd = () => {
 			let pwd = document.getElementById("password");
 			let pwd2 = document.getElementById("password2");
-			pwd.classList.classList.remove({"is-valid", "is-invalid"});
+			pwd.classList.classList.remove("is-valid", "is-invalid");
+			pwd.value.test(/[0-9]/g) != -1 
+			
+			console.log("555");
+			if (!reg_password1.test(pwd.value) == 1) {console.log("1")};
+			if (reg_password2.test(pwd.value) == 2) {console.log("2")};
+			if (reg_password2.test(pwd.value) == 3) {console.log("3")};
 			if (!reg_password.test(pwd.value) || !reg_password.test(pwd2.value)) {
 				pwd.classList.add("is-invalid");
 				isValid.password = false;
@@ -164,6 +176,17 @@
 				isValid.password = true;
 			}
 		}
+		document.getElementById("password").addEventListener("input", () => {cehckPwd});
+		document.getElementById("password2").addEventListener("input", (e) => {
+			if (pwd.value == pwd2.value) {
+				console.log("비밀번호가 일치하지 않습니다.")
+				pwd2.classList.remove("is-valid");
+				pwd2.classList.add("is-invalid");
+				isValid.password = false;
+				checkForm();
+				return;
+			}
+		});
 		
 		// 이름 유효성 검사
 		
@@ -173,7 +196,7 @@
 		const reg_email = /@/;
 		const email = document.getElementById("email");
 		email.addEventListener("input", e => {
-			email.classList.remove({"is-valid", "is-invalid"});
+			email.classList.remove("is-valid", "is-invalid");
 			if (reg_email.test(email.value)) {
 				email.classList.add("is-valid");
 				isValid.email = true;
