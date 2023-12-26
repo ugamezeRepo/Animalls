@@ -14,6 +14,10 @@
 	
 	List<ProductOptionDto> optionList = ProductOptionDao.getInstance().getList();
 	
+	
+	
+	ProductOptionDto optionDto = ProductOptionDao.getInstance().getData(1);
+	
 %>
 <%--위 코드는 아직 productId 값을 받을게 없어서 임시로 1 설정--%>
 <!DOCTYPE html>
@@ -33,7 +37,14 @@
 		<jsp:param value="index" name="current"/>
 	</jsp:include>
 	
-	
+	<style>
+		 ul {
+      		list-style: none;
+   			 }
+   		li {
+   			list-style:none;
+   		}
+	</style>
 	<div class="wrap">
 		<div class="container">
 			<div class="detailArea">
@@ -75,7 +86,9 @@
 					<div class="priceArea">
 						<%if(dto.getSalePrice() != 0){ %>
 							<p><%=dto.getSalePrice() %><span>원</span></p>
-							<p class="prd_price"><%=dto.getOrgPrice() %></p> <%--여기에 가운데 취소표시(class) --%>
+							<p class="prd_price"><strike><%=dto.getOrgPrice() %></strike></p> <%--여기에 가운데 취소표시(class) --%>
+						
+						
 						<%}else{ %> 
 							<p><%=dto.getOrgPrice() %><span>원</span></p>
 						<%} %>
@@ -141,16 +154,21 @@
 							</thead>
 							
 							<tbody class="displaynone">
-								<td></td>
+								<td>
+									 <%--옵션 선택한 상품명 --%>
+								</td>
 								<td>
 									<span class="quantity">
-										<input id="quantity" name="quantity_detail" type="text">
+										<input id="quantity" name="quantity_detail" type="text" v-model="count">
 										<strong>{{count}}</strong>
 										<button @click="plus" class="quantity_up"><a><img src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_up.gif" alt="수량증가"></a></button>
 										<button @click="minus" class="quantity_down"><a><img src="//img.echosting.cafe24.com/skin/base_ko_KR/product/btn_count_down.gif" alt="수량감소"></a></button>
 										
 									
 									</span>
+								</td>
+								<td>
+									 <%--옵션 여러개 있으면 각자 가격 x 갯수 한 값들 출력  --%>
 								</td>
 							</tbody>
 						</table>
@@ -207,7 +225,7 @@
 								<a href="#product_QnA">Q&A<span>()</span></a>
 							</li>
 							<li>
-								<a href="#product_inf">상품구매안내</a>
+								<a href="#product_info">상품구매안내</a>
 							</li>
 						</ul>
 					
@@ -230,7 +248,14 @@
 				</div>
 				
 				<div id="product_QnA" class="ec-base-tab gFlex">
-				
+					<div class="board">
+						<div class="detail_tab_tit">
+							<a href="">상품 Q&A<span>()</span></a>
+							<p class="btn_area">
+								<a href="" class="btn_write">상품 문의하기</a> <%--QnA 페이지로 전환 --%>
+							</p>
+						</div>
+					</div>
 				</div>
 				
 				<div id="product_info" class="ec-base-tab gFlex">
@@ -246,7 +271,7 @@
 	</div>
 	<script>
 						new Vue({
-							el:'#quantity',
+							el:'.quantity',
 							data:{
 								count:0
 							},
