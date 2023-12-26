@@ -20,7 +20,7 @@
           <li><a href="/Animalls/brandstory.jsp" class="nav-link px-2 link-body-emphasis">브랜드</a></li>
           <li><a href="/Animalls/productList.jsp" class="nav-link px-2 link-body-emphasis">제품</a></li>
           <li><a href="/Animalls/event/eventList.jsp" class="nav-link px-2 link-body-emphasis">커뮤니티</a></li>
-          <li><a href="/Animalls/noticeBoard.jsp" class="nav-link px-2 link-body-emphasis">고객지원</a></li>
+          <li><a href="/Animalls/notice/noticeList.jsp" class="nav-link px-2 link-body-emphasis">고객지원</a></li>
           <li><a href="/Animalls/regularDelivery.jsp" class="nav-link px-2 link-body-emphasis">정기배송</a></li>
           <li><a href="/Animalls/customerReview.jsp" class="nav-link px-2 link-body-emphasis">고객리뷰</a></li>
         </ul>
