@@ -9,7 +9,7 @@
 %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
-<header class="p-3 border-bottom sticky-top bg-white">
+<header class="p-3 border-bottom sticky-top bg-white shadow-sm">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/Animalls" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
