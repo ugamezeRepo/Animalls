@@ -177,7 +177,7 @@
 					
 					<div class="totalPrice">
 						총 금액
-						<span class="total"><em>0</em><strong>(0개)</strong></span>
+						<span class="total" ><strong>(0개)</strong></span>
 					</div>
 					
 					<div class="btnWrap">
@@ -255,6 +255,60 @@
 								<a href="" class="btn_write">상품 문의하기</a> <%--QnA 페이지로 전환 --%>
 							</p>
 						</div>
+						
+						<div class="xans-element- xans-product xans-product-qna">
+							<a name="use_qna"></a>
+							<p class="noAccess displaynone">글읽기 권한 X</p>
+							
+							<div class="ec-base-table typeList">
+								<table border="1" summary class>
+									<caption>상품 Q&A</caption>
+									<colgroup>
+										<col style="width:120px">
+										<col style="width:auto">
+										<col style="width:180px">
+										<col style="width:135px">
+									</colgroup>
+									
+									<thead class="displaynone">
+										<tr>
+											<th scope="col">카테고리</th>
+											<th scope="col">제목</th>
+											<th scope="col">작성자</th>
+											<th scope="col">작성일</th>
+										</tr>
+									</thead>
+										<tbody class="center"> <%--이후 DB에서 가져오기 --%>
+											<tr class="xans-record-">
+												<td class="cate_name"></td>
+												<td class="subject left txtBreak">
+												<img src="https://okdoctordog.com/web/upload/icon_201507130033301200.gif" alt="secret" class="ec-common-rwd-image">
+														<a href="">문의드립니다.(비밀글)</a>
+												</td>
+												<td class="writer">김**</td>
+												<td class="write_date">23.12.26</td> 
+											</tr>
+										
+										</tbody>	
+								</table>
+							</div>
+						</div>
+						
+						<div class="xans-element- xans-product xans-product-qnapaging ec-base-paginate typeSub" >
+							<a href="">
+								<img src="https://okdoctordog.com/web/zinidami/pc/page_prev.png" alt="before_page">
+							</a>
+							<ol>
+								<li class="xans-record" >
+									<a href="" class="this">1</a> <%--현재페이지 --%>
+								</li>
+							</ol>
+							
+							<a href="">
+								<img src="https://okdoctordog.com/web/zinidami/pc/page_next.png" alt="next_page">
+							</a>
+						
+						</div>
 					</div>
 				</div>
 				
@@ -270,17 +324,22 @@
 		
 	</div>
 	<script>
+	
+		
 						new Vue({
 							el:'.quantity',
 							data:{
-								count:0
+								count:0,
+								
 							},
 							methods:{
 								plus:function(){
 									this.count++;
+									
 								},
 								minus:function(){
 									this.count--;
+									
 								}
 							}
 						});
