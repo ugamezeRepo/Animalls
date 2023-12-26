@@ -13,6 +13,10 @@
 	if (dto != null) {
 		if (dto.getPassword().equals(password)) {
 			session.setAttribute("memberId", memberId);
+			session.setAttribute("password", password);
+			String asd = (String)session.getAttribute("memberId");
+			String asd2 = (String)session.getAttribute("password");
+			System.out.printf("ID: %s || PWD: %s%n", asd, asd2);
 			isLoginSuccess = true;
 		}
 	}
@@ -45,7 +49,7 @@
 <body>
 	<script>
 		<%if (isLoginSuccess) { %>
-			location.href = "${pageContext.request.contextPath}/tmp.jsp";
+			location.href = "${pageContext.request.contextPath}/index.jsp";
 		<%} else { %>
 			alert("실패");
 			location.href = "${pageContext.request.contextPath}/member/login_form.jsp";
