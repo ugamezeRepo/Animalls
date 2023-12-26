@@ -3,9 +3,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	//어느 페이지에 포함되었는지 정보를 얻어오기
-	String currentPage=request.getParameter("current");
+	String currentPage = request.getParameter("current");
 	//아이디 값
-	String id = (String)session.getAttribute("id");
+	String memberId = (String)session.getAttribute("memberId");
 %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
@@ -17,19 +17,19 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="brandstory.jsp" class="nav-link px-2 link-body-emphasis">브랜드</a></li>
-          <li><a href="productList.jsp" class="nav-link px-2 link-body-emphasis">제품</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">커뮤니티</a></li>
-          <li><a href="noticeBoard.jsp" class="nav-link px-2 link-body-emphasis">고객지원</a></li>
-          <li><a href="#" class="nav-link px-2 link-body-emphasis">정기배송</a></li>
-          <li><a href="customerReview.jsp" class="nav-link px-2 link-body-emphasis">고객리뷰</a></li>
+          <li><a href="/Animalls/brandstory.jsp" class="nav-link px-2 link-body-emphasis">브랜드</a></li>
+          <li><a href="/Animalls/productList.jsp" class="nav-link px-2 link-body-emphasis">제품</a></li>
+          <li><a href="/Animalls/event/eventList.jsp" class="nav-link px-2 link-body-emphasis">커뮤니티</a></li>
+          <li><a href="/Animalls/noticeBoard.jsp" class="nav-link px-2 link-body-emphasis">고객지원</a></li>
+          <li><a href="/Animalls/regularDelivery.jsp" class="nav-link px-2 link-body-emphasis">정기배송</a></li>
+          <li><a href="/Animalls/customerReview.jsp" class="nav-link px-2 link-body-emphasis">고객리뷰</a></li>
         </ul>
 
         <form action="" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
           <input type="search" class="form-control" placeholder="검색어를 입력해주세요" name="">
         </form>
         
-		<%if(id != null) {%>
+		<%if(memberId != null) {%>
 			<div class="dropdown text-end">
 	          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 	            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -38,7 +38,7 @@
 	            <li><a class="dropdown-item" href="myPage.jsp">My Page</a></li>
 	            <li><a class="dropdown-item" href="cart.jsp">Cart</a></li>
 	            <li><hr class="dropdown-divider"></li>
-	            <li><a class="dropdown-item" href="#">Sign out</a></li>
+	            <li><a class="dropdown-item" href="member/logout.jsp">Sign out</a></li>
 	          </ul>
 	        </div>
 		<%} else {%>
@@ -47,8 +47,8 @@
 	            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
 	          </a>
 	          <ul class="dropdown-menu text-small">
-	            <li><a class="dropdown-item" href="login.jsp">Login</a></li>
-	            <li><a class="dropdown-item" href="signUp.jsp">Sign Up</a></li>
+	            <li><a class="dropdown-item" href="member/login_form.jsp">Login</a></li>
+	            <li><a class="dropdown-item" href="member/signup_form.jsp">Sign Up</a></li>
 	          </ul>
 	        </div>
 		<%} %>
