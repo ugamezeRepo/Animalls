@@ -44,6 +44,14 @@
    		li {
    			list-style:none;
    		}
+   		
+   		 .page {
+		    list-style: none;
+		    padding: 0;
+		    margin: 0;
+		    display: flex;
+		    flex-wrap: wrap;
+  			}
 	</style>
 	<div class="wrap">
 		<div class="container">
@@ -294,7 +302,7 @@
 							</div>
 						</div>
 						
-						<div class="xans-element- xans-product xans-product-qnapaging ec-base-paginate typeSub" >
+						<div class="page xans-element- xans-product xans-product-qnapaging ec-base-paginate typeSub" >
 							<a href="">
 								<img src="https://okdoctordog.com/web/zinidami/pc/page_prev.png" alt="before_page">
 							</a>
