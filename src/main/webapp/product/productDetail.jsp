@@ -14,15 +14,8 @@
 	
 	List<ProductOptionDto> optionList = ProductOptionDao.getInstance().getList();
 	
-<<<<<<< HEAD
-	
-	
-	ProductOptionDto optionDto = ProductOptionDao.getInstance().getData(1);
-	
-=======
->>>>>>> branch 'main' of https://github.com/cloudchamb3r/Animalls
+
 %>
-<%--위 코드는 아직 productId 값을 받을게 없어서 임시로 1 설정--%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,18 +25,16 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css">
-<<<<<<< HEAD
+
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-=======
->>>>>>> branch 'main' of https://github.com/cloudchamb3r/Animalls
 </head>
 <body>
 	<jsp:include page="/include/navbar.jsp">
 		<jsp:param value="index" name="current"/>
 	</jsp:include>
 	
-<<<<<<< HEAD
+
 	<style>
 		 ul {
       		list-style: none;
@@ -60,9 +51,7 @@
 		    flex-wrap: wrap;
   			}
 	</style>
-=======
 	
->>>>>>> branch 'main' of https://github.com/cloudchamb3r/Animalls
 	<div class="wrap">
 		<div class="container">
 			<div class="detailArea">
@@ -72,7 +61,6 @@
 						<img src="<%=dto.getThumbnail()%>" width="300px" height="300px">
 					</div>
 					
-<<<<<<< HEAD
 					<div class="smallImgArea xans-element- xans-product xans-product-addimage listImg">	
 						<ul> <%--썸네일 하단 상세 그림 구현 예정 --%>
 							<li>
@@ -82,21 +70,9 @@
 						<button type="button">
 							<span class="blind">다음</span>
 						</button>
-=======
-					<div class="smallImgArea xans-element- xans-product xans-product-addimage listImg">
-						<ul>
-							<li>
-								<img src="<%=dto.getThumbnail()%>" width="60px" height="60px">
-							</li>
-						</ul>
->>>>>>> branch 'main' of https://github.com/cloudchamb3r/Animalls
-					</div>
+					
 				</div>
 				
-<<<<<<< HEAD
-				
-=======
->>>>>>> branch 'main' of https://github.com/cloudchamb3r/Animalls
 				<div class="infoArea">
 					<%--경로 --%>
 					<div>
@@ -106,73 +82,14 @@
 						</ul>
 					</div>
 					
-					<%-- title--%>
-					<div class="titleArea">
-						<h1><%=dto.getTitle() %></h1>
-<<<<<<< HEAD
-=======
-						
-						<%--한다면 여기에 찜(잠시 보류)--%>
-					</div>
 					
-					<div class="priceArea">
-						<%if(dto.getSalePrice() != 0){ %>
-							<p><%=dto.getSalePrice() %><span>원</span></p>
-							<p class="prd_price"><%=dto.getOrgPrice() %></p> <%--여기에 가운데 취소표시(class) --%>
-						<%}else{ %> 
-							<p><%=dto.getOrgPrice() %><span>원</span></p>
-						<%} %>
-					</div>
 					
-					<div class="basicInfo">
-						<table border="1" summary><%--옵션 (적립금있음 나중에추가) --%>
-							<caption>기본 정보</caption>
-							<tbody>
-								<tr>
-									<th><span>배송비</span></th>
-									<td>
-										<span style="font-size:16px;color:#353132;">
-											<strong>2,500(50,000 이상 구매 시 무료)</strong>
-										</span>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
 					
-					<div class="optionInfo">
-						<table border="1" summary class="xans-element- xans-product xans-product-option xans-record-">
-							<caption>상품 옵션</caption>
-							<tbody>
-							 	<tr>
-							 		
-							 		<td>
-							 			<select id="tmp">
-							 				<option value="*" selected >-[필수] 같이 구매하기 선택-</option>
-							 				<option value="**" disabled>----------------------------------</option>
-							 				<%for(ProductOptionDto tmp:optionList){ 
-							 					if(tmp.getProductId()==productId || tmp.getProductId()==0){%>
-							 				
-							 					<option value="<%=tmp.getOptionId()%>"><%=tmp.getDescription() %>(+<%=tmp.getAdditionalPrice() %>)</option>
-							 				
-							 					<%}%>
-							 			<%} %>
-							 			</select>
-							 		
-							 		</td>
-							 	
-							 	</tr>
-							
-							</tbody>
-						</table>
-					</div>
+					
+				
 					
 					
 					<div class="totalProducts">
-						<table>
->>>>>>> branch 'main' of https://github.com/cloudchamb3r/Animalls
-						
-						<%--한다면 여기에 찜(잠시 보류)--%>
 					</div>
 					
 					<div class="priceArea">
@@ -202,7 +119,7 @@
 						</table>
 					</div>
 					
-<<<<<<< HEAD
+
 					<div class="optionInfo">
 						<table border="1" summary class="xans-element- xans-product xans-product-option xans-record-">
 							<caption>상품 옵션</caption>
@@ -229,14 +146,8 @@
 							
 							</tbody>
 						</table>
-=======
-					<div class="totalPrice">
-						총 금액
-						<span class="total"><em>0</em><strong>(0개)</strong></span>
->>>>>>> branch 'main' of https://github.com/cloudchamb3r/Animalls
-					</div>
 					
-<<<<<<< HEAD
+
 					
 					<div class="totalProducts" id="optionProducts">
 						<table border="1" summary>
@@ -279,12 +190,9 @@
 						<span class="total" ><strong>(0개)</strong></span>
 					</div>
 					
-=======
->>>>>>> branch 'main' of https://github.com/cloudchamb3r/Animalls
 					<div class="btnWrap">
 						<a href="${pageContext.request.contextPath}/cart.jsp">장바구니</a>
 						<a href="${pageContext.request.contextPath}/payment.jsp">구매하기</a>
-<<<<<<< HEAD
 					</div>
 					
 					
@@ -335,13 +243,10 @@
 					<div class="cont">
 						<p align="center"><img src="https://okdoctordog.com/openImg/2022/notice/notice_all_officialmark.png"></p>
 						<p align="center"><img src="https://hucheum.openhost.cafe24.com/openImg/2022/food/grainfree/detail_food_gf_tuna.jpg"></p>
-=======
->>>>>>> branch 'main' of https://github.com/cloudchamb3r/Animalls
 					</div>
 					
 					
 				</div>
-<<<<<<< HEAD
 				
 				<div id="product_reviews" class="ec-base-tab gFlex">
 					<div class="board">
@@ -378,7 +283,7 @@
 									</colgroup>
 									
 									<thead class="displaynone">
-										<tr>
+										<tr> <%--display:none 처리 예정 --%>
 											<th scope="col">카테고리</th>
 											<th scope="col">제목</th>
 											<th scope="col">작성자</th>
@@ -420,12 +325,21 @@
 				</div>
 				
 				<div id="product_info" class="ec-base-tab gFlex">
-				
+					<div class="board">
+						<a href="#product_info">상품구매 안내</a>
+					</div>
+					
+					<div df-banner-code="pc-detail-info" class="df-bannermanager df-bannermanger-pc-detail-info">
+						<a href="#none" target df-banner-clone>
+							<img src="https://okdoctordog.com/web/upload/NNEditor/20220721/692a3b704511e13986863c6163bfad5f.png">
+							
+						</a>
+					
+					</div>
 				</div>
 				
 				
 			</div>
-=======
 			
 				<div class="detail_li"> <%--같은 페이지 내에서 이동 --%>
 					<li>
@@ -441,13 +355,11 @@
 					</li>
 					
 				</div>
->>>>>>> branch 'main' of https://github.com/cloudchamb3r/Animalls
 			
 			</div>
 		</div>
 		
 	</div>
-<<<<<<< HEAD
 	<script>
 	
 		
@@ -469,9 +381,6 @@
 							}
 						});
 					</script>
-=======
-	
->>>>>>> branch 'main' of https://github.com/cloudchamb3r/Animalls
 	<jsp:include page="/include/footer.jsp">
 		<jsp:param value="index" name="current"/>
 	</jsp:include>
