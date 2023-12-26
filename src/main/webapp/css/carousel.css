@@ -81,3 +81,8 @@ body {
     margin-top: 7rem;
   }
 }
+
+.carousel-control-prev,
+.carousel-control-next {
+	width:30%;	
+}
