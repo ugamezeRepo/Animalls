@@ -120,57 +120,15 @@ pageEncoding="UTF-8"%>
               <div class="valid-feedback"></div>
               <div class="invalid-feedback">올바른 인증번호가 아닙니다.</div>
             </div>
-          </div>
-
-          <!-- 추가 정보 -->
-          <div class="container">
-            <h3>추가정보</h3>
-            <!-- 프로필 이미지 -->
-            <div class="mb-2">
-              <label class="form-label" for="profileImage">이미지</label>
-              <input
-                class="form-contrl"
-                type="image"
-                name="profileImage"
-                id="profileImage"
-              />
-            </div>
-
-            <!-- 닉네임 -->
-            <div class="mb-2">
-              <label class="form-label" for="nickname">닉네임</label>
-              <input
-                class="form-contrl"
-                type="text"
-                name="nickname"
-                id="nickname"
-              />
-            </div>
-          </div>
         </section>
 
         <!-- 버튼 -->
         <section id="btnSection">
           <div class="container">
-            <div class="mb-1">
-              <button class="btn btn-primary" id="resetBtn" type="reset">
-                초기화
-              </button>
               <button class="btn btn-primary" id="submitBtn" type="submit">
-                회원정보수정
+                회원가입
               </button>
-            </div>
-            <div class="mb-1">
-              <a
-                href="${pageContext.request.contextPath}/"
-                style="text-decoration: none"
-              >
-                <button class="btn btn-primary" id="cancelBtn" type="button">
-                  취소
-                </button>
-              </a>
-            </div>
-          </div>
+           </div>
         </section>
       </form>
     </div>
