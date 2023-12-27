@@ -178,8 +178,8 @@ int recentReview = 48;
 			style="float: left; width: 290px; word-break: break-all; display: inline-block; text-align: left">
 			주문배송
 			<ul class="subUl upBorder">
-				<li><a class="text-decoration-none text-reset" href="">주문관리</a></li>
-				<li><a class="text-decoration-none text-reset" href="">배송관리</a></li>
+				<li><a class="text-decoration-none text-reset" href="../view_order.jsp">주문관리</a></li>
+				<li><a class="text-decoration-none text-reset" href="../view_order.jsp">배송확인</a></li>
 			</ul>
 		</div>
 		<div class="border row"
@@ -188,7 +188,7 @@ int recentReview = 48;
 			<ul class="subUl upBorder">
 				<!-- <li><a href="">고객 클레임(예시)</a></li>
 				<li><a href="">문의(예시)</a></li> -->
-				<li><a class="text-decoration-none text-reset" href="">리뷰</a></li>
+				<li><a class="text-decoration-none text-reset" href="../customerReview.jsp">리뷰</a></li>
 				<!-- <li><a href="">단골고객(예시)</a></li>
 				<li><a href="">블랙컨슈머(예시)</a></li> -->
 			</ul>
@@ -211,9 +211,9 @@ int recentReview = 48;
 				style="float: left; text-indent: 85px;">
 				<img width="64"
 					src="${pageContext.request.contextPath}/assets/shop-blocks/2.png"
-					alt="seller-image" /> <a href=""><img width="18"
+					alt="seller-image" /> <img width="18"
 					src="${pageContext.request.contextPath}/assets/bronze-medal.png"
-					alt="seller-image" /></a><a class="text-decoration-none text-reset" href=""><strong class="text-success">
+					alt="seller-image" /><a class="text-decoration-none text-reset" href=""><strong class="text-success">
 						<%=sellerName%></strong></a> 판매자님 안녕하세요.<br>
 			</div>
 
@@ -221,10 +221,10 @@ int recentReview = 48;
 
 			<div class="row row-cols-2" style="margin: auto; text-align: center;">
 				<div class="col">
-					판매중인 상품 <a href=""><%=nowSellCount%></a> 개
+					판매중인 상품 <a href="productList.jsp"><%=nowSellCount%></a> 개
 				</div>
 				<div class="col">
-					미처리된 주문 <a href=""><%=unProcessedOrder%></a> 개
+					미처리된 주문 <a href="../view_order.jsp"><%=unProcessedOrder%></a> 개
 				</div>
 				<%-- <div class="col">
 					미처리된 클레임(예시) <a href=""><%=unProcessedClaimCount%></a> 개
@@ -244,6 +244,19 @@ int recentReview = 48;
 					</div>
 
 					<div class="d-flex w-full">
+					
+						<div class="flex-grow-1 text-center my-auto">
+							<jsp:include page="/include/components/shopblock.jsp">
+								<jsp:param name="src" value="/Animalls/assets/shop-blocks/9.png" />
+								<jsp:param name="title"
+									value="<%=URLConverter.encode(\"상품 현황\")%>" />
+								<jsp:param name="subTitle"
+									value="<%=URLConverter.encode(\"판매자의 상품현황을 조회 할 수 있습니다.\")%>" />
+								<jsp:param name="description"
+									value="<%=URLConverter.encode(\"<br> 할인 중인 상품 <a href='productList.jsp'>15</a> 건 <br>카테고리 별 상품 <a href='productList.jsp'>조회</a>\")%>" />
+							</jsp:include>
+						</div>
+					
 
 						<div class="flex-grow-1 text-center my-auto">
 							<jsp:include page="/include/components/shopblock.jsp">
@@ -253,7 +266,7 @@ int recentReview = 48;
 								<jsp:param name="subTitle"
 									value="<%=URLConverter.encode(\"주문목록을 검색 및 조회 할 수 있습니다.\")%>" />
 								<jsp:param name="description"
-									value="<%=URLConverter.encode(\"<br> 확인하지 않은 주문 <a href='#'>23</a> 건 <br>처리완료한 주문 <a href='#'>8</a> 건\")%>" />
+									value="<%=URLConverter.encode(\"<br> 처리전 주문 <a href='../view_order.jsp'>23</a> 건 <br>처리완료한 주문 <a href='../view_order.jsp'>8</a> 건\")%>" />
 							</jsp:include>
 						</div>
 
@@ -266,7 +279,7 @@ int recentReview = 48;
 								<jsp:param name="subTitle"
 									value="<%=URLConverter.encode(\"배송현황을 검색 및 조회 할 수 있습니다.\")%>" />
 								<jsp:param name="description"
-									value="<%=URLConverter.encode(\"<br> 배송전,배송지연 주문 <a href='#'>2</a> 건 <br>배송완료 주문 <a href='#'>15</a> 건\")%>" />
+									value="<%=URLConverter.encode(\"<br> 배송전,배송지연 주문 <a href='../view_order.jsp'>2</a> 건 <br>배송완료 주문 <a href='../view_order.jsp'>15</a> 건\")%>" />
 							</jsp:include>
 							<a href="#" class="text-decoration-none font-weight-bolder"></a>
 						</div>
@@ -275,13 +288,14 @@ int recentReview = 48;
 							<jsp:include page="/include/components/shopblock.jsp">
 								<jsp:param name="src" value="/Animalls/assets/shop-blocks/7.png" />
 								<jsp:param name="title"
-									value="<%=URLConverter.encode(\"고객 관리(예시)\")%>" />
+									value="<%=URLConverter.encode(\"고객 관리\")%>" />
 								<jsp:param name="subTitle"
-									value="<%=URLConverter.encode(\"고객관리 및 문의에 대한 답변을 할 수 있습니다.\")%>" />
+									value="<%=URLConverter.encode(\"고객님의 최근 리뷰를 볼 수 있습니다.\")%>" />
 								<jsp:param name="description"
-									value="<%=URLConverter.encode(\"<br> 답변완료 전 문의 <a href='#'>1</a> 건 <br>최근 리뷰보기 <a href='#'>25</a> 건\")%>" />
+									value="<%=URLConverter.encode(\" <br>최근 리뷰보기 <a href='../customerReview.jsp'>25</a> 건\")%>" />
 							</jsp:include>
-							<a href="#" class="text-decoration-none font-weight-bolder"></a>
+							<a 
+="#" class="text-decoration-none font-weight-bolder"></a>
 						</div>
 
 						<%-- <div class="flex-grow-1 text-center my-auto">
@@ -388,6 +402,42 @@ int recentReview = 48;
 									class="img-fluid object-fit-scaledown">
 							</div>
 							<div class="card-img-overlay">Slide 6</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item rows align-items-center">
+					<div class="col-md-3">
+						<div class="card">
+							<div class="card-img d-flex justify-content-center align-items-center">
+								<img
+									src="${pageContext.request.contextPath}/assets/shop-blocks/11.png"
+									class="img-fluid object-fit-scaledown">
+							</div>
+							<div class="card-img-overlay">Slide 7</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item rows align-items-center">
+					<div class="col-md-3">
+						<div class="card">
+							<div class="card-img d-flex justify-content-center align-items-center">
+								<img
+									src="${pageContext.request.contextPath}/assets/shop-blocks/11.png"
+									class="img-fluid object-fit-scaledown">
+							</div>
+							<div class="card-img-overlay">Slide 8</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item rows align-items-center">
+					<div class="col-md-3">
+						<div class="card">
+							<div class="card-img d-flex justify-content-center align-items-center">
+								<img
+									src="${pageContext.request.contextPath}/assets/shop-blocks/11.png"
+									class="img-fluid object-fit-scaledown">
+							</div>
+							<div class="card-img-overlay">Slide 9</div>
 						</div>
 					</div>
 				</div>
