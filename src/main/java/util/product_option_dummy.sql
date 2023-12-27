@@ -1,4 +1,4 @@
---product_option product_id 3번까지 추가
+--product_option 
 --선택안함
 INSERT INTO PRODUCT_OPTION
 (option_id, product_id, description, additional_price)
@@ -58,4 +58,3 @@ VALUES(PRODUCT_OPTION_SEQ.NEXTVAL, 3, '차콜 L', 5000);
 INSERT INTO PRODUCT_OPTION
 (option_id, product_id, description, additional_price)
 VALUES(PRODUCT_OPTION_SEQ.NEXTVAL, 3, '브라운 L', 5000);
-

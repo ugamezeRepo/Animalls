@@ -9,7 +9,7 @@
 %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 
-<header class="p-3 border-bottom sticky-top bg-white">
+<header class="p-3 border-bottom sticky-top bg-white shadow-sm">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/Animalls" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
@@ -18,9 +18,9 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="/Animalls/brandstory.jsp" class="nav-link px-2 link-body-emphasis">브랜드</a></li>
-          <li><a href="/Animalls/productList.jsp" class="nav-link px-2 link-body-emphasis">제품</a></li>
+          <li><a href="/Animalls/product/productList.jsp" class="nav-link px-2 link-body-emphasis">제품</a></li>
           <li><a href="/Animalls/event/eventList.jsp" class="nav-link px-2 link-body-emphasis">커뮤니티</a></li>
-          <li><a href="/Animalls/noticeBoard.jsp" class="nav-link px-2 link-body-emphasis">고객지원</a></li>
+          <li><a href="/Animalls/notice/noticeList.jsp" class="nav-link px-2 link-body-emphasis">고객지원</a></li>
           <li><a href="/Animalls/regularDelivery.jsp" class="nav-link px-2 link-body-emphasis">정기배송</a></li>
           <li><a href="/Animalls/customerReview.jsp" class="nav-link px-2 link-body-emphasis">고객리뷰</a></li>
         </ul>
