@@ -205,17 +205,17 @@ VALUES (DELIVERY_ADDRESS_SEQ.NEXTVAL, 12355, '지구10', '우리집');
 
 
 INSERT INTO PRODUCT_REVIEW (review_id, product_id , reviewer_id, content, thumbnail, rating, like_count, created_at, updated_at )
-VALUES (PRODUCT_REVIEW_SEQ.NEXTVAL,1,'con1','하이1','test/load1.jsp',4,0,SYSDATE,SYSDATE);
+VALUES (PRODUCT_REVIEW_SEQ.NEXTVAL,1,'dum18','하이1','test/load1.jsp',4,0,SYSDATE,SYSDATE);
 INSERT INTO PRODUCT_REVIEW (review_id, product_id , reviewer_id, content, thumbnail, rating, like_count, created_at, updated_at )
-VALUES (PRODUCT_REVIEW_SEQ.NEXTVAL,1,'con2','하이2','test/load2.jsp',3,0,SYSDATE,SYSDATE);
+VALUES (PRODUCT_REVIEW_SEQ.NEXTVAL,1,'dum18','하이2','test/load2.jsp',3,0,SYSDATE,SYSDATE);
 INSERT INTO PRODUCT_REVIEW (review_id, product_id , reviewer_id, content, thumbnail, rating, like_count, created_at, updated_at )
-VALUES (PRODUCT_REVIEW_SEQ.NEXTVAL,1,'con3','하이3','test/load3.jsp',3,0,SYSDATE,SYSDATE);
+VALUES (PRODUCT_REVIEW_SEQ.NEXTVAL,1,'dum18','하이3','test/load3.jsp',3,0,SYSDATE,SYSDATE);
 INSERT INTO PRODUCT_REVIEW (review_id, product_id , reviewer_id, content, thumbnail, rating, like_count, created_at, updated_at )
-VALUES (PRODUCT_REVIEW_SEQ.NEXTVAL,1,'con4','하이4','test/load4.jsp',2,0,SYSDATE,SYSDATE);
+VALUES (PRODUCT_REVIEW_SEQ.NEXTVAL,1,'dum17','하이4','test/load4.jsp',2,0,SYSDATE,SYSDATE);
 INSERT INTO PRODUCT_REVIEW (review_id, product_id , reviewer_id, content, thumbnail, rating, like_count, created_at, updated_at )
-VALUES (PRODUCT_REVIEW_SEQ.NEXTVAL,1,'con5','하이5','test/load5.jsp',3,0,SYSDATE,SYSDATE);
+VALUES (PRODUCT_REVIEW_SEQ.NEXTVAL,1,'dum15','하이6','test/load5.jsp',3,0,SYSDATE,SYSDATE);
 INSERT INTO PRODUCT_REVIEW (review_id, product_id , reviewer_id, content, thumbnail, rating, like_count, created_at, updated_at )
-VALUES (PRODUCT_REVIEW_SEQ.NEXTVAL,1,'con1','하이6','test/load11.jsp',3,0,SYSDATE,SYSDATE);
+VALUES (PRODUCT_REVIEW_SEQ.NEXTVAL,1,'dum16','하이5','test/load11.jsp',3,0,SYSDATE,SYSDATE);
 
 INSERT INTO UPLOAD (upload_id , uploader_id, org_filename, save_filename, filesize, uploaded_at)
 VALUES(UPLOAD_SEQ.NEXTVAL,'','org1','save1',1000,SYSDATE);
