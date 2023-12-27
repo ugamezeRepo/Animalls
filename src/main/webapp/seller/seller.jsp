@@ -52,21 +52,40 @@
         }
 
 .d-block {
-            display: block;
-            width: auto;
+
             height: 100%;
+			border : solid 1px;
+			padding : 10px;
+    		margin-left:110px;
         }
+       
         
 .subUl {
     list-style: none;
 }
 
-#footer {
-
-
-	display: inline-block;
-
+.upBorder{
+  border-top: solid 1px;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+  vertical-align:middle;
+  padding-top: 10px;
 }
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+main {
+    margin-bottom: 300px; /* footer의 높이만큼 여백을 줍니다. */
+}
+.cButton{
+	height: 100%;
+	padding : 10px;
+    margin-left:100px;
+}
+
 
 </style>
 </head>
@@ -76,41 +95,41 @@
 	</jsp:include>
 	
 	<main>
-	<div class="border d-flex" style="float:left; 	width: 290px; word-break:break-all; display: inline-block; text-align: left;">
-		<div class="border container" style="float:left; width: 290px; word-break:break-all; display: inline-block; text-align: left;">
+	<div class="row d-flex" style="float:left; width: 290px; padding-left:60px; word-break:break-all; display: block; text-align: left;">
+		<div class="container row my-2" style="float:left; width: 290px; word-break:break-all; display: block; text-align: left;">
 		상세메뉴
 		</div>
 			<br />
-			<div class="border container" style="float:left; width: 290px; word-break:break-all; display: inline-block; text-align: left;">
+			<div class="border container row" style="float:left; width: 290px; word-break:break-all; display: inline-block; text-align: left;">
 			회원정보
-				<ul class="subUl">
+				<ul class="subUl upBorder">
 					<li style="none"><a href="">정보수정</a></li>
 					<li><a href="">탈퇴하기</a></li>
 				</ul>
 			</div>
-			<div class="border container" style="float:left; width: 290px; word-break:break-all; display: inline-block; text-align: left;">
+			<div class="border container row" style="float:left; width: 290px; word-break:break-all; display: inline-block; text-align: left;">
 			상품관리
-				<ul class="subUl">
+				<ul class="subUl upBorder">
 					<li><a href="">상품DB</a></li>
 				</ul>
 			</div>
-			<div class="border container" style="float:left; width: 290px; word-break:break-all; display: inline-block; text-align: left;">
+			<div class="border container row" style="float:left; width: 290px; word-break:break-all; display: inline-block; text-align: left;">
 			상점관리
-				<ul class="subUl">
+				<ul class="subUl upBorder">
 					<li><a href="">상세페이지(예시)</a></li>
 					<li><a href="">이벤트/프로모션(예시)</a></li>
 				</ul>
 			</div>
-			<div class="border container" style="float:left; width: 290px; word-break:break-all; display: inline-block; text-align: left;">
+			<div class="border container row" style="float:left; width: 290px; word-break:break-all; display: inline-block; text-align: left;">
 			주문배송
-				<ul class="subUl">
+				<ul class="subUl upBorder">
 					<li><a href="">주문관리</a></li>
 					<li><a href="">배송관리</a></li>
 				</ul>
 			</div>
-			<div class="border container" style="float:left; width: 290px; word-break:break-all; display: inline-block; text-align: left;">
+			<div class="border container row" style="float:left; width: 290px; word-break:break-all; display: inline-block; text-align: left;">
 			고객관리
-				<ul class="subUl">
+				<ul class="subUl upBorder">
 					<li><a href="">고객 클레임(예시)</a></li>
 					<li><a href="">문의(예시)</a></li>
 					<li><a href="">리뷰</a></li>
@@ -118,9 +137,9 @@
 					<li><a href="">블랙컨슈머(예시)</a></li>
 				</ul>
 			</div>
-			<div class="border container" style="float:left; width: 290px; word-break:break-all; text-align: left;">
+			<div class="border container row" style="float:left; width: 290px; word-break:break-all; text-align: left;">
 			판매정산
-				<ul class="subUl">
+				<ul class="subUl upBorder">
 					<li><a href="">판매정산DB(예시)</a></li>
 				</ul>
 			</div>
@@ -202,34 +221,40 @@
 		</div>
 
 	<div class="container">
+		<br />
 		<strong class="text-primary"><%= sellerName %></strong>님의 가장 잘팔린 상품들 <small>3개월 기준(예시)</small>
 	</div>
 		
-	<div class="container" style="text-align: center">
-			<div id="foodCarousel" class="carousel slide" data-bs-touch="false" style=float:left;>
+	<div class="container" class="carousel-container" style="text-align: center; display:block;">
+			<div id="foodCarousel" class="carousel slide"  data-bs-touch="false" style=float:left;>
+				  <br />
+				  <br />
 				  <div class="carousel-inner">
 				    <div class="carousel-item active">
 				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/11.png" class="d-block w-10" alt="best-food">
 				    </div>
-				    <div class="carousel-item">
+				    <div class="carousel-item ">
 				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/12.png" class="d-block w-10" alt="best-food">
 				    </div>
-				    <div class="carousel-item">
+				    <div class="carousel-item ">
 				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/13.png" class="d-block w-10" alt="best-food">
 				    </div>
 				  </div>
-				  <button class="carousel-control-prev" type="button" data-bs-target="#foodCarousel" data-bs-slide="prev">
+				  <button class="carousel-control-prev cButton w-10" type="button" data-bs-target="#foodCarousel" data-bs-slide="prev">
 				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				    <span class="visually-hidden">Previous</span>
 				  </button>
-				  <button class="carousel-control-next" type="button" data-bs-target="#foodCarousel" data-bs-slide="next">
+				  <button class="carousel-control-next cButton w-10" type="button" data-bs-target="#foodCarousel" data-bs-slide="next">
 				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 				    <span class="visually-hidden">Next</span>
 				  </button>
+				  <br />
 				  음식
 			 </div>
 			  
-			 <div id="clothesCarousel" class="carousel slide" data-bs-touch="false" style=float:left;>
+			 <div id="clothesCarousel" class="carousel slide" class="d-block pics" data-bs-touch="false" style=float:left;>
+			 	  <br />
+			 	  <br />
 				  <div class="carousel-inner">
 				    <div class="carousel-item active">
 				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/4.png" class="d-block w-10" alt="best-clothes">
@@ -241,18 +266,21 @@
 				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/6.png" class="d-block w-10" alt="best-clothes">
 				    </div>
 				  </div>
-				  <button class="carousel-control-prev" type="button" data-bs-target="#clothesCarousel" data-bs-slide="prev">
+				  <button class="carousel-control-prev cButton w-10" type="button" data-bs-target="#clothesCarousel" data-bs-slide="prev">
 				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				    <span class="visually-hidden">Previous</span>
 				  </button>
-				  <button class="carousel-control-next" type="button" data-bs-target="#clothesCarousel" data-bs-slide="next">
+				  <button class="carousel-control-next cButton w-10" type="button" data-bs-target="#clothesCarousel" data-bs-slide="next">
 				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 				    <span class="visually-hidden">Next</span>
 				  </button>
+				  <br />
 				  의류
 			 </div>
 			 
-			 <div id="bathCarousel" class="carousel slide" data-bs-touch="false" style=float:left;>
+			 <div id="bathCarousel" class="carousel slide" class="d-block" data-bs-touch="false"  >
+			 	  <br />
+			 	  <br />
 				  <div class="carousel-inner">
 				    <div class="carousel-item active">
 				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/11.png" class="d-block w-10" alt="best-bath">
@@ -264,14 +292,15 @@
 				      <img src="${pageContext.request.contextPath}/assets/shop-blocks/13.png" class="d-block w-10" alt="best-bath">
 				    </div>
 				  </div>
-				  <button class="carousel-control-prev" type="button" data-bs-target="#bathCarousel" data-bs-slide="prev">
+				  <button class="carousel-control-prev cButton w-10" type="button" data-bs-target="#bathCarousel" data-bs-slide="prev">
 				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				    <span class="visually-hidden">Previous</span>
 				  </button>
-				  <button class="carousel-control-next" type="button" data-bs-target="#bathCarousel" data-bs-slide="next">
+				  <button class="carousel-control-next cButton w-10" type="button" data-bs-target="#bathCarousel" data-bs-slide="next">
 				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 				    <span class="visually-hidden">Next</span>
-				  </button>
+				  </button> 
+				  <br />
 				  목욕용품
 			  </div>		
 		
