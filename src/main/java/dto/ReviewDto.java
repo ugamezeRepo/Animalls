@@ -14,7 +14,6 @@ public class ReviewDto {
 	private int reviewId;
 	private int productId; //로그인 사용자의 아이디
 	private String reviewerId;
-	private String title;
 	private String content;
 	private String thumbnail;
 	private int rating;
