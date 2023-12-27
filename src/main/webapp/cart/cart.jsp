@@ -1,3 +1,6 @@
+<%@page import="java.util.stream.Collectors"%>
+<%@page import="dao.MemberDao"%>
+<%@page import="dto.MemberDto"%>
 <%@page import="dao.ProductOptionDao"%>
 <%@page import="dto.ProductOptionDto"%>
 <%@page import="dao.ProductDao"%>
@@ -9,26 +12,34 @@
     pageEncoding="UTF-8"%>
 <%
 	//String id = (String)session.getAttribute("id");
-	List<CartItemDto> list =CartItemDao.getInstance().getList();
+	String id = "dum1";
+	MemberDto memberDto = MemberDao.getInstance().getData(id);
+	List<CartItemDto> cartList =CartItemDao.getInstance().getList();
+	if(id!=null){
+		cartList = cartList.stream().filter(c->c.getBuyerId().equals(id)).collect(Collectors.toList());
+	}
 	int totalPrice = 0;
-	int deliveryFee = 0;
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/cart.jsp</title>
+<title>/cart/cart.jsp</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<style>
+	
+</style>
 </head>
 <body>
 	<jsp:include page="/include/navbar.jsp"></jsp:include>
 	<div class="container">
         <div class="textArea">
             <h2>장바구니</h2>
+            <p><img src="https://img.echosting.cafe24.com/skin/base_ko_KR/order/img_order_step1.gif" alt="" /></p>
         </div>
         <div class="info">
-        	<%--로그인 여부에 따라서 표시 --%>
+        	<p><%=memberDto.getName() %> 님은, [<%=memberDto.getRank() %>] 회원이십니다</p>
         </div>
         <div class="basket">
             <table class="table-bordered">
@@ -38,7 +49,7 @@
                     <col style="width:auto">
                     <col style="width:88px">
                     <col style="width:110px">
-                    <col style="width:98px">
+                    <col style="width:98px"> 
                     <col style="width:110px">
                 </colgroup>
                 <thead>
@@ -55,13 +66,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%for(CartItemDto tmp:list){ 
+                    <%for(CartItemDto tmp:cartList){ 
                     	ProductDto productDto = ProductDao.getInstance().getData(tmp.getProductId());
                     	ProductOptionDto optionDto = ProductOptionDao.getInstance().getData(tmp.getOptionId());
                     	int price = productDto.getSalesState().equals("on_sale")? productDto.getSalePrice() : productDto.getOrgPrice();
                     	int itemPrice = (price+optionDto.getAdditionalPrice())*tmp.getAmount();
                     	totalPrice += itemPrice;
-                    	deliveryFee = totalPrice>50000 ? 0 : 2500;
                     %>
                     
                     <tr>
@@ -75,21 +85,17 @@
                             <ul>
                                 <li> <strong><a href="${pageContext.request.contextPath}/product/productDetail?productId=<%=tmp.getProductId()%>"><%=productDto.getTitle() %></a></strong></li>
                                 <li>옵션 : <%=optionDto.getDescription() %></li>
-                                <li><a href="옵션창">옵션변경</a></li>
+                                <li><button id="optBtn">옵션변경</button></li>
                             </ul>
                         </td>
                         <td>
                             <span>
                                 <input type="text" value="<%=tmp.getAmount() %>" id="amountId" >
-                                <a href="" onclick="changeAmount('plus')" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16">
-									  <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
-									</svg>
+                                <a href="" >
+                                    up
                                 </a>
-                                <a href="" onclick="changeAmount('minus')">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
-									  <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
-									</svg>
+                                <a href="" >
+                                    down
                                 </a>
                             </span>
                             <a href="" onclick="수량결정">변경</a>
@@ -98,11 +104,12 @@
                             <strong><%=itemPrice %></strong>
                         </td>
                         <td>
-                            <strong><%=deliveryFee %></strong>
+                            <strong><%=itemPrice>50000 ? "무료" : 2500 %></strong>
                         </td>
                         <td>
                             <a href="">주문하기</a>
-                            <a href="">삭제</a>
+                            <br />
+                            <a href="${pageContext.request.contextPath}/cart/cartDelete.jsp?cartItemId=<%=tmp.getCartItemId()%>">삭제</a>
                         </td>
                     </tr>
                     <%} %>
@@ -122,15 +129,15 @@
                 <tbody>
                     <tr>
                         <td><%=totalPrice %> </td>
-                        <td><%=deliveryFee%></td>
-                        <td><%=totalPrice + deliveryFee %></td>
+                        <td><%=totalPrice>50000 ? 0 : 2500%></td>
+                        <td><%=totalPrice>50000 ? totalPrice : totalPrice+2500%></td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="order">
-            <a href="" onclick="">전체상품주문</a>
-            <a href="" onclick="">선택상품주문</a>
+            <a href="">전체상품주문</a>
+            <a href="">선택상품주문</a>
         </div>
     </div>
 	<script>
@@ -157,7 +164,7 @@
            checkBox.checked=true;
        }
 		}
-    
+   
 	</script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
