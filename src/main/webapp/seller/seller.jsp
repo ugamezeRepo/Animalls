@@ -2,8 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-String sellerId = "minsu1234";
-String sellerName = "김민수";
+String sellerId = "gildong1234";
+String sellerName = "홍길동";
 /* int recentlySell = 2000000; */
 /* String unCalculated = "3,000,000"; */
 /* int unProcessedClaimCount = 15; */
@@ -163,7 +163,7 @@ int recentReview = 48;
 			style="float: left; width: 290px; word-break: break-all; display: inline-block; text-align: left;">
 			상품관리
 			<ul class="subUl upBorder">
-				<li><a class="text-decoration-none text-reset" href="">상품DB</a></li>
+				<li><a class="text-decoration-none text-reset" href="productList.jsp">상품DB</a></li>
 			</ul>
 		</div>
 		<!-- <div class="border row"
@@ -213,7 +213,7 @@ int recentReview = 48;
 					src="${pageContext.request.contextPath}/assets/shop-blocks/2.png"
 					alt="seller-image" /> <a href=""><img width="18"
 					src="${pageContext.request.contextPath}/assets/bronze-medal.png"
-					alt="seller-image" /></a><a href=""><strong class="text-primary">
+					alt="seller-image" /></a><a class="text-decoration-none text-reset" href=""><strong class="text-success">
 						<%=sellerName%></strong></a> 판매자님 안녕하세요.<br>
 			</div>
 
@@ -304,8 +304,8 @@ int recentReview = 48;
 	</div>
 
 	<div class="container">
-		<br /> <strong class="text-primary" style="text-indent:-100px"><%=sellerName%></strong>님의 가장 잘팔린
-		상품들 <small>3개월 기준(예시)</small>
+		<br /> <strong class="text-success" style="text-indent:-100px"><%=sellerName%></strong>님의 가장 잘팔린
+		상품들 <small>(3개월 기준)</small>
 	</div>
 	<div class="row mx-auto my-auto">
 		<div id="recipeCarousel" class="carousel slide d-flex justify-content-center align-items-center" data-bs-ride="carousel">
