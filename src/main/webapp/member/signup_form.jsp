@@ -176,6 +176,7 @@ pageEncoding="UTF-8"%>
     </div>
 
     <script>
+      /*
       // 아이디 유효성 검사
 
       // 비밀번호 유효성 검사 (알파벳/숫자/특수문자 조합, 8자~16자)
@@ -292,6 +293,7 @@ pageEncoding="UTF-8"%>
           e.target.classList.add("is-invalid");
         }
       });
+      */
     </script>
   </body>
 </html>
