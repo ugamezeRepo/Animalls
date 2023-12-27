@@ -4,18 +4,18 @@
 <%
 String sellerId = "minsu1234";
 String sellerName = "김민수";
-int nowSellCount = 123;
-int unProcessedCount = 67;
-int recentlySell = 2000000;
-String unCalculated = "3,000,000";
-int unProcessedClaimCount = 15;
+/* int recentlySell = 2000000; */
+/* String unCalculated = "3,000,000"; */
+/* int unProcessedClaimCount = 15; */
+/* int ongoingEvent = 2; */
+int nowSellCount = 12;
+int unProcessedOrder = 67; 
 int unCheckedOrder = 23;
 int completedOrder = 100;
 int beforeDelivery = 35;
 int afterDelivery = 60;
 int completedAnswer = 20;
 int recentReview = 48;
-int ongoingEvent = 2;
 %>
 <!DOCTYPE html>
 <html>
@@ -175,7 +175,7 @@ int ongoingEvent = 2;
 			</ul>
 		</div> -->
 		<div class="border row"
-			style="float: left; width: 290px; word-break: break-all; display: inline-block; text-align: left;">
+			style="float: left; width: 290px; word-break: break-all; display: inline-block; text-align: left">
 			주문배송
 			<ul class="subUl upBorder">
 				<li><a class="text-decoration-none text-reset" href="">주문관리</a></li>
@@ -203,7 +203,7 @@ int ongoingEvent = 2;
 	</div>
 
 
-	<div class="my-2">
+	<div class="container my-2">
 		<h1>판매자 마이페이지</h1>
 		<hr />
 		<div class="border my-3 d-flex">
@@ -224,7 +224,7 @@ int ongoingEvent = 2;
 					판매중인 상품 <a href=""><%=nowSellCount%></a> 개
 				</div>
 				<div class="col">
-					미처리된 상품 <a href=""><%=unProcessedCount%></a> 개
+					미처리된 주문 <a href=""><%=unProcessedOrder%></a> 개
 				</div>
 				<%-- <div class="col">
 					미처리된 클레임(예시) <a href=""><%=unProcessedClaimCount%></a> 개
@@ -303,7 +303,7 @@ int ongoingEvent = 2;
 		</div>
 	</div>
 
-	<div>
+	<div class="container">
 		<br /> <strong class="text-primary" style="text-indent:-100px"><%=sellerName%></strong>님의 가장 잘팔린
 		상품들 <small>3개월 기준(예시)</small>
 	</div>
