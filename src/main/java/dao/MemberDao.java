@@ -188,6 +188,44 @@ public class MemberDao {
 		return list;
 	}
 	
+	// 조회 by 이메일
+	public MemberDto getEmailData(String email) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberDto dto = null;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "SELECT delivery_id, password, nickname, name, role, phone_number, rank, profile_image, email, email_verified, registered_date" + 
+					" FROM MEMBER" + 
+					" WHERE email=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				dto = new MemberDto();
+				dto.setMemberId(rs.getString("memberId"));
+				dto.setDeliveryId(rs.getInt("delivery_id"));
+	            dto.setPassword(rs.getString("password"));
+	            dto.setNickname(rs.getString("nickname"));
+	            dto.setName(rs.getString("name"));
+	            dto.setRole(rs.getString("role"));
+	            dto.setPhoneNumber( rs.getString("phone_number"));
+	            dto.setRank(rs.getString("rank"));
+	            dto.setProfileImage(rs.getString("profile_image"));
+	            dto.setEmail(email);
+	            dto.setEmailVerified(rs.getBoolean("email_verified"));
+	            dto.setRegisteredDate(rs.getString("registered_date"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeResource(conn, pstmt, rs);
+		}
+		
+		return dto;
+	}
+	
 	private void closeResource(Connection conn, PreparedStatement pstmt) {
 		try {
 			if (conn != null)
