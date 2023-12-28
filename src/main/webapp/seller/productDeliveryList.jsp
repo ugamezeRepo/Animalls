@@ -35,8 +35,14 @@
 				<option value="">교환</option> 
 			</select> 
 			
+			<div class="container">
+				<div class="btn-group" role="group" aria-label="...">
+				  <button type="button" class="btn btn-primary button-class1">배송번호↑</button>
+				  <button type="button" class="btn btn-default button-class2">배송번호↓</button>
+				</div>
+			</div>
 			
-			배송번호순 수량순 구매금액순 배송시작일자순 배송완료일자순
+			수량순 구매금액순 배송시작일자순 배송완료일자순
  		</div>
 		
 		<table>
@@ -123,6 +129,26 @@
 		<jsp:param value="index" name="current" />
 	</jsp:include>
 	
+	
+	<script>
+		$(function() {
+	
+			$('.button-class1').click(function(){
+				if( $(this).hasClass('btn-default') ) $(this).removeClass('btn-default');
+				if( !$(this).hasClass('btn-primary') ) $(this).addClass('btn-primary');
+				if( $('.button-class2').hasClass('btn-primary') ) $('.button-class2').removeClass('btn-primary');
+				if( !$('.button-class2').hasClass('btn-default') ) $('.button-class2').addClass('btn-default');
+			});
+			
+			$('.button-class2').click(function(){
+				if( $(this).hasClass('btn-default') ) $(this).removeClass('btn-default');
+				if( !$(this).hasClass('btn-primary') ) $(this).addClass('btn-primary');
+				if( $('.button-class1').hasClass('btn-primary') ) $('.button-class1').removeClass('btn-primary');
+				if( !$('.button-class1').hasClass('btn-default') ) $('.button-class1').addClass('btn-default');
+			});
+	
+		});
+	</script>
 	
 </body>
 </html>
