@@ -40,11 +40,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
 </head>
 <body>
 	<jsp:include page="/include/navbar.jsp">
-		<jsp:param value="noticeBoard" name="current"/>
+		<jsp:param value="notice" name="current"/>
 	</jsp:include>
 	<div class="container my-4">
 		<h1>공지사항</h1>
@@ -61,7 +62,11 @@
 				<%for (NoticeItemDto item : noticeItems) {%>
 					<tr>
 						<td><%= item.getNoticeItemId() %></td>
-						<td><%= item.getNoticeTitle() %></td>
+						<td>
+							<a class="text-reset text-decoration-none" href="noticeDetail.jsp?id=<%= item.getNoticeItemId() %>">
+								<%= item.getNoticeTitle() %>
+							</a>
+						</td>
 						<td><%= item.getCreatedAt() %></td>
 					</tr>
 				<%} %>
@@ -69,24 +74,26 @@
 			</table>
 		</div>
 		
-		<nav aria-label="Page navigation example">
+		<nav aria-label="page navigator">
 		  <ul class="pagination justify-content-center">
 		    <li class="page-item <%= currentPageGroup == 1 ? "disabled" : "" %>">
-		      <a class="page-link" href="noticeBoard.jsp?page=<%= pageGroupStart - 1 %>"  tabindex="-1">Previous</a>
+		      <a class="page-link" href="noticeList.jsp?page=<%= pageGroupStart - 1 %>"  tabindex="-1">Previous</a>
 		    </li>
 		    
 		    <% for (int i = pageGroupStart; i <= pageGroupEnd; i++) { %>
-		    	<li class="page-item <%= numPage == i ? "active" : ""%>"><a class="page-link" href="noticeBoard.jsp?page=<%= i %>"><%= i %></a></li>
+		    	<li class="page-item <%= numPage == i ? "active" : ""%>">
+		    		<a class="page-link" href="noticeList.jsp?page=<%= i %>"><%= i %></a>
+		    	</li>
 		    <% } %>
 
 		    <li class="page-item <%= currentPageGroup == lastPostPageGroup ? "disabled" : "" %>">
-		      <a class="page-link" href="noticeBoard.jsp?page=<%= pageGroupEnd + 1 %>">Next</a>
+		      <a class="page-link" href="noticeList.jsp?page=<%= pageGroupEnd + 1 %>">Next</a>
 		    </li>
 		  </ul>
 		</nav>
 	</div>
 	<jsp:include page="/include/footer.jsp">
-		<jsp:param value="noticeBoard" name="current"/>
+		<jsp:param value="notice" name="current"/>
 	</jsp:include>
 </body>
 </html>
