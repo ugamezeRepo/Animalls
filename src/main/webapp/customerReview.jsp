@@ -34,9 +34,9 @@
 	
 	List<ReviewDto> list= ReviewDao.getInstance().getList(startRowNum, endRowNum);
 	
-	String id=(String)session.getAttribute("id");
+	String memberId=(String)session.getAttribute("memberId");
 	
-	request.setAttribute("id", id);
+	request.setAttribute("id", memberId);
 	request.setAttribute("list", list);
 	request.setAttribute("startPageNum", startPageNum);
 	request.setAttribute("endPageNum", endPageNum);
@@ -131,7 +131,9 @@
 	<jsp:include page="include/navbar.jsp"></jsp:include>
 	<div class="container">
 		<h1>Review</h1>
-		<button type="submit" class="btn" id="insertBtn" onclick="insertAction()"><a href="review_insertform.jsp">리뷰 작성하러 가기</a></button>
+	<% if (request.getAttribute("id") != null) { %>
+		<a class="btn btn-primary" href="review_insertform.jsp">리뷰 작성하러 가기</a>
+	<%} %>		
 		<hr style="border-top: 2px solid black; margin-top: 10px;"> <!-- 검정색 선 추가 -->
 		<nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3">
 		  <ul class="nav nav-pills">
@@ -186,11 +188,12 @@
 					<input type="hidden" name="rating" value="${tmp.rating}" id="rating_${status.index}">
 					<textarea class="col-auto form-control mb-2" type="text" id="reviewContents" name="content"
 							  readonly>${tmp.content}</textarea>
-					<c:if test="${id eq tmp.reviewerId} ">
-						<button type="submit" class="btn btn-success">수정</button>	
-						<button type="submit" class="btn btn-danger">삭제</button>
+					<c:if test="${id eq tmp.reviewerId} ">	
+						<a href="/" class="btn btn-danger">수정</a>
+						<a href="/" class="btn btn-danger">삭제</a>
 					</c:if>		
-				</form> 
+				</form>
+				<hr class="border border-primary border-3 opacity-75">
 			</c:forEach>
 		</div><%-- 여기까지 쓴글 목록입니다 --%>
 		<div class="paging-container">
@@ -225,15 +228,6 @@
 	<jsp:include page="include/footer.jsp"></jsp:include>		
 </body>
 <script>
-		document.querySelector("#insertBtn").addEventListener("click",(e)=>{
-			e.preventDefault();
-		})
-		function insertAction() {
-	    	<% if(id != null) { %>
-	    	 document.querySelector("#insertBtn").click();
-			<%} %>
-	    }
-		
 		
 		for(let i=0;i<5;i++){
 			let rating = document.querySelector("#rating_"+i);
