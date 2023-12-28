@@ -28,7 +28,74 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <style>
-	
+	//모달창 css
+	.modal--bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(1.5px);
+            -webkit-backdrop-filter: blur(1.5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .modal {
+            background: white;
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 13.5px );
+            -webkit-backdrop-filter: blur( 13.5px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            width: 400px;
+            height: 300px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            
+            padding: 10px;
+        }
+        .header {
+            padding-left: 10px;
+            display: inline;
+            
+        }
+        .header h3{
+            display: inline;
+        }
+        .header .close-area{
+            display: inline;
+            float: right;
+            padding-right: 10px;
+            cursor: pointer;
+            
+        }
+        .modal .content{
+            margin-top: 20px;
+            padding: 0px 10px;
+            color: black;
+        }
+
+        .hidden {
+            background-color: white;
+            display: none;
+        }
+        .visible {
+            display: block;
+        }
+        
+        table a {
+        	text-decoration: none;
+        }
 </style>
 </head>
 <body>
@@ -69,6 +136,7 @@
                     <%for(CartItemDto tmp:cartList){ 
                     	ProductDto productDto = ProductDao.getInstance().getData(tmp.getProductId());
                     	ProductOptionDto optionDto = ProductOptionDao.getInstance().getData(tmp.getOptionId());
+                    	
                     	int price = productDto.getSalesState().equals("on_sale")? productDto.getSalePrice() : productDto.getOrgPrice();
                     	int itemPrice = (price+optionDto.getAdditionalPrice())*tmp.getAmount();
                     	totalPrice += itemPrice;
@@ -76,7 +144,7 @@
                     
                     <tr>
                     	<td>
-                        	<input type="checkbox" class="chk" onclick="check"><!-- 이벤트 -->
+                        	<input type="checkbox" class="chk" onclick="check">
                         </td>
                         <td>
                         	<a href="${pageContext.request.contextPath}/product/productDetail?productId=<%=tmp.getProductId()%>"><img src="<%=productDto.getThumbnail()%>" width="100px" height="150px"></a>
@@ -89,16 +157,17 @@
                             </ul>
                         </td>
                         <td>
-                            <span>
-                                <input type="text" value="<%=tmp.getAmount() %>" id="amountId" >
-                                <a href="" >
-                                    up
-                                </a>
-                                <a href="" >
-                                    down
-                                </a>
+                            <span style="display: flex; align-items: center;">
+                                <input type="text" value="<%=tmp.getAmount() %>" readonly>
+                                <div style="display: flex; flex-direction: column; justify-content: center;">
+	                                <a href="${pageContext.request.contextPath}/cart/cartUpdate.jsp?cartItemId=<%=tmp.getCartItemId()%>&amount=<%=tmp.getAmount()+1%>" style="font-size:0px;">
+	                                    <img src="https://img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif"/>
+	                                </a>
+	                                <a href="${pageContext.request.contextPath}/cart/cartUpdate.jsp?cartItemId=<%=tmp.getCartItemId()%>&amount=<%=tmp.getAmount()-1%>" style="font-size:0px;">
+	                                    <img src="https://img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif"/>
+	                                </a>
+                                </div>
                             </span>
-                            <a href="" onclick="수량결정">변경</a>
                         </td>
                         <td>
                             <strong><%=itemPrice %></strong>
@@ -112,6 +181,35 @@
                             <a href="${pageContext.request.contextPath}/cart/cartDelete.jsp?cartItemId=<%=tmp.getCartItemId()%>">삭제</a>
                         </td>
                     </tr>
+                    <div class="modal--bg hidden">
+				        <div class="modal" style="display:block">
+				            <div class="header">
+				                <h3>옵션변경</h3>
+				                <div class="close-area">X</div>
+				            </div>
+				            <div class="content">
+				                <ul class="prdInfo"><li ><%=productDto.getTitle() %></li>
+				                    <li ></li>
+				                </ul>
+				                <div class="prdModify">
+				                    <h4>상품옵션</h4>
+				                    <ul><li style="display:none;"><span>{$option_name}</span> {$form.option_value}</li>
+				                        <li class="ec-basketOptionModifyLayer-options"><span>같이구매하기</span>
+				                            <span><select  option_title="같이구매하기"  name="option1" id="product_option_id1" class="ProductOption0" option_style="select" required="true">
+				                                <option value="*" selected="" link_image="">- [필수] 같이구매하기 선택 -</option>
+				                                
+				                                
+				                            </select></span>
+				                        <li style="display:none;"><span>{$option_name}</span> {$form.option_value}</li>
+				                    </ul>
+				                </div>
+				            </div>
+				            <div class="button">
+				                <a href="#none">추가</a>
+				                <a href="#none">변경</a>
+				            </div>
+				        </div>
+				    </div>
                     <%} %>
                 </tbody>
             </table>
@@ -140,7 +238,9 @@
             <a href="">선택상품주문</a>
         </div>
     </div>
+    
 	<script>
+	//체크박스
 	    document.querySelector('#checkAll').addEventListener('click', ()=>{
 	        const isChecked = checkAll.checked;
 	        if(isChecked){
@@ -164,7 +264,22 @@
            checkBox.checked=true;
        }
 		}
-   
+	
+	 //옵션변경 모달
+        const modal = document.querySelector('.modal--bg');
+
+        function showModal(){
+            modal.classList.remove('hidden');
+            modal.classList.add('visible');
+        }
+        function closeModal(){
+            modal.classList.add('hidden');
+            modal.classList.remove('visible');
+        }
+        document.querySelector('#optBtn').addEventListener("click", showModal );
+        document.querySelector('.close-area').addEventListener("click", closeModal);
+  
+	    
 	</script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
