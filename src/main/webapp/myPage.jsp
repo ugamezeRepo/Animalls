@@ -24,18 +24,29 @@
 .shop-block {
 	height: 320px;
 }
-.bcl div:nth-child(11){
+.bcl div {
+	row-gap:20px;
+}
+.bcl div div:nth-child(11){
 	opacity:0;
 }
-.bcl div:nth-child(12){
+.bcl div div:nth-child(12){
 	opacity:0;
 }
 @media (max-width:768px) {
   .mq-100 {
     width:100%;
   }
+}
 
-
+@media (max-width:991px) {
+.mq-100:nth-child(11) {
+  	display:none;
+  }
+.mq-100:nth-child(12) {
+  	display:none;
+  }
+}
 </style>
 </head>
 
