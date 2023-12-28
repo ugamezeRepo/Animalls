@@ -47,13 +47,14 @@
 					<td>
 						<form action="productDelete.jsp" method="post">
 							<input type="hidden" name="productId" value="<%=tmp.getProductId()%>"/>
-							<button type="submit">삭제</button>
 						</form>
 					</td>
 				</tr>
 			<%} %>
 			</tbody>
 		</table>
+		<button type="submit">수정</button>
+		<button type="submit">삭제</button>
 	</div>
 </body>
 </html>
