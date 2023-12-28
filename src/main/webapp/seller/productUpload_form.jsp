@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/seller/productUpdate_form.jsp</title>
+<title>판매자 상품 등록</title>
 </head>
 <body>
 	<div class="container">
-		<h3>판매자 상품수정</h3>
+		<h3>판매자 상품 등록</h3>
 		<form action="${pageContext.request.contextPath}/seller/update.jsp" method="post">
 			<div>
 				<label for="thumbnail">이미지</label>

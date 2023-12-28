@@ -10,10 +10,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/seller/productUpdate.jsp</title>
+<title>판매자 상품 수정 페이지</title>
 </head>
 <body>
 	<div class="container">
+		<h3>판매자 상품 수정</h3>
 		<form action="${pageContext.request.contextPath}/seller/productUpdate.jsp" method="post">
 			<div>
 				<label for="product_id">상품번호</label>

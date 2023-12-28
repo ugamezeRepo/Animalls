@@ -114,7 +114,7 @@ CREATE SEQUENCE CART_ITEM_SEQ;
 CREATE TABLE ORDER_REQUEST (
 	order_id			NUMBER(10)		PRIMARY KEY,
 	postal_address	NUMBER(5)		NOT NULL,
-	state				VARCHAR2(20) 	DEFAULT 'preparing' CONSTRAINT chk_order_state CHECK (state in ('preparing', 'delivery_done', 'devliery_postpone', 'take_back', 'exchange')),
+					VARCHAR2(20) 	DEFAULT 'preparing' CONSTRAINT chk_order_state CHECK (state in ('preparing', 'delivery_done', 'devliery_postpone', 'take_back', 'exchange')),
 	address			VARCHAR2(50)	NOT NULL,
 	detailed_address	VARCHAR2(50)	NOT NULL,
 	delivery_message	VARCHAR2(100)	NULL,
