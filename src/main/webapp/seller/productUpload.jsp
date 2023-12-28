@@ -1,3 +1,4 @@
+<%@page import="util.IntegerUtil"%>
 <%@page import="dao.ProductDao"%>
 <%@page import="dto.ProductDto"%>
 <%@page import="dao.UserDao"%>
@@ -10,8 +11,11 @@
 	String sellerId=request.getParameter("sellerId");
 	String title=request.getParameter("title");
 	String category=request.getParameter("category");
-	int orgPrice=Integer.parseInt(request.getParameter("orgPrice"));
-	int salePrice=Integer.parseInt(request.getParameter("salePrice"));
+	
+	int orgPrice=IntegerUtil.parseIntWithDefaultValue(request.getParameter("orgPrice"), 0);
+	
+	int salePrice=IntegerUtil.parseIntWithDefaultValue(request.getParameter("salePrice"), 0);
+	
 	String salesState=request.getParameter("salesState");
 	String description=request.getParameter("description");
 	

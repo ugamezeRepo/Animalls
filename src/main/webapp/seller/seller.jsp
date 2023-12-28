@@ -221,10 +221,10 @@ int recentReview = 48;
 
 			<div class="row row-cols-2" style="margin: auto; text-align: center;">
 				<div class="col">
-					판매중인 상품 <a href="productList.jsp"><%=nowSellCount%></a> 개
+					판매중인 상품 <a href="productList.jsp">보기</a>
 				</div>
 				<div class="col">
-					미처리된 주문 <a href="../view_order.jsp"><%=unProcessedOrder%></a> 개
+					미처리된 주문 <a href="../view_order.jsp">보기</a>
 				</div>
 				<%-- <div class="col">
 					미처리된 클레임(예시) <a href=""><%=unProcessedClaimCount%></a> 개
@@ -253,7 +253,7 @@ int recentReview = 48;
 								<jsp:param name="subTitle"
 									value="<%=URLConverter.encode(\"판매자의 상품현황을 조회 할 수 있습니다.\")%>" />
 								<jsp:param name="description"
-									value="<%=URLConverter.encode(\"<br> 할인 중인 상품 <a href='productList.jsp'>15</a> 건 <br>카테고리 별 상품 <a href='productList.jsp'>조회</a>\")%>" />
+									value="<%=URLConverter.encode(\"<br> 할인 중인 상품 <a href='productList.jsp'>보기</a> <br>카테고리 별 상품 <a href='productList.jsp'>보기</a>\")%>" />
 							</jsp:include>
 						</div>
 					
@@ -266,7 +266,7 @@ int recentReview = 48;
 								<jsp:param name="subTitle"
 									value="<%=URLConverter.encode(\"주문목록을 검색 및 조회 할 수 있습니다.\")%>" />
 								<jsp:param name="description"
-									value="<%=URLConverter.encode(\"<br> 처리전 주문 <a href='../view_order.jsp'>23</a> 건 <br>처리완료한 주문 <a href='../view_order.jsp'>8</a> 건\")%>" />
+									value="<%=URLConverter.encode(\"<br>처리완료한 주문 <a href='../view_order.jsp'>보기</a><br>ㅤ\")%>" />
 							</jsp:include>
 						</div>
 
@@ -279,7 +279,7 @@ int recentReview = 48;
 								<jsp:param name="subTitle"
 									value="<%=URLConverter.encode(\"배송현황을 검색 및 조회 할 수 있습니다.\")%>" />
 								<jsp:param name="description"
-									value="<%=URLConverter.encode(\"<br> 배송전,배송지연 주문 <a href='../view_order.jsp'>2</a> 건 <br>배송완료 주문 <a href='../view_order.jsp'>15</a> 건\")%>" />
+									value="<%=URLConverter.encode(\"<br> 배송전,배송지연 주문 <a href='../view_order.jsp'>보기</a> <br>배송완료 주문 <a href='../view_order.jsp'>보기</a> \")%>" />
 							</jsp:include>
 							<a href="#" class="text-decoration-none font-weight-bolder"></a>
 						</div>
@@ -292,7 +292,7 @@ int recentReview = 48;
 								<jsp:param name="subTitle"
 									value="<%=URLConverter.encode(\"고객님의 최근 리뷰를 볼 수 있습니다.\")%>" />
 								<jsp:param name="description"
-									value="<%=URLConverter.encode(\" <br>최근 리뷰보기 <a href='../customerReview.jsp'>25</a> 건 <br>ㅤ\")%>" />
+									value="<%=URLConverter.encode(\" <br>최근 리뷰 <a href='../customerReview.jsp#scrollspyHeading1'>보기</a><br>ㅤ\")%>" />
 							</jsp:include>
 							<a ="#" class="text-decoration-none font-weight-bolder"></a>
 						</div>
