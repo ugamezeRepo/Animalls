@@ -120,7 +120,7 @@ int recentReview = 48;
 
 .card-img img {
 	width: 150px;
-	opacity: 0.6;
+	opacity: 0.8;
 }
 
 .card-img-overlay {
@@ -292,10 +292,9 @@ int recentReview = 48;
 								<jsp:param name="subTitle"
 									value="<%=URLConverter.encode(\"고객님의 최근 리뷰를 볼 수 있습니다.\")%>" />
 								<jsp:param name="description"
-									value="<%=URLConverter.encode(\" <br>최근 리뷰보기 <a href='../customerReview.jsp'>25</a> 건\")%>" />
+									value="<%=URLConverter.encode(\" <br>최근 리뷰보기 <a href='../customerReview.jsp'>25</a> 건 <br>ㅤ\")%>" />
 							</jsp:include>
-							<a 
-="#" class="text-decoration-none font-weight-bolder"></a>
+							<a ="#" class="text-decoration-none font-weight-bolder"></a>
 						</div>
 
 						<%-- <div class="flex-grow-1 text-center my-auto">
@@ -338,10 +337,10 @@ int recentReview = 48;
 						<div class="card">
 							<div class="card-img d-flex justify-content-center align-items-center">
 								<img
-									src="${pageContext.request.contextPath}/assets/shop-blocks/11.png"
+									src="${pageContext.request.contextPath}/assets/seller-best/1.png"
 									class="img-fluid object-fit-scaledown">
 							</div>
-							<div class="card-img-overlay">Slide 1</div>
+							<div class="card-img-overlay">[두근두근 젤리CHU] 젤리츄 연어 2+1</div>
 						</div>
 					</div>
 				</div>
@@ -350,10 +349,10 @@ int recentReview = 48;
 						<div class="card ">
 							<div class="card-img d-flex justify-content-center align-items-center">
 								<img
-									src="${pageContext.request.contextPath}/assets/shop-blocks/12.png"
+									src="${pageContext.request.contextPath}/assets/seller-best/2.png"
 									class="img-fluid object-fit-scaledown">
 							</div>
-							<div class="card-img-overlay">Slide 2</div>
+							<div class="card-img-overlay">피부모질 닥터독 사료 2kg</div>
 						</div>
 					</div>
 				</div>
@@ -362,10 +361,10 @@ int recentReview = 48;
 						<div class="card">
 							<div class="card-img d-flex justify-content-center align-items-center">
 								<img
-									src="${pageContext.request.contextPath}/assets/shop-blocks/13.png"
+									src="${pageContext.request.contextPath}/assets/seller-best/3.png"
 									class="img-fluid object-fit-scaledown">
 							</div>
-							<div class="card-img-overlay">Slide 3</div>
+							<div class="card-img-overlay">포비타 오렌지(장건강)</div>
 						</div>
 					</div>
 				</div>
@@ -374,10 +373,10 @@ int recentReview = 48;
 						<div class="card">
 							<div class="card-img d-flex justify-content-center align-items-center">
 								<img
-									src="${pageContext.request.contextPath}/assets/shop-blocks/11.png"
+									src="${pageContext.request.contextPath}/assets/seller-best/4.jpg"
 									class="img-fluid object-fit-scaledown">
 							</div>
-							<div class="card-img-overlay">Slide 4</div>
+							<div class="card-img-overlay">퐁퐁패딩(베이지)</div>
 						</div>
 					</div>
 				</div>
@@ -386,10 +385,10 @@ int recentReview = 48;
 						<div class="card">
 							<div class="card-img d-flex justify-content-center align-items-center">
 								<img
-									src="${pageContext.request.contextPath}/assets/shop-blocks/11.png"
+									src="${pageContext.request.contextPath}/assets/seller-best/5.jpg"
 									class="img-fluid object-fit-scaledown">
 							</div>
-							<div class="card-img-overlay">Slide 5</div>
+							<div class="card-img-overlay">코쿤펫 아기곰 패딩</div>
 						</div>
 					</div>
 				</div>
@@ -398,10 +397,10 @@ int recentReview = 48;
 						<div class="card">
 							<div class="card-img d-flex justify-content-center align-items-center">
 								<img
-									src="${pageContext.request.contextPath}/assets/shop-blocks/11.png"
+									src="${pageContext.request.contextPath}/assets/seller-best/6.jpg"
 									class="img-fluid object-fit-scaledown">
 							</div>
-							<div class="card-img-overlay">Slide 6</div>
+							<div class="card-img-overlay">코튼 스트라이프 올인원</div>
 						</div>
 					</div>
 				</div>
@@ -410,10 +409,10 @@ int recentReview = 48;
 						<div class="card">
 							<div class="card-img d-flex justify-content-center align-items-center">
 								<img
-									src="${pageContext.request.contextPath}/assets/shop-blocks/11.png"
+									src="${pageContext.request.contextPath}/assets/seller-best/7.jpg"
 									class="img-fluid object-fit-scaledown">
 							</div>
-							<div class="card-img-overlay">Slide 7</div>
+							<div class="card-img-overlay">논슬립 샤워 매트</div>
 						</div>
 					</div>
 				</div>
@@ -422,10 +421,10 @@ int recentReview = 48;
 						<div class="card">
 							<div class="card-img d-flex justify-content-center align-items-center">
 								<img
-									src="${pageContext.request.contextPath}/assets/shop-blocks/11.png"
+									src="${pageContext.request.contextPath}/assets/seller-best/8.jpg"
 									class="img-fluid object-fit-scaledown">
 							</div>
-							<div class="card-img-overlay">Slide 8</div>
+							<div class="card-img-overlay">버블 샴푸 독스</div>
 						</div>
 					</div>
 				</div>
@@ -434,10 +433,10 @@ int recentReview = 48;
 						<div class="card">
 							<div class="card-img d-flex justify-content-center align-items-center">
 								<img
-									src="${pageContext.request.contextPath}/assets/shop-blocks/11.png"
+									src="${pageContext.request.contextPath}/assets/seller-best/9.jpg"
 									class="img-fluid object-fit-scaledown">
 							</div>
-							<div class="card-img-overlay">Slide 9</div>
+							<div class="card-img-overlay">스펀지 타월 S</div>
 						</div>
 					</div>
 				</div>
