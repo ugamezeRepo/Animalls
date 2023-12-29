@@ -16,19 +16,12 @@
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/Animalls/css/footer.css" />
 <style>
-	.btn-group{
-		 width: 1px;
-  		 padding: 1px;
-  		 background-color: white;
-	}
 	th, td {
   		 text-align: center;
+  		 vertical-align: middle;
 	}
 	#sort1{
 		 padding: 10px;
-	}
-	.btn{
-		 font-size: 7px;
 	}
 	.bar{
 		color:#e2e2e2;
@@ -40,10 +33,18 @@
 		background:none;
 		width:5px;
 	}
+	
 	.btnSearch{
 		border:none;
 		margin-left:5px;
 	}
+	.btn{
+		font-size:10px;
+	}
+	.date{
+		vertical-align: middle;
+	}
+	
 </style>
 </head>
 <body>
@@ -55,65 +56,52 @@
 	<div class="container my-3 head p-3 border">
 		<h3>배송현황</h3>
 		<hr />
-		
+
 		<div id="sort1" class="topMenu flex justify-content-start border">
-		<!-- <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-		  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-		  <label class="btn" for="btnradio1">번호↑</label>
-		
-		  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-		  <label class="btn" for="btnradio2">번호↓</label><p class="bar">|</p>
-		</div>
-		
-		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-		  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
-		  <label class="btn" for="btnradio3">수량↑</label>
-		
-		  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-		  <label class="btn" for="btnradio4">수량↓</label><p class="bar">|</p>
-		</div>
-		
-		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-		  <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" checked>
-		  <label class="btn" for="btnradio5">구매금액↑</label>
-		
-		  <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
-		  <label class="btn" for="btnradio6">구매금액↓</label><p class="bar">|</p>
-		</div>
-		
-		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-		  <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off" checked>
-		  <label class="btn" for="btnradio7">시작일자↑</label>
-		
-		  <input type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off">
-		  <label class="btn" for="btnradio8">시작일자↓</label><p class="bar">|</p>
-		</div>
-			
-		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-		  <input type="radio" class="btn-check" name="btnradio" id="btnradio9" autocomplete="off" checked>
-		  <label class="btn" for="btnradio9">완료일자↑</label>
-		
-		  <input type="radio" class="btn-check" name="btnradio" id="btnradio10" autocomplete="off">
-		  <label class="btn" for="btnradio10">완료일자↓</label><span class="bar">|</span>
-		</div> -->
-		<input type="date" />
+			<input class="date" type="date" />
 				<span>~</span>
-		<input type="date" /><span class="bar"> |</span>
-		<input type="search" /><button class="btnSearch" type="submit">검색</button>
- 		</div> 
- 		<br />
- 		
-		<table id="a" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+			<input class="date" type="date" />
+			
+			<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+			  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+			  <label class="btn btn-outline-success" for="btnradio1">1일</label>
+			
+			  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+			  <label class="btn btn-outline-success" for="btnradio2">3일</label>
+			
+			  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+			  <label class="btn btn-outline-success" for="btnradio3">1주일</label>
+			  
+			  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+			  <label class="btn btn-outline-success" for="btnradio4">1개월</label>
+					
+			  <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
+			  <label class="btn btn-outline-success" for="btnradio5">3개월</label>
+					
+			  <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
+			  <label class="btn btn-outline-success" for="btnradio6">6개월</label>
+			  
+			  <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off">
+			  <label class="btn btn-outline-success" for="btnradio7">1년</label>
+			  
+			  	<div style="position: absolute; right: -643px;">
+					<input type="search" /><button class="btnSearch rightSearch" type="submit">검색</button>
+				</div>
+			</div>
+		 </div>	
+		 <br />
+		 <table id="" class="table table-striped table-bordered table-sm" style="table-layout:fixed" cellspacing="0" width="100%">
 			<thead>
 				<tr>
-					<th>배송번호 <button>↑</button><button>↓</button></th>
-					<th>보내는분</th>
-					<th>받는분</th>
-					<th>이미지</th>
+					<th width="7%">배송번호<button>↑</button><button>↓</button></th>
+					<th width="15%">상품이름</th>
+					<th width="6%">보내는분</th>
+					<th width="5%">받는분</th>
+					<th width="5%">이미지</th>
 					<th>상품정보</th>
-					<th>수량 <button>↑</button><button>↓</button></th>
-					<th>상품구매금액 <button>↑</button><button>↓</button></th>
-					<th>
+					<th width="5%">수량<button>↑</button><button>↓</button></th>
+					<th width="10%">상품구매금액<button>↑</button><button>↓</button></th>
+					<th width="8%">
 						<select>
 							<option value="" selected disabled hidden>배송상태</option>
 							<option value="">준비중</option>
@@ -123,17 +111,18 @@
 							<option value="">교환</option> 
 						</select>
 					</th>
-					<th>배송시작일자 <button>↑</button><button>↓</button></th>
-					<th>배송완료일자 <button>↑</button><button>↓</button></th>
+					<th width="10%">배송시작일자<button>↑</button><button>↓</button></th>
+					<th width="10%">배송완료일자<button>↑</button><button>↓</button></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>1</td>
+					<td>버블 샴푸 독스</td>
 					<td>홍길동1</td>
 					<td>길동1</td>
 					<td>-</td>
-					<td>-</td>
+					<td>EWG 그린 등급으로 이루어진 저자극 천연 샴푸 버블 샴푸</td>
 					<td>30</td>
 					<td>50,000 원</td>
 					<td>상품준비중</td>
@@ -142,10 +131,11 @@
 				</tr>	
 				<tr>
 					<td>2</td>
+					<td>닥터독 그레인프리 참치 사료 1.6kg</td>
 					<td>홍길동2</td>
 					<td>길동2</td>
 					<td>-</td>
-					<td>-</td>
+					<td>알레르기 도움을 위한 최적 레시피</td>
 					<td>25</td>
 					<td>40,000 원</td>
 					<td>배송완료</td>
@@ -154,10 +144,11 @@
 				</tr>
 				<tr>
 					<td>3</td>
+					<td>멍바오 방한 점퍼 2color</td>
 					<td>홍길동3</td>
 					<td>길동3</td>
 					<td>-</td>
-					<td>-</td>
+					<td>양면 보아 원단으로 가볍고 보온성이 뛰어난 방한 점퍼</td>
 					<td>37</td>
 					<td>80,000 원</td>
 					<td>배송지연</td>
@@ -166,10 +157,11 @@
 				</tr>
 				<tr>
 					<td>4</td>
+					<td>버블 샴푸 독스</td>
 					<td>홍길동4</td>
 					<td>길동4</td>
 					<td>-</td>
-					<td>-</td>
+					<td>EWG 그린 등급으로 이루어진 저자극 천연 샴푸 버블 샴푸</td>
 					<td>10</td>
 					<td>200,000 원</td>
 					<td>반품</td>
@@ -178,10 +170,11 @@
 				</tr>
 				<tr>
 					<td>5</td>
+					<td>닥터독 그레인프리 참치 사료 1.6kg</td>
 					<td>홍길동5</td>
 					<td>길동5</td>
 					<td>-</td>
-					<td>-</td>
+					<td>알레르기 도움을 위한 최적 레시피</td>
 					<td>5</td>
 					<td>500,000 원</td>
 					<td>교환</td>
@@ -190,7 +183,10 @@
 				</tr>
 			</tbody>
 		</table>
-	</div>
+ 		</div> 
+ 		<br />
+ 		
+		
 	
 	<jsp:include page="/include/footer.jsp">
 		<jsp:param value="index" name="current" />
