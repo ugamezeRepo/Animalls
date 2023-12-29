@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
     ></script>
   </head>
   <body>
-    <div class="container" id="app">
+    <div class="container">
       <h3 class="form-header mt-4">회원가입</h3>
       <form action="signup.jsp" method="post">
         <!-- 회원 정보 -->
