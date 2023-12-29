@@ -54,7 +54,7 @@ CREATE TABLE PRODUCT (
     org_price     NUMBER(10)      NOT NULL,
     sale_price    NUMBER(10)      NULL,
     sales_state   VARCHAR2(20)    DEFAULT 'on_sale' CONSTRAINT chk_product_sales_state CHECK (sales_state IN ('on_sale', 'sold_out', 'sales_end')),
-    thumbnail		VARCHAR2(100),  -- thumbnail url
+    thumbnail		CLOB,
     CONSTRAINT fk_product_seller FOREIGN KEY (seller_id)
         REFERENCES MEMBER (member_id)
         ON DELETE CASCADE
@@ -79,7 +79,7 @@ CREATE TABLE PRODUCT_REVIEW (
 	product_id		NUMBER(10),
 	reviewer_id		VARCHAR2(50),
 	content			CLOB			NOT NULL,
-	thumbnail		VARCHAR2(100)   NULL,
+	thumbnail		CLOB   NULL,
 	rating			NUMBER(2)		NOT NULL CONSTRAINT chk_product_review_rating CHECK (rating in (1,2,3,4,5,6,7,8,9,10)),
 	like_count		NUMBER(10) 		DEFAULT 0,
 	created_at		DATE			NOT NULL,
@@ -143,12 +143,12 @@ CREATE TABLE  ORDER_REQUEST_ITEM (
 CREATE SEQUENCE ORDER_REQUEST_ITEM_SEQ; 
 
 
-CREATE TABLE UPLOAD (
+CREATE TABLE REVIEW_UPLOAD_IMAGE (
 	image_id int PRIMARY KEY, 
-	uploader_id VARCHAR2(50),
+	review_id int not null,
 	image_data clob,
-	CONSTRAINT fk_upload_uploader FOREIGN KEY (uploader_id)
-		REFERENCES MEMBER (member_id)
+	CONSTRAINT fk_upload_uploader FOREIGN KEY (review_id)
+		REFERENCES PRODUCT_REVIEW (review_id)
 		ON DELETE CASCADE
 );
 CREATE SEQUENCE UPLOAD_SEQ;
