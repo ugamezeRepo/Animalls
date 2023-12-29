@@ -1,5 +1,12 @@
+<%@page import="util.SessionManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%
+	String memberId = SessionManager.getInstance().getMemberId(request);
+	if (memberId != null) {
+		response.sendRedirect(request.getContextPath() + "/");
+	}
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -66,15 +73,16 @@ pageEncoding="UTF-8"%>
             </div>
 
             <!-- 주소 -->
-            <div class="mb-2">
-              <label class="form-label" for="deliveryId">주소</label>
-              <input
-                class="form-control"
-                type="text"
-                name="deliveryId"
-                id="deliveryId"
-              />
-            </div>
+			<div class="mb-2">
+				<label class="form-label" for="deliveryId">주소</label>
+				<div>
+					<jsp:include page="/include/address.jsp">
+						<jsp:param name="address" value=""></jsp:param>
+						<jsp:param name="detailAddress" value=""></jsp:param>
+						<jsp:param name="extraAddress" value=""></jsp:param>
+					</jsp:include>
+				</div>
+			</div>
 
             <!-- 휴대전화 -->
             <div class="mb-2">
