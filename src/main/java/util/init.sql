@@ -144,12 +144,9 @@ CREATE SEQUENCE ORDER_REQUEST_ITEM_SEQ;
 
 
 CREATE TABLE UPLOAD (
-	upload_id NUMBER(10) PRIMARY KEY, 
-	uploader_id VARCHAR2(50),  
-	org_filename VARCHAR2(100),
-	save_filename VARCHAR2(100),
-	filesize NUMBER(10),
-	uploaded_at DATE NOT NULL, 
+	image_id int PRIMARY KEY, 
+	uploader_id VARCHAR2(50),
+	image_data clob,
 	CONSTRAINT fk_upload_uploader FOREIGN KEY (uploader_id)
 		REFERENCES MEMBER (member_id)
 		ON DELETE CASCADE
