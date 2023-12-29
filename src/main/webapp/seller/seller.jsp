@@ -178,8 +178,8 @@ int recentReview = 48;
 			style="float: left; width: 290px; word-break: break-all; display: inline-block; text-align: left">
 			주문배송
 			<ul class="subUl upBorder">
-				<li><a class="text-decoration-none text-reset" href="../view_order.jsp">주문관리</a></li>
-				<li><a class="text-decoration-none text-reset" href="../view_order.jsp">배송확인</a></li>
+				<li><a class="text-decoration-none text-reset" href="productOrderList.jsp">주문관리</a></li>
+				<li><a class="text-decoration-none text-reset" href="productDeliveryList.jsp">배송확인</a></li>
 			</ul>
 		</div>
 		<div class="border row"
@@ -266,7 +266,7 @@ int recentReview = 48;
 								<jsp:param name="subTitle"
 									value="<%=URLConverter.encode(\"주문목록을 검색 및 조회 할 수 있습니다.\")%>" />
 								<jsp:param name="description"
-									value="<%=URLConverter.encode(\"<br>처리완료한 주문 <a href='../view_order.jsp'>보기</a><br>ㅤ\")%>" />
+									value="<%=URLConverter.encode(\"<br>처리완료한 주문 <a href='productOrderList.jsp'>보기</a><br>ㅤ\")%>" />
 							</jsp:include>
 						</div>
 
@@ -279,7 +279,7 @@ int recentReview = 48;
 								<jsp:param name="subTitle"
 									value="<%=URLConverter.encode(\"배송현황을 검색 및 조회 할 수 있습니다.\")%>" />
 								<jsp:param name="description"
-									value="<%=URLConverter.encode(\"<br> 배송전,배송지연 주문 <a href='../view_order.jsp'>보기</a> <br>배송완료 주문 <a href='../view_order.jsp'>보기</a> \")%>" />
+									value="<%=URLConverter.encode(\"<br> 배송전,배송지연 주문 <a href='productDeliveryList.jsp'>보기</a> <br>배송완료 주문 <a href='productDeliveryList.jsp'>보기</a> \")%>" />
 							</jsp:include>
 							<a href="#" class="text-decoration-none font-weight-bolder"></a>
 						</div>
