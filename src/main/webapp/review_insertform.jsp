@@ -50,7 +50,9 @@
 	<div class="container">
 		<p class="h1 text-center">리뷰 잘좀 써바</p>
 		<hr class="border border-primary border-3 opacity-75">
+		
 		<form action="review_insert.jsp" class="mb-3" name="myform" id="myform" method="post">
+			<input type="file" name="myImage" accept="image/* "/><br />		
 			<fieldset>
 				<span class="text-bold">별점을 선택해주세요</span>
 				<input type="radio" name="reviewStar" value="5" id="rate5">
@@ -64,12 +66,96 @@
 				<input type="radio" name="reviewStar" value="1" id="rate1">
 				<label for="rate1">★</label>		
 			</fieldset>
+			<br />
 			<textarea class="col-auto form-control mb-2" type="text" id="reviewContents" name="content"
 					  placeholder="잘좀써줘" ></textarea>	
-			<button type="submit" class="btn btn-success" >제출</button>	
+			<button type="submit" class="btn btn-success" >제출</button>
 		</form> 
-	</div><%-- 제출할폼 입니다 --%>
+		
+		<img src="" alt="" id="sampleImg"/>
+	</div>
+
 	<script>
+	let fileDataString;
+	
+	const fileInput = document.querySelector('input[type=file]') 
+	const form = document.querySelector('#myform');
+	
+	function getBase64(file) {
+		return new Promise((resolve, reject)=> {
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.onload = function () {
+				resolve(reader.result);
+			};	
+			reader.onerror = function (error) {
+			     reject(error);
+			};
+	   })
+	}
+		
+	form.addEventListener('submit', async (e) => {
+		e.preventDefault(); 
+	
+		const formdata = new FormData(form);	
+		
+		if (fileInput.files.length > 0) {
+			const image_data = await getBase64(fileInput.files[0]);
+			formdata.delete('myImage');
+			formdata.append('image_data', image_data);		
+			console.log(image_data);
+		
+			for (const key of formdata.keys()) {
+				console.log(key);
+			}
+		
+		}
+		const resp = await fetch("review_insert.jsp", {
+			method: 'post',
+			body: formdata, 
+		})
+		const data = await resp.json();
+		console.log(data);
+		
+		document.querySelector('#sampleImg').src = data.imageData;
+	});
+	
+	/*
+		document.querySelector("#myform").addEventListener("submit", (e) => {
+		    e.preventDefault(); // 기본 폼 제출 동작 방지
+		    const data =new FormData(e.target);
+		    fetch("review_insert.jsp",{
+				method:"post",
+		        headers: {
+		            'Content-Type': 'application/x-www-form-urlencoded'
+		          },
+		         body: data
+
+			})
+			.then(res=>res.json())
+			.then(data=>{
+				console.log(data);
+			})
+		});
+	
+		document.querySelector("#imageForm").addEventListener("submit", (e)=>{
+			e.preventDefault();
+			//폼에 입력하거나 선택된 데이터를 FormData 객체에 담는다.
+			const data =new FormData(e.target);
+			//fetch() 함수를 이용해서 전환없이 전송
+			fetch("review_insert.jsp",{
+				method:"post",
+				body:data
+			})
+			.then(res=>res.json())
+			.then(data=>{
+				//data는 {saveFileName:"업로드된 이미지의 파일명"}
+				console.log(data);
+				const src="${pageContext.request.contextPath}/upload/"+data.saveFileName;
+				document.querySelector("#image").setAttribute("src",src);
+			})
+		});
+	*/
 	</script>
 </body>
 </html>

@@ -1,29 +1,20 @@
+<%@page import="util.IntegerUtil"%>
+<%@page import="util.MultipartParser"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="dto.ReviewDto"%>
 <%@page import="dao.ReviewDao"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	/*
-	String content = request.getParameter("content");
-	String id =(String)session.getAttribute("id");
-	String thumbnail =request.getParameter("thumbnail");
-	
-	int likeCount=0;
-	int productId= Integer.parseInt(request.getParameter("product_id"));
-	ReviewDto dto = new ReviewDto();
-	ReviewDao.getInstance().insert(dto);
-	*/
+<%	
+	MultipartParser mp = new MultipartParser(request);
 
-	int rating = Integer.parseInt(request.getParameter("reviewStar"));
-
-	System.out.println(rating);
+	int reviewStar = IntegerUtil.parseIntWithDefaultValue(mp.getFormDataValueByAttribute("name", "reviewStar"), 1);
+	String imageData = mp.getFormDataValueByAttribute("name", "image_data");
+	String content = mp.getFormDataValueByAttribute("name", "content");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-</body>
-</html>
+{
+	"reviewStar": <%= reviewStar %>, 
+	"imageData": "<%= imageData %>", 
+	"content": "<%= content %>"
+}
