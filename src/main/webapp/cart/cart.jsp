@@ -133,12 +133,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%for(CartItemDto tmp:cartList){ 
+                    <%for (int i=0; i<cartList.size(); i++) {
+                    	CartItemDto tmp = cartList.get(i);
                     	ProductDto productDto = ProductDao.getInstance().getData(tmp.getProductId());
                     	ProductOptionDto optionDto = ProductOptionDao.getInstance().getData(tmp.getOptionId());
                     	int price = productDto.getSalesState().equals("on_sale")? productDto.getSalePrice() : productDto.getOrgPrice();
                     	int itemPrice = (price+optionDto.getAdditionalPrice())*tmp.getAmount();
                     	totalPrice += itemPrice;
+                    	String uniqueButtonID = "optBtn_" + i;
+                    	String modalBgID = "modalBgID" + i;
                     %>
                     
                     <tr>
@@ -152,7 +155,7 @@
                             <ul>
                                 <li> <strong><a href="${pageContext.request.contextPath}/product/productDetail?productId=<%=tmp.getProductId()%>"><%=productDto.getTitle() %></a></strong></li>
                                 <li>옵션 : <%=optionDto.getDescription() %></li>
-                                <li><button id="optBtn">옵션변경</button></li>
+                                <li><button class="optBtnClass" id="<%=uniqueButtonID %>">옵션변경</button></li>
                             </ul>
                         </td>
                         <td>
@@ -180,7 +183,7 @@
                             <a href="${pageContext.request.contextPath}/cart/cartDelete.jsp?cartItemId=<%=tmp.getCartItemId()%>">삭제</a>
                         </td>
                     </tr>
-                    <div class="modal--bg hidden">
+                    <div class="modal--bg hidden" id="<%=modalBgID %>">
 				        <div class="modal" style="display:block">
 				         	<div class="header">
 				                <h3>옵션변경</h3>
@@ -261,38 +264,46 @@
 	            })
 	
 	        }
-	    })
-       function check(checkBox){
-       const isChecked = checkBox.checked;
-       if(isChecked){
-           checkBox.checked=false;
-       }else{
-           checkBox.checked=true;
-       }
+	    })[button=]
+		function check(checkBox){
+			const isChecked = checkBox.checked;
+			if(isChecked){
+				checkBox.checked=false;
+			} else {
+	            checkBox.checked=true;
+	        }
 		}
 	
-	 //옵션변경 모달
-        const modal = document.querySelector('.modal--bg');
-
-        function showModal(){
-            modal.classList.remove('hidden');
-            modal.classList.add('visible');
-        }
-        function closeModal(){
-            modal.classList.add('hidden');
-            modal.classList.remove('visible');
-        }
-        document.querySelector('#optBtn').addEventListener("click", showModal );
-        document.querySelector('.close-area').addEventListener("click", closeModal);
-  
-        //option변경
-       
+		//옵션변경 모달
+		<%-- <%=cartList.size() %> --%>
+	 	//for(let i=0; i<; i++) {
+	 		//const modalId = "modalBgID" + i; 
+        	//const modal = document.getElementById(modalId);
+			document.querySelectorAll('modal--bg').forEach(e => {
+				e.addEventListener("click",)
+			});
+	        
+	        function closeModal(){
+	            modal.classList.add('hidden');
+	            modal.classList.remove('visible');
+	        }
+	        document.querySelectorAll('.optBtnClass').forEach(e => {
+	        	e.addEventListener("click", item => {
+	        		function showModal(){
+	    	            modal.classList.remove('hidden');
+	    	            modal.classList.add('visible');
+	    	        }
+	        	} );
+	        });
+	 		document.querySelector('.close-area').addEventListener("click", closeModal);  
+	 	// }
+	 	//option변경
+	       
         function change(){
         	let option = document.getElementById('product_option');
         	let optValue = option.options[option.selectedIndex].value;
         	document.getElementById("optionId").value=optValue;
         }
-
 	</script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
