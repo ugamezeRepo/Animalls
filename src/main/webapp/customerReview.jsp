@@ -129,6 +129,7 @@
 </head>
 <body>
 	<jsp:include page="include/navbar.jsp"></jsp:include>
+	
 	<div class="container">
 		<h1>Review</h1>
 	<% if (request.getAttribute("id") != null) { %>
@@ -224,7 +225,7 @@
 				</c:if>
 			</ul>
 		</div>
-
+	</div>
 	<jsp:include page="include/footer.jsp"></jsp:include>		
 </body>
 <script>
