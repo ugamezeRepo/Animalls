@@ -136,7 +136,6 @@
                     <%for(CartItemDto tmp:cartList){ 
                     	ProductDto productDto = ProductDao.getInstance().getData(tmp.getProductId());
                     	ProductOptionDto optionDto = ProductOptionDao.getInstance().getData(tmp.getOptionId());
-                    	
                     	int price = productDto.getSalesState().equals("on_sale")? productDto.getSalePrice() : productDto.getOrgPrice();
                     	int itemPrice = (price+optionDto.getAdditionalPrice())*tmp.getAmount();
                     	totalPrice += itemPrice;
@@ -183,31 +182,38 @@
                     </tr>
                     <div class="modal--bg hidden">
 				        <div class="modal" style="display:block">
-				            <div class="header">
+				         	<div class="header">
 				                <h3>옵션변경</h3>
 				                <div class="close-area">X</div>
 				            </div>
 				            <div class="content">
-				                <ul class="prdInfo"><li ><%=productDto.getTitle() %></li>
-				                    <li ></li>
+				                <ul class="prdInfo">
+				                	<li ><%=productDto.getTitle() %></li>
 				                </ul>
 				                <div class="prdModify">
 				                    <h4>상품옵션</h4>
-				                    <ul><li style="display:none;"><span>{$option_name}</span> {$form.option_value}</li>
-				                        <li class="ec-basketOptionModifyLayer-options"><span>같이구매하기</span>
-				                            <span><select  option_title="같이구매하기"  name="option1" id="product_option_id1" class="ProductOption0" option_style="select" required="true">
-				                                <option value="*" selected="" link_image="">- [필수] 같이구매하기 선택 -</option>
-				                                
-				                                
-				                            </select></span>
-				                        <li style="display:none;"><span>{$option_name}</span> {$form.option_value}</li>
-				                    </ul>
-				                </div>
-				            </div>
-				            <div class="button">
-				                <a href="#none">추가</a>
-				                <a href="#none">변경</a>
-				            </div>
+					                    <ul><li style="display:none;"><span></span></li>
+					                        <li><span>같이구매하기</span>
+					                            <span><select  option_title="같이구매하기"  name="option" id="product_option" class="ProductOption0" option_style="select" required="true" onchange="change()">
+					                                <option value="*" >- [필수] 같이구매하기 선택 -</option>
+					                                <option disabled>---------------</option>
+					                                <%List<ProductOptionDto> optionList = ProductOptionDao.getInstance().getList();
+					                                	for(ProductOptionDto opt : optionList){
+					                                		if(opt.getProductId()==productDto.getProductId()||opt.getProductId()==0){%>
+					                                			<option value="<%=opt.getOptionId()%>"><%=opt.getDescription()%> (+ <%=opt.getAdditionalPrice()%>)</option>
+					                                	<%}} %>
+					                            </select></span></li>
+					                        <li style="display:none;"><span>{$option_name}</span> {$form.option_value}</li>
+					                    </ul>
+					               </div>
+					           </div>
+					           <div class="button">
+					           	<form action="${pageContext.request.contextPath}/cart/cartOptionUpdate.jsp">
+					           		<input type="hidden" name="cartItemId" value="<%=tmp.getCartItemId()%>" />
+					           		<input type="hidden" name="optionId" value="" id="optionId"/>
+					                <button type="submit" >변경</button>
+					            </form>    
+					           </div>
 				        </div>
 				    </div>
                     <%} %>
@@ -279,7 +285,14 @@
         document.querySelector('#optBtn').addEventListener("click", showModal );
         document.querySelector('.close-area').addEventListener("click", closeModal);
   
-	    
+        //option변경
+       
+        function change(){
+        	let option = document.getElementById('product_option');
+        	let optValue = option.options[option.selectedIndex].value;
+        	document.getElementById("optionId").value=optValue;
+        }
+
 	</script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
