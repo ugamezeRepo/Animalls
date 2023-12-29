@@ -107,65 +107,83 @@
 			<div class="d-flex flex-wrap justify-content-between">
 				<jsp:include page="/include/components/shopblock.jsp">
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/1.png"/>
-				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.1\") %>"/>
-				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
-				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
+				    <jsp:param name="href" value="${pageContext.request.contextPath}/myPage.jsp" />
+				    <jsp:param name="title" value="<%= URLConverter.encode(\"Order\") %>"/>
+				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"주문내역 조회\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님께서 주문하신 상품의<br/> 주문내역을 확인하실 수 있습니다.\") %>"/>
 				</jsp:include>
 
 				<jsp:include page="/include/components/shopblock.jsp">
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/2.png"/>
-				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.2\") %>"/>
-				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
-				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
+				    <jsp:param name="href" value="${pageContext.request.contextPath}/member/protected/update_form.jsp" />
+				    <jsp:param name="title" value="<%= URLConverter.encode(\"Profile\") %>"/>
+				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"회원 정보\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"회원이신 고객님의 개인정보를<br/> 관리하는 공간입니다.\") %>"/>
 				</jsp:include>
 				
 				<jsp:include page="/include/components/shopblock.jsp">
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/3.png"/>
-				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.3\") %>"/>
-				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
-				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
+				    <jsp:param name="href" value="${pageContext.request.contextPath}/myPage.jsp" />
+				    <jsp:param name="title" value="<%= URLConverter.encode(\"Wishlist\") %>"/>
+				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"관심 상품\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"관심상품으로 등록하신<br/> 상품의 목록을 보여드립니다.\") %>"/>
 				</jsp:include>
 				<jsp:include page="/include/components/shopblock.jsp">
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/4.png"/>
-				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.4\") %>"/>
-				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
-				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
+				    <jsp:param name="href" value="${pageContext.request.contextPath}/myPage.jsp" />
+				    <jsp:param name="title" value="<%= URLConverter.encode(\"Like it\") %>"/>
+				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"좋아요\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"'좋아요'를 선택한 상품과<br/> 상품분류 목록을 보여드립니다\") %>"/>
 				</jsp:include>
 				<jsp:include page="/include/components/shopblock.jsp">
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/5.png"/>
-				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.5\") %>"/>
-				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
-				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
+				    <jsp:param name="href" value="${pageContext.request.contextPath}/myPage.jsp" />
+				    <jsp:param name="title" value="<%= URLConverter.encode(\"Mileage\") %>"/>
+				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"적립금\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"적립금은 상품 구매 시<br/> 사용하실 수 있습니다.\") %>"/>
 				</jsp:include>
 			
 				<jsp:include page="/include/components/shopblock.jsp">
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/6.png"/>
-				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.6\") %>"/>
-				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
-				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
+				    <jsp:param name="href" value="${pageContext.request.contextPath}/myPage.jsp" />
+				    <jsp:param name="title" value="<%= URLConverter.encode(\"Deposits\") %>"/>
+				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"예치금\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"예치금은 현금과 동일하게<br/> 상품 구매시 사용하실 수 있습니다.\") %>"/>
 				</jsp:include>
 
 				<jsp:include page="/include/components/shopblock.jsp">
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/7.png"/>
-				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.7\") %>"/>
-				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
-				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
+				    <jsp:param name="href" value="${pageContext.request.contextPath}/myPage.jsp" />
+				    <jsp:param name="title" value="<%= URLConverter.encode(\"Consult\") %>"/>
+				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"1:1 맞춤상담\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님의 궁금하신 문의사항에 대하여<br/> 1:1맞춤상담 내용을<br/> 확인하실 수 있습니다.\") %>"/>
 				</jsp:include>
 				
 				<jsp:include page="/include/components/shopblock.jsp">
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/8.png"/>
-				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.8\") %>"/>
-				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
-				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
+				    <jsp:param name="href" value="${pageContext.request.contextPath}/myPage.jsp" />
+				    <jsp:param name="title" value="<%= URLConverter.encode(\"Coupon\") %>"/>
+				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"쿠폰\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님이 보유하고 계신<br/> 쿠폰내역을 보여드립니다.\") %>"/>
 				</jsp:include>
 				<jsp:include page="/include/components/shopblock.jsp">
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/9.png"/>
-				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.9\") %>"/>
-				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
-				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
+				    <jsp:param name="href" value="${pageContext.request.contextPath}/myPage.jsp" />
+				    <jsp:param name="title" value="<%= URLConverter.encode(\"Board\") %>"/>
+				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"게시물 관리\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님께서 작성하신 게시물을<br/> 관리하는 공간입니다.\") %>"/>
 				</jsp:include>
 				<jsp:include page="/include/components/shopblock.jsp">
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/10.png"/>
+				    <jsp:param name="href" value="${pageContext.request.contextPath}/myPage.jsp" />
+				    <jsp:param name="title" value="<%= URLConverter.encode(\"Address\") %>"/>
+				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"배송 주소록 관리\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"자주 사용하는 배송지를 등록하고<br/> 관리하실 수 있습니다.\") %>"/>
+				</jsp:include>
+				<jsp:include page="/include/components/shopblock.jsp">
+					<jsp:param name="style" value="<%= URLEncoder.encode(\"opacity:0;\", \"UTF-8\") %>" />
+				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/10.png"/>
+				    <jsp:param name="href" value="${pageContext.request.contextPath}/myPage.jsp" />
 				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.10\") %>"/>
 				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
 				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
@@ -173,13 +191,7 @@
 				<jsp:include page="/include/components/shopblock.jsp">
 					<jsp:param name="style" value="<%= URLEncoder.encode(\"opacity:0;\", \"UTF-8\") %>" />
 				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/10.png"/>
-				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.10\") %>"/>
-				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
-				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
-				</jsp:include>
-				<jsp:include page="/include/components/shopblock.jsp">
-					<jsp:param name="style" value="<%= URLEncoder.encode(\"opacity:0;\", \"UTF-8\") %>" />
-				    <jsp:param name="src" value="/Animalls/assets/shop-blocks/10.png"/>
+				    <jsp:param name="href" value="${pageContext.request.contextPath}/myPage.jsp" />
 				    <jsp:param name="title" value="<%= URLConverter.encode(\"Title No.10\") %>"/>
 				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"작은 한글 제목\") %>"/>
 				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님 어쩌고 저쩌고 아무튼 감사합니다\") %>"/>
