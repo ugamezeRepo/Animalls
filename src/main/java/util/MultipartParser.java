@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 
@@ -20,7 +21,15 @@ import lombok.RequiredArgsConstructor;
 class MultipartHeaderLine {
 	private final String key; 
 	private final String value; 
-	private final Map<String, String> attributes; 
+	private final Map<String, String> attributes;
+	
+	public boolean hasAttribute(String key) {
+		return attributes.containsKey(key);
+	}
+	
+	public String getAttribute(String key) {
+		return attributes.get(key);
+	}
 }
 
 @Getter
@@ -28,6 +37,23 @@ class MultipartHeaderLine {
 class Multipart {
 	private final List<MultipartHeaderLine> header; 
 	private final String data; 
+	
+	public String getContentDisposition() {
+		return header.stream()
+				.filter(hd -> "Content-Disposition".equals(hd.getKey()))
+				.map(hd -> hd.getValue())
+				.findFirst()
+				.orElse(null);
+	}
+	
+	public String getContentDispositionAttributeValue(String key) {
+		var opt = header.stream()
+				.filter(header -> "Content-Disposition".equals(header.getKey()))
+				.findFirst();
+				
+		if (opt.isEmpty()) return null; 
+		return opt.get().getAttribute(key);	
+	}
 }
 
 //https://datatracker.ietf.org/doc/html/rfc2046
@@ -123,7 +149,7 @@ public class MultipartParser {
 				}
 			} 
 			else if (value == null) { // read value 
-				if (i == ' ') {
+				if (Character.isWhitespace(i)) {
 					i = reader.read();
 					continue;
 				}
@@ -135,7 +161,11 @@ public class MultipartParser {
 				}
 			} 
 			else if (attributeKey == null){
-				if (i == '=') {
+				if (Character.isWhitespace(i)) {
+					i = reader.read();
+					continue;
+				}
+				else if (i == '=') {
 					attributeKey = attributeKeyBuilder.toString();
 				} else {
 					attributeKeyBuilder.append(Character.toChars(i));
@@ -189,5 +219,13 @@ public class MultipartParser {
 			throw new IOException("unexpected carriage return");
 		}
 		return sb.toString();
+	}
+
+	public String getFormDataValueByAttribute(@NonNull String attributeKey, @NonNull String attributeValue) {
+		return parts.stream()
+				.filter(mp -> "form-data".equals(mp.getContentDisposition()) && attributeValue.equals(mp.getContentDispositionAttributeValue(attributeKey)))
+				.map(mp -> mp.getData())
+				.findAny()
+				.get();
 	}
 }
