@@ -84,7 +84,7 @@
 	function getBase64(file) {
 		return new Promise((resolve, reject)=> {
 			var reader = new FileReader();
-			reader.readAsDataURL(file);
+			reader.readAsDataURL(file); // 인코딩 작업
 			reader.onload = function () {
 				resolve(reader.result);
 			};	
@@ -117,45 +117,11 @@
 		const data = await resp.json();
 		console.log(data);
 		
-		document.querySelector('#sampleImg').src = data.imageData;
+		if (data.imageData) {
+			document.querySelector('#sampleImg').src = data.imageData;	
+		}
+		
 	});
-	
-	/*
-		document.querySelector("#myform").addEventListener("submit", (e) => {
-		    e.preventDefault(); // 기본 폼 제출 동작 방지
-		    const data =new FormData(e.target);
-		    fetch("review_insert.jsp",{
-				method:"post",
-		        headers: {
-		            'Content-Type': 'application/x-www-form-urlencoded'
-		          },
-		         body: data
-
-			})
-			.then(res=>res.json())
-			.then(data=>{
-				console.log(data);
-			})
-		});
-	
-		document.querySelector("#imageForm").addEventListener("submit", (e)=>{
-			e.preventDefault();
-			//폼에 입력하거나 선택된 데이터를 FormData 객체에 담는다.
-			const data =new FormData(e.target);
-			//fetch() 함수를 이용해서 전환없이 전송
-			fetch("review_insert.jsp",{
-				method:"post",
-				body:data
-			})
-			.then(res=>res.json())
-			.then(data=>{
-				//data는 {saveFileName:"업로드된 이미지의 파일명"}
-				console.log(data);
-				const src="${pageContext.request.contextPath}/upload/"+data.saveFileName;
-				document.querySelector("#image").setAttribute("src",src);
-			})
-		});
-	*/
 	</script>
 </body>
 </html>

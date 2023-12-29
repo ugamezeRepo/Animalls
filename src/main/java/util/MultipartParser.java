@@ -226,6 +226,6 @@ public class MultipartParser {
 				.filter(mp -> "form-data".equals(mp.getContentDisposition()) && attributeValue.equals(mp.getContentDispositionAttributeValue(attributeKey)))
 				.map(mp -> mp.getData())
 				.findAny()
-				.get();
+				.orElse(null);
 	}
 }
