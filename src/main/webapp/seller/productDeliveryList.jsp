@@ -15,6 +15,36 @@
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/Animalls/css/footer.css" />
+<style>
+	.btn-group{
+		 width: 1px;
+  		 padding: 1px;
+  		 background-color: white;
+	}
+	th, td {
+  		 text-align: center;
+	}
+	#sort1{
+		 padding: 10px;
+	}
+	.btn{
+		 font-size: 7px;
+	}
+	.bar{
+		color:#e2e2e2;
+	}
+	
+	button:not(.btnSearch){
+		border:none;
+		padding: 1px;
+		background:none;
+		width:5px;
+	}
+	.btnSearch{
+		border:none;
+		margin-left:5px;
+	}
+</style>
 </head>
 <body>
 
@@ -22,42 +52,79 @@
 		<jsp:param value="index" name="current" />
 	</jsp:include>
 	
-	<div class="container">
+	<div class="container my-3 head p-3 border">
 		<h3>배송현황</h3>
+		<hr />
 		
-		<div id="sort1">
-			<select>
-				<option value="" selected disabled hidden>배송상태</option>
-				<option value="">준비중</option>
-				<option value="">배송완료</option>
-				<option value="">배송지연</option>
-				<option value="">반품</option>
-				<option value="">교환</option> 
-			</select> 
-			
-			<div class="container">
-				<div class="btn-group" role="group" aria-label="...">
-				  <button type="button" class="btn btn-primary button-class1">배송번호↑</button>
-				  <button type="button" class="btn btn-default button-class2">배송번호↓</button>
-				</div>
-			</div>
-			
-			수량순 구매금액순 배송시작일자순 배송완료일자순
- 		</div>
+		<div id="sort1" class="topMenu flex justify-content-start border">
+		<!-- <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+		  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+		  <label class="btn" for="btnradio1">번호↑</label>
 		
-		<table>
+		  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+		  <label class="btn" for="btnradio2">번호↓</label><p class="bar">|</p>
+		</div>
+		
+		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+		  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
+		  <label class="btn" for="btnradio3">수량↑</label>
+		
+		  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+		  <label class="btn" for="btnradio4">수량↓</label><p class="bar">|</p>
+		</div>
+		
+		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+		  <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" checked>
+		  <label class="btn" for="btnradio5">구매금액↑</label>
+		
+		  <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
+		  <label class="btn" for="btnradio6">구매금액↓</label><p class="bar">|</p>
+		</div>
+		
+		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+		  <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off" checked>
+		  <label class="btn" for="btnradio7">시작일자↑</label>
+		
+		  <input type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off">
+		  <label class="btn" for="btnradio8">시작일자↓</label><p class="bar">|</p>
+		</div>
+			
+		<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+		  <input type="radio" class="btn-check" name="btnradio" id="btnradio9" autocomplete="off" checked>
+		  <label class="btn" for="btnradio9">완료일자↑</label>
+		
+		  <input type="radio" class="btn-check" name="btnradio" id="btnradio10" autocomplete="off">
+		  <label class="btn" for="btnradio10">완료일자↓</label><span class="bar">|</span>
+		</div> -->
+		<input type="date" />
+				<span>~</span>
+		<input type="date" /><span class="bar"> |</span>
+		<input type="search" /><button class="btnSearch" type="submit">검색</button>
+ 		</div> 
+ 		<br />
+ 		
+		<table id="a" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
 			<thead>
 				<tr>
-					<th>배송번호</th>
+					<th>배송번호 <button>↑</button><button>↓</button></th>
 					<th>보내는분</th>
 					<th>받는분</th>
 					<th>이미지</th>
 					<th>상품정보</th>
-					<th>수량</th>
-					<th>상품구매금액</th>
-					<th>배송상태</th>
-					<th>배송시작일자</th>
-					<th>배송완료일자</th>
+					<th>수량 <button>↑</button><button>↓</button></th>
+					<th>상품구매금액 <button>↑</button><button>↓</button></th>
+					<th>
+						<select>
+							<option value="" selected disabled hidden>배송상태</option>
+							<option value="">준비중</option>
+							<option value="">배송완료</option>
+							<option value="">배송지연</option>
+							<option value="">반품</option>
+							<option value="">교환</option> 
+						</select>
+					</th>
+					<th>배송시작일자 <button>↑</button><button>↓</button></th>
+					<th>배송완료일자 <button>↑</button><button>↓</button></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -129,26 +196,9 @@
 		<jsp:param value="index" name="current" />
 	</jsp:include>
 	
-	
 	<script>
-		$(function() {
 	
-			$('.button-class1').click(function(){
-				if( $(this).hasClass('btn-default') ) $(this).removeClass('btn-default');
-				if( !$(this).hasClass('btn-primary') ) $(this).addClass('btn-primary');
-				if( $('.button-class2').hasClass('btn-primary') ) $('.button-class2').removeClass('btn-primary');
-				if( !$('.button-class2').hasClass('btn-default') ) $('.button-class2').addClass('btn-default');
-			});
-			
-			$('.button-class2').click(function(){
-				if( $(this).hasClass('btn-default') ) $(this).removeClass('btn-default');
-				if( !$(this).hasClass('btn-primary') ) $(this).addClass('btn-primary');
-				if( $('.button-class1').hasClass('btn-primary') ) $('.button-class1').removeClass('btn-primary');
-				if( !$('.button-class1').hasClass('btn-default') ) $('.button-class1').addClass('btn-default');
-			});
-	
-		});
-	</script>
+	</script>	
 	
 </body>
 </html>
