@@ -13,9 +13,9 @@
 %>
 
 <div class="mq-100">
-	<div class="p-2 pt-4 pb-4 m-2 border">
+	<div class="border">
 		<div class="text-center">
-			<div style="height: 48px;">
+			<div>
 				<img class="object-fit-contain" src="<%= src %>" />
 			</div>
 			<a href="<%=href %>" style="text-decoration: none; color:#000">
