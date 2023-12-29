@@ -33,10 +33,22 @@
 .bcl div div:nth-child(12){
 	opacity:0;
 }
+.mq-100 {
+	width:260px;
+	padding:10px 10px;
+}
 @media (max-width:768px) {
   .mq-100 {
     width:100%;
   }
+}
+.mq-100 > div {
+	width:100%;
+	height:100%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	padding:10px 0;
 }
 
 @media (max-width:991px) {
@@ -167,7 +179,7 @@
 				    <jsp:param name="href" value="${pageContext.request.contextPath}/myPage.jsp" />
 				    <jsp:param name="title" value="<%= URLConverter.encode(\"Consult\") %>"/>
 				    <jsp:param name="subTitle" value="<%= URLConverter.encode(\"1:1 맞춤상담\") %>"/>
-				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님의 궁금하신 문의사항에 대하여<br/> 1:1맞춤상담 내용을<br/> 확인하실 수 있습니다.\") %>"/>
+				    <jsp:param name="description" value="<%= URLConverter.encode(\"고객님의 궁금하신 사항에 대하여<br/> 1:1맞춤상담 내용을<br/> 확인하실 수 있습니다.\") %>"/>
 				</jsp:include>
 				
 				<jsp:include page="/include/components/shopblock.jsp">
