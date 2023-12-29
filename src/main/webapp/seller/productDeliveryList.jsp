@@ -39,7 +39,7 @@
 		margin-left:5px;
 	}
 	.btn{
-		font-size:10px;
+		font-size:13px;
 	}
 	.date{
 		vertical-align: middle;
@@ -64,28 +64,28 @@
 			
 			<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 			  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-			  <label class="btn btn-outline-success" for="btnradio1">1일</label>
+			  <label class="btn btn-outline-dark" for="btnradio1">1일</label>
 			
 			  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-			  <label class="btn btn-outline-success" for="btnradio2">3일</label>
+			  <label class="btn btn-outline-dark" for="btnradio2">3일</label>
 			
 			  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-			  <label class="btn btn-outline-success" for="btnradio3">1주일</label>
+			  <label class="btn btn-outline-dark" for="btnradio3">1주일</label>
 			  
 			  <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-			  <label class="btn btn-outline-success" for="btnradio4">1개월</label>
+			  <label class="btn btn-outline-dark" for="btnradio4">1개월</label>
 					
 			  <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
-			  <label class="btn btn-outline-success" for="btnradio5">3개월</label>
+			  <label class="btn btn-outline-dark" for="btnradio5">3개월</label>
 					
 			  <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off">
-			  <label class="btn btn-outline-success" for="btnradio6">6개월</label>
+			  <label class="btn btn-outline-dark" for="btnradio6">6개월</label>
 			  
 			  <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off">
-			  <label class="btn btn-outline-success" for="btnradio7">1년</label>
+			  <label class="btn btn-outline-dark" for="btnradio7">1년</label>
 			  
-			  	<div style="position: absolute; right: -643px;">
-					<input type="search" /><button class="btnSearch rightSearch" type="submit">검색</button>
+			  	<div style="position: absolute; right: -600px;">
+					<input type="search" /><button class="btnSearch" type="submit">검색</button>
 				</div>
 			</div>
 		 </div>	
