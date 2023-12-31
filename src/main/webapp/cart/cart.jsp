@@ -140,7 +140,7 @@
                     	int price = productDto.getSalesState().equals("on_sale")? productDto.getSalePrice() : productDto.getOrgPrice();
                     	int itemPrice = (price+optionDto.getAdditionalPrice())*tmp.getAmount();
                     	totalPrice += itemPrice;
-                    	String uniqueButtonID = "optBtn_" + i;
+                    	String uniqueButtonID = "optBtn" + i;
                     	String modalBgID = "modalBgID" + i;
                     %>
                     
@@ -162,10 +162,10 @@
                             <span style="display: flex; align-items: center;">
                                 <input type="text" value="<%=tmp.getAmount() %>" readonly>
                                 <div style="display: flex; flex-direction: column; justify-content: center;">
-	                                <a href="${pageContext.request.contextPath}/cart/cartUpdate.jsp?cartItemId=<%=tmp.getCartItemId()%>&amount=<%=tmp.getAmount()+1%>" style="font-size:0px;">
+	                                <a href="${pageContext.request.contextPath}/cart/cartAmountUpdate.jsp?cartItemId=<%=tmp.getCartItemId()%>&amount=<%=tmp.getAmount()+1%>" style="font-size:0px;">
 	                                    <img src="https://img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif"/>
 	                                </a>
-	                                <a href="${pageContext.request.contextPath}/cart/cartUpdate.jsp?cartItemId=<%=tmp.getCartItemId()%>&amount=<%=tmp.getAmount()-1%>" style="font-size:0px;">
+	                                <a href="${pageContext.request.contextPath}/cart/cartAmountUpdate.jsp?cartItemId=<%=tmp.getCartItemId()%>&amount=<%=tmp.getAmount()-1%>" style="font-size:0px;">
 	                                    <img src="https://img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif"/>
 	                                </a>
                                 </div>
@@ -264,7 +264,7 @@
 	            })
 	
 	        }
-	    })[button=]
+	    })
 		function check(checkBox){
 			const isChecked = checkBox.checked;
 			if(isChecked){
@@ -275,28 +275,23 @@
 		}
 	
 		//옵션변경 모달
-		<%-- <%=cartList.size() %> --%>
-	 	//for(let i=0; i<; i++) {
-	 		//const modalId = "modalBgID" + i; 
-        	//const modal = document.getElementById(modalId);
-			document.querySelectorAll('modal--bg').forEach(e => {
-				e.addEventListener("click",)
-			});
-	        
-	        function closeModal(){
-	            modal.classList.add('hidden');
-	            modal.classList.remove('visible');
-	        }
-	        document.querySelectorAll('.optBtnClass').forEach(e => {
-	        	e.addEventListener("click", item => {
-	        		function showModal(){
-	    	            modal.classList.remove('hidden');
-	    	            modal.classList.add('visible');
-	    	        }
-	        	} );
-	        });
-	 		document.querySelector('.close-area').addEventListener("click", closeModal);  
-	 	// }
+		document.querySelectorAll('.optBtnClass').forEach((button, index) => {
+            button.addEventListener("click", () => {
+            	const modalBgID = 'modalBgID'+ index;
+                const modal = document.getElementById(modalBgID);
+                modal.classList.remove('hidden');
+                modal.classList.add('visible');
+            });
+        });
+
+        document.querySelectorAll('.close-area').forEach((closeBtn) => {
+            closeBtn.addEventListener("click", (event) => {
+                const modal = event.target.closest('.modal--bg');
+                modal.classList.add('hidden');
+                modal.classList.remove('visible');
+            });
+        });
+        
 	 	//option변경
 	       
         function change(){
