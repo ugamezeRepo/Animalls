@@ -195,7 +195,7 @@
 				                </ul>
 				                <div class="prdModify">
 				                    <h4>상품옵션</h4>
-					                    <ul><li style="display:none;"><span></span></li>
+					                    <ul>
 					                        <li><span>같이구매하기</span>
 					                            <span><select  option_title="같이구매하기"  name="option" id="product_option" class="ProductOption0" option_style="select" required="true" onchange="change()">
 					                                <option value="*" >- [필수] 같이구매하기 선택 -</option>
@@ -205,8 +205,7 @@
 					                                		if(opt.getProductId()==productDto.getProductId()||opt.getProductId()==0){%>
 					                                			<option value="<%=opt.getOptionId()%>"><%=opt.getDescription()%> (+ <%=opt.getAdditionalPrice()%>)</option>
 					                                	<%}} %>
-					                            </select></span></li>
-					                        <li style="display:none;"><span>{$option_name}</span> {$form.option_value}</li>
+					                            </select></span></li> 
 					                    </ul>
 					               </div>
 					           </div>
