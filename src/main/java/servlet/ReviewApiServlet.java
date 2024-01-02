@@ -2,7 +2,9 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,8 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import dao.ReviewDao;
+import dto.MemberDto;
 import dto.ReviewDto;
+import util.ApiResponse;
 import util.IntegerUtil;
+import util.SessionManager;
 
 @SuppressWarnings("serial")
 @WebServlet("/api/review")
@@ -43,6 +48,31 @@ public class ReviewApiServlet extends HttpServlet {
 		String json = new Gson().toJson(reviews);
 		try (PrintWriter pw  = resp.getWriter()) {
 			pw.write(json);
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int productId = Integer.parseInt(req.getParameter("product_id"));
+		int rating = Integer.parseInt(req.getParameter("review_star"));
+		String content = req.getParameter("content"); 
+		String imageData = req.getParameter("image_data");
+		MemberDto member = SessionManager.getMember(req);
+				
+		ReviewDto review = new ReviewDto();
+		review.setProductId(productId);
+		review.setReviewerId(member.getMemberId());
+		review.setContent(content);
+		review.setThumbnail(imageData);
+		review.setRating(rating);
+		
+		boolean result = ReviewDao.getInstance().insert(review);
+		
+		ApiResponse api = new ApiResponse(req, resp);
+		if (result) {
+			api.sendMessage(result, "성공적으로 리뷰를 작성하였습니다");	
+		} else {
+			api.sendMessage(result, "리뷰 작성에 실패했습니다");
 		}
 	}
 }

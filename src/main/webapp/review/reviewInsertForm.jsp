@@ -91,17 +91,18 @@
         
         <hr />
 		<form action="review_insert.jsp" class="mb-3" name="myform" id="myform" method="post">
+            <input type="hidden" name="product_id" value="<%= productId %>"/>
 			<fieldset>
 				<span class="text-bold">별점을 선택해주세요</span>
-				<input type="radio" name="reviewStar" value="5" id="rate5">
+				<input type="radio" name="review_star" value="5" id="rate5">
 				<label class="star" for="rate5">★</label>
-				<input type="radio" name="reviewStar" value="4" id="rate4">
+				<input type="radio" name="review_star" value="4" id="rate4">
 				<label class="star" for="rate4">★</label>
-				<input type="radio" name="reviewStar" value="3" id="rate3">
+				<input type="radio" name="review_star" value="3" id="rate3">
 				<label class="star" for="rate3">★</label>			
-				<input type="radio" name="reviewStar" value="2" id="rate2">
+				<input type="radio" name="review_star" value="2" id="rate2">
 				<label class="star" for="rate2">★</label>
-				<input type="radio" name="reviewStar" value="1" id="rate1">
+				<input type="radio" name="review_star" value="1" id="rate1">
 				<label class="star" for="rate1">★</label>		
 			</fieldset>
 			<br />
@@ -161,27 +162,27 @@
 		e.preventDefault(); 
 	
 		const formdata = new FormData(form);	
+		formdata.delete('myImage');
 		
 		if (fileInput.files.length > 0) {
-			const image_data = await getBase64(fileInput.files[0]);
-			formdata.delete('myImage');
-			formdata.append('image_data', image_data);		
-			console.log(image_data);
-		
-			for (const key of formdata.keys()) {
-				console.log(key);
-			}
-		
+			const image_data = await getBase64(fileInput.files[0]);	
+			formdata.append('image_data', image_data);				
 		}
-		const resp = await fetch("review_insert.jsp", {
+		const resp = await fetch("/Animalls/api/review", {
 			method: 'post',
-			body: formdata, 
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+			},
+			body: new URLSearchParams(formdata).toString(), 
+			credentials: "include",
 		})
 		const data = await resp.json();
-		console.log(data);
 		
-		if (data.imageData) {
-			document.querySelector('#sampleImg').src = data.imageData;	
+		if (data.success) {
+			alert(data.message); 
+			document.location.href = '/Animalls/product/productDetail.jsp?productId=<%= productId %>'
+		} else {
+			alert(data.message);
 		}
 	});
 	</script>

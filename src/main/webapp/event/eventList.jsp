@@ -4,6 +4,7 @@
 <%
 	int totalEventCount = 8; 
 	String sampleName = "샘플 이벤트 제목";
+    String category = request.getParameter("category");
 %>
 <!DOCTYPE html>
 <html>
@@ -22,10 +23,13 @@
 	<div class="container py-4 flex-grow-1">
 		<h1 class="my-4 fw-bold">이벤트</h1>
 		
-		<div id="category-btn-group" class="btn-group my-4">
-		  <a href="#" class="btn btn-primary active" aria-current="page">진행중인 이벤트</a>
-		  <a href="#" class="btn btn-primary">종료된 이벤트</a>
-		</div>
+    	<div class="category"> 
+			<ul class="menuCategory nav nav-tabs" >
+                <li class="nav-item"><a class="nav-link <%= !"end".equals(category) ? "active" : " " %>" href="${pageContext.request.contextPath}/event/eventList.jsp">진행중인 이벤트</a></li>
+				<li class="nav-item"><a class="nav-link <%= "end".equals(category) ? "active" : " " %>" href="${pageContext.request.contextPath}/event/eventList.jsp?category=end">종료된 이벤트</a></li>
+				
+			</ul>
+    	</div>
 
 		<div class="row my-4 g-0">		
 			<% for (int i = 1 ; i <= totalEventCount; i++) { %>

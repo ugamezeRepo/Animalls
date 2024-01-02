@@ -23,11 +23,6 @@
 	<div class="container p-4">
 		<h1 class="my-4 fw-bold">이벤트</h1>
 		
-		<div id="category-btn-group" class="btn-group my-4">
-		  <a href="#" class="btn btn-primary active" aria-current="page">진행중인 이벤트</a>
-		  <a href="#" class="btn btn-primary">종료된 이벤트</a>
-		</div>
-		
 		<div>
 			<div class="d-flex justify-content-between align-items-end">
 				<div class="fs-3 fw-bold"><%= eventTitle %></div>

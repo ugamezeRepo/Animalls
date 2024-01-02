@@ -5,6 +5,7 @@ import util.Crypto;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,13 +39,26 @@ public class SignupApiServlet extends HttpServlet {
 	    String email = req.getParameter("email"); 
 	    String code = req.getParameter("code"); 
 		
+
 	    
 	    if (memberId == null || password == null || name == null || postcode == null || address == null || detailAddress == null || phoneNumber == null || email == null || code == null) {
 	        api.sendMessage(false, "충분한 인자가 전달되지 않았습니다");
 	        return;
 	    }
+	    if (!Pattern.matches("^[a-z][a-z0-9]{3,15}$", memberId) || MemberDao.getInstance().getData(memberId) != null) {
+	    	api.sendMessage(false, "올바르지 않은 아이디입니다");
+	    	return; 
+	    }
+	    if (!Pattern.matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~`!@#$%^&*()_\\-={}[\\]|;:<>,.?/]).{8,16}$", password)) {
+	    	api.sendMessage(false, "올바르지 않은 비밀번호입니다");
+	    	return; 
+	    }
 	    if (!password.equals(passwordConfirm)) {
 	    	api.sendMessage(false, "비밀번호가 확인 입력값이 비밀번호와 같지 않습니다");
+	    	return; 
+	    }
+	    if (!Pattern.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", email)) {
+	    	api.sendMessage(false, "올바르지 않은 이메일입니다");
 	    	return; 
 	    }
 	    HttpSession session = req.getSession();

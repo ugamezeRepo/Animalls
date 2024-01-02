@@ -1,8 +1,11 @@
+<%@page import="dto.MemberDto"%>
 <%@page import="util.SessionManager" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% 
-    String memberId=SessionManager.getInstance().getMemberId(request); if (memberId !=null) {
-    response.sendRedirect(request.getContextPath() + "/" ); } 
+    MemberDto member = SessionManager.getMember(request); 
+    if (member !=null) {
+        response.sendRedirect(request.getContextPath() + "/" ); 
+    } 
 %>
 <!DOCTYPE html>
 <html>
@@ -10,7 +13,7 @@
         <meta charset="UTF-8" />
         <title>회원가입</title>
         <link rel="stylesheet" href="/Animalls/css/bootstrap.css"/>
-        <link rel="stylesheet" href="/Animalls/css/common.css" />
+        <link rel="stylesheet" href="/Animalls/css/common.css" /> 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     </head>
@@ -238,7 +241,6 @@
         	const formdata = new FormData($registerForm);
         	const qs = new URLSearchParams(formdata).toString();
         	
-        	console.log(qs);
         	const resp = await fetch('/Animalls/api/signup', { method: 'post', body: qs, headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}});
         	const data = await resp.json(); 
         	if (data.success) {
@@ -246,7 +248,6 @@
         		document.location.href = '/Animalls'; 
         	} else { 
         		alert(data.message);
-        		history.back();
         	}
         }
     </script>

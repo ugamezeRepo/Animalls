@@ -1,3 +1,4 @@
+<%@page import="dto.MemberDto"%>
 <%@page import="util.SessionManager"%>
 <%@page import="dao.ReviewDao"%>
 <%@page import="java.util.Collections"%>
@@ -13,8 +14,8 @@
     List<ProductOptionDto> optionList = ProductOptionDao.getInstance().getListByProudctId(productId);
     boolean useMultipleOption = optionList != null && optionList.size() > 0;
     
-    String memberId = SessionManager.getInstance().getMemberId(request);
-    boolean isGuest = memberId == null; 
+    MemberDto member  = SessionManager.getMember(request);
+    boolean isGuest = member == null; 
 %>
 <!DOCTYPE html>
 <html>
@@ -228,7 +229,12 @@
                             <div>{{ rv.created_at }}</div> 
                         </div>
                         <div class="py-2" style="min-height: 60px;">
-                            {{ rv.content }} 
+                            <div v-if="!!rv.thumbnail" class="pe-2">
+                                <img :src="rv.thumbnail" class="border" width=80 height=80/>
+                            </div>
+                            <div>
+                                {{ rv.content }}
+                            </div>                        
                         </div>
                         <div class="d-flex justify-content-between py-2 my-2">
                             <div class="text-secondary" style="font-size: 22px;"> {{ createStar(rv.rating )}} </div>
