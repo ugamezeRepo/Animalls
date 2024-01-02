@@ -21,4 +21,5 @@ public class ProductDto {
 	private int salePrice;
 	private String salesState;
 	private String thumbnail;
+	
 }

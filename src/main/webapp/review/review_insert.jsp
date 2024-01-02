@@ -1,5 +1,3 @@
-<%@page import="dto.UploadDto"%>
-<%@page import="dao.UploadDao"%>
 <%@page import="util.IntegerUtil"%>
 <%@page import="util.MultipartParser"%>
 <%@page import="java.util.HashMap"%>

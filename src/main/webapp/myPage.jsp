@@ -1,3 +1,6 @@
+<%@page import="dto.MemberDto"%>
+<%@page import="dao.MemberDao"%>
+<%@page import="util.SessionManager"%>
 <%@page import="util.URLConverter"%>
 <%@page import="java.io.UnsupportedEncodingException"%>
 <%@page import="java.net.URLEncoder"%>
@@ -5,9 +8,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
-	String userId = "gildong123";
-	String username = "홍길동";
-	String userRank = "브론즈";
+    String memberId = SessionManager.getInstance().getMemberId(request);
+    MemberDto member = MemberDao.getInstance().getData(memberId); 
+	String userId = member.getMemberId();
+	String username = member.getName();
+	String userRank = member.getRank();
 	String nextRank = "실버";
 	int rankUpPrice = 360000;
 	int recentlyUsedPrice = 100;
@@ -17,7 +22,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="stylesheet" href="/Animall/css/common.css" />
+<link href="/Animalls/css/bootstrap.css" rel="stylesheet" >
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 <style>

@@ -26,7 +26,7 @@
           <li><a href="/Animalls/event/eventList.jsp" class="nav-link px-2 link-body-emphasis">커뮤니티</a></li>
           <li><a href="/Animalls/notice/noticeList.jsp" class="nav-link px-2 link-body-emphasis">고객지원</a></li>
           <li><a href="/Animalls/regularDelivery.jsp" class="nav-link px-2 link-body-emphasis">정기배송</a></li>
-          <li><a href="/Animalls/customerReview.jsp" class="nav-link px-2 link-body-emphasis">고객리뷰</a></li>
+          <li><a href="/Animalls/review/customerReview.jsp" class="nav-link px-2 link-body-emphasis">고객리뷰</a></li>
         </ul>
 
         <form action="" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -39,10 +39,10 @@
 				<img id="profileImage" width="32px" src="${pageContext.request.contextPath}/upload/<%=profile %>" alt="프로필 이미지" />
 	          </a>
 	          <ul class="dropdown-menu text-small">
-	            <li><a class="dropdown-item" href="myPage.jsp">My Page</a></li>
-	            <li><a class="dropdown-item" href="cart.jsp">Cart</a></li>
+	            <li><a class="dropdown-item" href="/Animalls/myPage.jsp">My Page</a></li>
+	            <li><a class="dropdown-item" href="/Animalls/cart.jsp">Cart</a></li>
 	            <li><hr class="dropdown-divider"></li>
-	            <li><a class="dropdown-item" href="member/logout.jsp">Sign out</a></li>
+	            <li><a class="dropdown-item" href="/Animalls/member/logout.jsp">Sign out</a></li>
 	          </ul>
 	        </div>
 		<%} else {%>
@@ -54,8 +54,8 @@
 				</svg>
 	          </a>
 	          <ul class="dropdown-menu text-small">
-	            <li><a class="dropdown-item" href="member/login_form.jsp">Login</a></li>
-	            <li><a class="dropdown-item" href="member/signup_form.jsp">Sign Up</a></li>
+	            <li><a class="dropdown-item" href="/Animalls/member/loginForm.jsp">Login</a></li>
+	            <li><a class="dropdown-item" href="/Animalls/member/signupForm.jsp">Sign Up</a></li>
 	          </ul>
 	        </div>
 		<%} %>

@@ -65,17 +65,8 @@
 	    text-shadow: 0 0 0 #f0f0f0;
 	}
 
-/*	
-		#myform label:hover{
-	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-	}
-
-	#myform label:hover ~ label{
-	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-	}
-*/
 	#myform input[type=radio]:checked ~ label{
-	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	    text-shadow: 0 0 0 #ff753f;
 	}
 
 	#reviewContents {
@@ -115,8 +106,7 @@
 		font-weight: bold;
 	}
 	.paging-container {
-    /* 페이징 부분에 대한 스타일을 지정 */
-    margin-bottom: 75px; /* 예시: 페이징 부분과 다음 내용 간의 간격 조절 */
+        margin-bottom: 75px; 
 	}
 	.fog {
 		position: aboslute; 
@@ -124,55 +114,33 @@
 		height: 100%;
 	}
 </style>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link href="/Animalls/css/common.css" rel="stylesheet" />
+<link href="/Animalls/css/bootstrap.css" rel="stylesheet" >
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </head>
-<body>
-	<jsp:include page="include/navbar.jsp"></jsp:include>
+<body class="d-flex flex-column">
+	<jsp:include page="/include/navbar.jsp">
+		<jsp:param value="review" name="current"/>
+	</jsp:include>
 	
-	<div class="container">
+    <img class="w-100" src="/Animalls/assets/review-banner.png" alt="" />
+    
+	<div class="container flex-grow-1">
 		<h1>Review</h1>
-	<% if (request.getAttribute("id") != null) { %>
-		<a class="btn btn-primary" href="review_insertform.jsp">리뷰 작성하러 가기</a>
-	<%} %>		
-		<hr style="border-top: 2px solid black; margin-top: 10px;"> <!-- 검정색 선 추가 -->
-		<nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3">
-		  <ul class="nav nav-pills">
-		    <li class="nav-item ms-auto">
-		      <a class="nav-link" href="#scrollspyHeading1">최신순</a>
-		    </li>
-		    <li class="nav-item ms-auto">
-		      <a class="nav-link" href="#scrollspyHeading2">추천순</a>
-		    </li>
-		    <li class="nav-item dropdown ms-auto">
-		      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
-		      <ul class="dropdown-menu">
-		        <li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
-		        <li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
-		        <li><hr class="dropdown-divider m-0"></li>
-		        <li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
-		      </ul>
-		    </li>
-		  </ul>
-		</nav>
-		<hr style="border-top: 2px solid black; margin-bottom: 10px;"> <!-- 검정색 선 추가 -->
-		<div class="dropdown">
-		  <button class="btn btn-sm btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-		    별점순
-		  </button>
-		  <ul class="dropdown-menu">
-		    <li><button class="dropdown-item" type="button">별5점</button></li>
-		    <li><button class="dropdown-item" type="button">별4점</button></li>
-		    <li><button class="dropdown-item" type="button">별3점</button></li>
-		    <li><button class="dropdown-item" type="button">별2점</button></li>
-		    <li><button class="dropdown-item" type="button">별1점</button></li>
-		  </ul>
-		</div>
+        
+        <div class="category"> 
+            <ul class="menuCategory nav nav-tabs" >
+                <li class="nav-item"><a class="nav-link active" href="#">최신순</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">추천순</a></li>
+            </ul>
+        </div>
+        <hr />
+		
+        
 		<div class="mt-1">
 			<c:forEach var="tmp" items="${requestScope.list }"  varStatus="status">
 				<form action="protected/review_insert.jsp" class="mb-3 myform" name="myform" id="myform" method="post">
 					<fieldset>					
-						<span class="text-bold">별점</span>
 						<input type="radio" name="reviewStar" value="5" id="rate5" >
 						<label for="rate5">★</label>
 						<input type="radio" name="reviewStar" value="4" id="rate4" >
@@ -184,7 +152,6 @@
 						<input type="radio" name="reviewStar" value="1" id="rate1" >
 						<label for="rate1">★</label>		
 					</fieldset>
-					<input type="text" name="num1" value="${status.index}">
 					<input type="hidden" name="num" value="${tmp.reviewId}">
 					<input type="hidden" name="rating" value="${tmp.rating}" id="rating_${status.index}">
 					<textarea class="col-auto form-control mb-2" type="text" id="reviewContents" name="content"
@@ -226,8 +193,9 @@
 			</ul>
 		</div>
 	</div>
-	<jsp:include page="include/footer.jsp"></jsp:include>		
-</body>
+    <jsp:include page="/include/footer.jsp">
+		<jsp:param value="review" name="current"/>
+	</jsp:include></body>
 <script>
 		
 		for(let i=0;i<5;i++){

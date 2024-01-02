@@ -1,3 +1,4 @@
+<%@page import="util.Crypto"%>
 <%@page import="util.SessionManager"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="dao.MemberDao"%>
@@ -12,7 +13,7 @@
 	
 	boolean isLoginSuccess = false;
 	if (dto != null) {
-		if (dto.getPassword().equals(password)) {
+		if (dto.getPassword().equals(Crypto.hash(password))) {
 			SessionManager.getInstance().setMemberId(request, memberId);
 			SessionManager.getInstance().setPassword(request, password);
 			isLoginSuccess = true;
