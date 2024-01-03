@@ -110,7 +110,53 @@ public class ProductDao {
 			}
 		}
 		return list;
+	}
+	
+	public List<ProductDto> getListBySellerId(String sellerId){
+		List<ProductDto> list = new ArrayList<ProductDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문
+			String sql = "SELECT product_id, seller_id, category, title, description, org_price, sale_price, sales_state, thumbnail"
+					+ " FROM PRODUCT"
+					+ " WHERE seller_id = ?"
+					+ " ORDER BY product_id DESC";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sellerId);
 
+			//query 문 수행하고 결과(ResultSet) 얻어내기
+			rs = pstmt.executeQuery();
+			//반복문 돌면서 
+			while (rs.next()) {
+			ProductDto dto = new ProductDto();
+			dto.setProductId(rs.getInt("product_id"));
+			dto.setSellerId(rs.getString("seller_id"));
+			dto.setCategory(rs.getString("category"));
+			dto.setTitle(rs.getString("title"));
+			dto.setDescription(rs.getString("description"));
+			dto.setOrgPrice(rs.getInt("org_price"));
+			dto.setSalePrice(rs.getInt("sale_price"));
+			dto.setSalesState(rs.getString("sales_state"));
+			dto.setThumbnail(rs.getString("thumbnail"));
+			list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close(); //Connection 객체의 close() 메소드를 호출하면 Pool 에 반납된다.
+			} catch (Exception e) {
+			}
+		}
+		return list;
 	}
 	
 	public boolean insert(ProductDto dto) {
