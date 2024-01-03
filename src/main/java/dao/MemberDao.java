@@ -31,20 +31,18 @@ public class MemberDao {
 		try {
 			conn = new DbcpBean().getConn();
 			String sql = "INSERT INTO MEMBER" + 
-					" (member_id, delivery_id, password, name, nickname, role, phone_number, rank, profile_image, email, email_verified, registered_date)" + 
-					" VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
+					" (member_id, delivery_id, password, name, nickname, phone_number, profile_image, email, email_verified, registered_date)" + 
+					" VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getMemberId());
 			pstmt.setInt(2, dto.getDeliveryId());
 			pstmt.setString(3, dto.getPassword());
 			pstmt.setString(4, dto.getName());
 			pstmt.setString(5, dto.getNickname());
-			pstmt.setString(6, dto.getRole());
-			pstmt.setString(7, dto.getPhoneNumber());
-			pstmt.setString(8, dto.getRank());
-			pstmt.setString(9, dto.getProfileImage());
-			pstmt.setString(10, dto.getEmail());
-			pstmt.setBoolean(11, dto.isEmailVerified());
+			pstmt.setString(6, dto.getPhoneNumber());
+			pstmt.setString(7, dto.getProfileImage());
+			pstmt.setString(8, dto.getEmail());
+			pstmt.setBoolean(9, dto.isEmailVerified());
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
