@@ -6,14 +6,16 @@
 	String address = request.getParameter("address");
 %>
 
-<div>
-	<input type="text" id="sample3_postcode" placeholder="우편번호">
-	<input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
-	<input type="text" id="sample3_address" placeholder="주소"><br>
-	<input type="text" id="sample3_detailAddress" placeholder="상세주소">
-	
-	<div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
-	<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+	<div>
+		<input type="text" id="sample3_postcode" placeholder="우편번호" class="form-control mb-2">
+		<div class="input-group mb-2">
+			<input type="text" id="sample3_address" class="form-control" placeholder="주소">
+			<button class="btn btn-outline-secondary" type="button" onclick="sample3_execDaumPostcode()">우편번호 찾기</button>
+		</div>
+		<input type="text" id="sample3_detailAddress" class="form-control mb-2" placeholder="상세주소">
+		
+		<div id="wrap" style="display:none;border:1px solid;width:100%;height:300px;margin:5px 0;position:relative">
+		<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 	</div>
 	
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

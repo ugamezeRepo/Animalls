@@ -10,6 +10,7 @@
 	String deliveryId = request.getParameter("deliveryId");
 	String phoneNumber = request.getParameter("phoneNumber");
 	String email = request.getParameter("email");
+	String profileImage = request.getParameter("profileImage");
 	
 	MemberDto dto = new MemberDtoBuilder()
 		.password(password)
@@ -17,6 +18,7 @@
 		.nickname(name)
 		.phoneNumber(phoneNumber)
 		.email(email)
+		.profileImage(profileImage)
 		.build();
 	boolean isSuccess = MemberDao.getInstance().update(dto);
 %>
