@@ -26,15 +26,18 @@ public class ReviewStatsApiServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String rawProductId = req.getParameter("productId"); 
 		
-		int productId = Integer.parseInt(rawProductId);
+		int productId = IntegerUtil.parseIntWithDefaultValue(rawProductId, -1);
 		 
 		int totalCount = 0;
 		int reviewSum = 0; 
 		int[] count = new int[5];
 		
-		List<ReviewDto> reviews =  ReviewDao.getInstance().getList().stream()
-				.filter(r -> r.getProductId() == productId)
-				.toList();
+		List<ReviewDto> reviews = productId == -1 
+						? ReviewDao.getInstance().getList() 
+						: ReviewDao.getInstance().getList()
+							.stream()
+							.filter(r -> r.getProductId() == productId)
+							.toList();
 		
 		for (var r : reviews) {
 			int rating = r.getRating(); 
@@ -45,8 +48,8 @@ public class ReviewStatsApiServlet extends HttpServlet {
 			}
 		}
 		Map<String, Object> m = new HashMap<String, Object>(); 
+		
 		m.put("avg_review", String.format("%.1f", (double)reviewSum / totalCount)); 
-		 
 		m.put("total_count", totalCount);
 		m.put("count", count);
 		

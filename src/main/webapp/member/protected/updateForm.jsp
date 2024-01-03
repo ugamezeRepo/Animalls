@@ -20,7 +20,7 @@
     <jsp:include page="/include/navbar.jsp">
         <jsp:param value="member" name="current"/>
     </jsp:include>
-	<div class="container flex-grow-1">
+	<div class="container flex-grow-1 mb-2">
 		<h5 class="form-header mt-4">회원정보 수정</h5>
 		
 		<form action="update.jsp" method=post>
@@ -72,31 +72,32 @@
 			</div>
 			
 			<!-- 추가정보 -->
-			<div>
+			<div class="mb-3">
 				<div>
-		         <label for="myImage">프로필</label>
-		         <div>
-		            <a href="javascript:" id="profileLink">
-		            <%if(profile == null) {%>
-		               <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-		                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-		                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-		               </svg>
-		            <%}else{ %>
-		               <img id="profileImage" src="${pageContext.request.contextPath}/upload/<%=profile %>" alt="프로필 이미지" />
-		            <%} %>
-		            </a>
-		         </div>
-		      </div>
+					<label for="myImage" class="form-label" name="profileImage">프로필</label>
+					<div class="d-flex align-items-center">
+						<a href="javascript:" id="profileLink" class="text-decoration-none">
+							<%if(profile == null) {%>
+								<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" id="profileSvg">
+									<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+									<path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+								</svg>
+								<input type="file" id="image" accept="image/*" name="profileImage"/>
+							<%}else{ %>
+								<input type="file" id="image" accept="image/*" name="profileImage"/>
+							<%} %>
+						</a>
+					</div>
+				</div>
 			</div>
 			
 			<!-- 버튼 -->
 			<div class="btnContainer">
-				<button type="button" id="deleteBtn">회원 탈퇴</button>
-				<button type="submit">회원정보 수정</button>
-				<button type="reset">초기화</button>
+				<button type="button" id="deleteBtn" class="btn btn-outline-danger">회원 탈퇴</button>
+				<button type="submit" class="btn btn-outline-success">회원정보 수정</button>
+				<button type="reset" class="btn btn-outline-warning">초기화</button>
 				<a href="${pageContext.request.contextPath}/">
-					<button type="button">취소</button>
+					<button type="button" class="btn btn-dark">취소</button>
 				</a>
 			</div>
 		</form>
@@ -112,38 +113,29 @@
 				location.href = "${pageContext.request.contextPath}/member/protected/delete.jsp";
 			}
 	    });
-	    /*
-	    function cancelImageSelection() {
-		   	let profile=`
-		   		<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-			   	<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-			    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-		   		</svg>
-		   	`;
-	   		document.querySelector("#profileLink").innerHTML=profile;
-	   		return;
-		}
-		
-		document.querySelector("#profileLink").addEventListener("click", ()=>{
-		   	document.querySelector("#image").click();
-		});
+	 
+		//새로운 이미지가 선택되었을때
 		document.querySelector("#image").addEventListener("change", (e)=>{
-		   	const fileData=e.target.files[0];      
-		   	const data=new FormData();
-		   	data.append("myImage", fileData);
-		   	fetch("upload_profile.jsp",{
-		    	method:"post",
-		      	body:data
-		   	})
+			//전송할 file 데이터를 FormData 객체에 담는다.
+			const fileData=e.target.files[0];
+			const data=new FormData();
+			// myImage 라는 파라미터명으로 fileData 를 담는다. 
+			data.append("myImage", fileData);
+			//fetch() 함수를 이용해서 페이지 전환없이 업로드
+			fetch("uploadProfile.jsp",{
+				method:"post",
+				body:data
+			})
 			.then(res=>res.json())
 			.then(data=>{
-		      	let img=`<img id="profileImage" 
-		        src="${pageContext.request.contextPath}/upload/\${data.saveFileName}">`;
-		      	document.querySelector("#profileLink").innerHTML=img;
-		      	document.querySelector("[name=profile]").value=data.saveFileName;
-		   	});
+				console.log(data);
+				//img 요소를 만들 문자열 구성
+				let img=`<img id="profileImage" 
+					src="${pageContext.request.contextPath}/upload/\${data.saveFileName}" class="img-fluid rounded-circle" style="width: 50px; height: 50px;" >`;
+				//링크안에 출력하면서 html 형식으로 해석되도록 한다.
+				document.querySelector("#profileLink").innerHTML=img;
+			});
 		});
-		*/
 	</script>
 </body>
 </html>

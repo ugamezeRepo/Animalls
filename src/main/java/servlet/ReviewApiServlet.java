@@ -30,6 +30,7 @@ public class ReviewApiServlet extends HttpServlet {
 		String rawPage = req.getParameter("page");
 		String rawPagination = req.getParameter("pagination");
 		String rawProductId = req.getParameter("productId"); 
+		String order = req.getParameter("order"); 
 		
 		int page = IntegerUtil.parseIntWithDefaultValue(rawPage, 1);
 		int pagination = IntegerUtil.parseIntWithDefaultValue(rawPagination, 5);
@@ -37,6 +38,8 @@ public class ReviewApiServlet extends HttpServlet {
 		
 		int startPage = (page - 1) * pagination +  1; 
 		int endPage = page * pagination;
+		
+		
 		List<ReviewDto> reviews = null; 
 		if (productId != -1) {
 			reviews =  ReviewDao.getInstance().getReviewListWithProductId(startPage, endPage, productId);
