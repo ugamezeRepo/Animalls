@@ -49,7 +49,9 @@ public class SignupApiServlet extends HttpServlet {
 	    	api.sendMessage(false, "올바르지 않은 아이디입니다");
 	    	return; 
 	    }
-	    if (!Pattern.matches("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~`!@#$%^&*()_\\-={}[\\]|;:<>,.?/]).{8,16}$", password)) {
+	    
+	    // todo: password check algoirthm 
+	    if (8 > password.length()  && password.length() > 16) {
 	    	api.sendMessage(false, "올바르지 않은 비밀번호입니다");
 	    	return; 
 	    }
