@@ -11,9 +11,15 @@
 <head>
 <meta charset="UTF-8">
 <title>판매자 상품 수정 페이지</title>
+<link rel="stylesheet" href="/Animalls/css/common.css" />
+<link rel="stylesheet" href="/Animalls/css/bootstrap.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
-<body>
-	<div class="container">
+<body class="d-flex flex-column">
+	<jsp:include page="/include/navbar.jsp">
+			<jsp:param value="seller" name="current"/>
+	</jsp:include>
+	<div class="container my-3 head p-3 border flex-grow-1">
 		<h3>판매자 상품 수정</h3>
 		<form action="${pageContext.request.contextPath}/seller/productUpdate.jsp" method="post">
 			<div>
@@ -21,8 +27,11 @@
 				<input type="text" id="productId" name="productId" value="<%=dto.getProductId()%>" readonly/>
 				<br />
 			</div>
-			<div>
-				<label for="thumbnail">이미지</label>
+			<div class="form-group row">
+				<label class for="col-sm-2 thumbnail">이미지</label>
+				<div class="col-sm-5">
+					<input type="file" name="thumbnail" class="form-control">
+				</div>
 				<br />
 			</div>
 			<div>
@@ -66,6 +75,9 @@
 				<button type="submit" style="vertical-align:bottom">수정하기</button>
 				<button type="reset" style="vertical-align:bottom">취소</button>
 			</div>
+			<jsp:include page="/include/footer.jsp">
+				<jsp:param value="seller" name="current"/>
+			</jsp:include>
 		</form>
 	</div>
 </body>

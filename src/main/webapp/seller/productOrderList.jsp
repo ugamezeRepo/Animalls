@@ -5,16 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>판매자 주문 목록 페이지</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/Animalls/css/footer.css" />
+<link rel="stylesheet" href="/Animalls/css/common.css" />
+<link rel="stylesheet" href="/Animalls/css/bootstrap.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 <style>
 	th, td {
@@ -46,14 +39,14 @@
 		vertical-align: middle;
 	}
 </style>
-<body>
+<body class="d-flex flex-column">
 
 	<jsp:include page="/include/navbar.jsp">
 		<jsp:param value="index" name="current" />
 	</jsp:include>
 	
-	<div class="container my-3 head p-3 border">
-		<h3>배송현황</h3>
+	<div class="container my-3 head p-3 border flex-grow-1">
+		<h3>주문현황</h3>
 		<hr />
 
 		<div id="sort1" class="topMenu flex justify-content-start border">

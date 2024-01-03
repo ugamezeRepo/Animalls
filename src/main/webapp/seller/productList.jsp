@@ -16,13 +16,14 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body class="d-flex flex-column">
 	<jsp:include page="/include/navbar.jsp">
 		<jsp:param value="seller" name="current"/>
 	</jsp:include>
-	<div class="container">
+	<div class="container my-4 border flex-grow-1"><br />
 		<h1>판매자 상품 리스트</h1>
-		<a href="productUpload_form.jsp">상품 추가</a>
+		<hr />
+		<a href="productUploadForm.jsp">상품 추가</a>
 		<table class="table">
 			<thead>
 				<tr>
@@ -48,17 +49,18 @@
 					<td><%=tmp.getSalesState() %></td>
 					<td><%=tmp.getDescription() %></td>
 					<td><a class="text-decoration-none" href="updateform.jsp?productId=<%=tmp.getProductId()%>">수정</a></td>
+					<td><a class="text-decoration-none" href="productDelete.jsp?productId=<%=tmp.getProductId()%>">삭제</a></td>
+					<!--   
 					<td>
 						<form action="productDelete.jsp" method="post">
 							<input type="hidden" name="productId" value="<%=tmp.getProductId()%>"/>
 						</form>
 					</td>
+					-->
 				</tr>
 			<%} %>
 			</tbody>
 		</table>
-		<button type="submit">수정</button>
-		<button type="submit">삭제</button>
 	</div>
 	<jsp:include page="/include/footer.jsp">
 		<jsp:param value="seller" name="current"/>
