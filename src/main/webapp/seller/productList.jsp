@@ -40,7 +40,7 @@
 					<th>판매가</th>
 					<th>할인가격</th>
 					<th>상품상태</th>
-					<th>비고</th>
+					<th>설명</th>
 				</tr>
 			</thead>
 			<tbody>
