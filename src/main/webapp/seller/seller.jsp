@@ -113,7 +113,7 @@ int recentReview = 48;
                         판매중인 상품 <a href="productList.jsp">보기</a>
                     </div>
                     <div class="col">
-                        미처리된 주문 <a href="../view_order.jsp">보기</a>
+                        미처리된 주문 <a href="productOrderList.jsp">보기</a>
                     </div>
                 </div>
             </div>

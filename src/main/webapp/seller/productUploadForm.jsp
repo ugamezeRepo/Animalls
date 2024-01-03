@@ -28,7 +28,7 @@ input[type=number] {
 	<jsp:include page="/include/navbar.jsp">
 		<jsp:param value="seller" name="current"/>
 	</jsp:include>
-	<div class="container my-4 border flex-grow-1">
+	<div class="container head p-3 my-4 border flex-grow-1">
 		<h3>판매자 상품 등록</h3><hr />
 		<form id="product-form" name="newProduct" action="${pageContext.request.contextPath}/seller/productUpload.jsp" method="post">
 			<div class="form-group row mb-2">
