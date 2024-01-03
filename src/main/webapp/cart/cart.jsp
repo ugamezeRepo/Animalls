@@ -12,9 +12,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	//String id = (String)session.getAttribute("id");
-	String id = "dum1";
+	
 	MemberDto memberDto = SessionManager.getMember(request);
+	String id = memberDto.getMemberId();
 	List<CartItemDto> cartList =CartItemDao.getInstance().getList();
 	if(id!=null){
 		cartList = cartList.stream().filter(c->c.getBuyerId().equals(id)).collect(Collectors.toList());
@@ -54,7 +54,7 @@
             -webkit-backdrop-filter: blur( 13.5px );
             border-radius: 10px;
             border: 1px solid rgba( 255, 255, 255, 0.18 );
-            width: 400px;
+            width: 500px;
             height: 300px;
             position: fixed;
             top: 0;
@@ -143,6 +143,9 @@
                     	totalPrice += itemPrice;
                     	String uniqueButtonID = "optBtn" + i;
                     	String modalBgID = "modalBgID" + i;
+                    	String productOptionID = "productOptionID" + i;
+                    	String optionInputID = "optionInputID" + i;
+                    	
                     %>
                     
                     <tr>
@@ -156,7 +159,7 @@
                             <ul>
                                 <li> <strong><a href="${pageContext.request.contextPath}/product/productDetail?productId=<%=tmp.getProductId()%>"><%=productDto.getTitle() %></a></strong></li>
                                 <li>옵션 : <%=optionDto.getDescription() %></li>
-                                <li><button class="optBtnClass" id="<%=uniqueButtonID %>">옵션변경</button></li>
+                                <li><button class="optBtnClass" >옵션변경</button></li>
                             </ul>
                         </td>
                         <td>
@@ -198,7 +201,7 @@
 				                    <h4>상품옵션</h4>
 					                    <ul>
 					                        <li><span>같이구매하기</span>
-					                            <span><select  option_title="같이구매하기"  name="option" id="product_option" class="ProductOption0" option_style="select" required="true" onchange="change()">
+					                            <span><select  option_title="같이구매하기"  name="option" id="<%=productOptionID %>" class="ProductOption0" option_style="select" required="true" onchange="change(<%=i%>)">
 					                                <option value="*" >- [필수] 같이구매하기 선택 -</option>
 					                                <option disabled>---------------</option>
 					                                <%List<ProductOptionDto> optionList = ProductOptionDao.getInstance().getList();
@@ -213,7 +216,7 @@
 					           <div class="button">
 					           	<form action="${pageContext.request.contextPath}/cart/cartOptionUpdate.jsp">
 					           		<input type="hidden" name="cartItemId" value="<%=tmp.getCartItemId()%>" />
-					           		<input type="hidden" name="optionId" value="" id="optionId"/>
+					           		<input type="hidden" name="optionId"  id="<%=optionInputID%>"/>
 					                <button type="submit" >변경</button>
 					            </form>    
 					           </div>
@@ -292,12 +295,14 @@
             });
         });
         
+        
+        
 	 	//option변경
 	       
-        function change(){
-        	let option = document.getElementById('product_option');
+        function change(index){
+        	let option = document.getElementById('productOptionID'+index);
         	let optValue = option.options[option.selectedIndex].value;
-        	document.getElementById("optionId").value=optValue;
+        	document.getElementById("optionInputID"+index).value=optValue;
         }
 	</script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
