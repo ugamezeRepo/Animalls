@@ -1,10 +1,13 @@
+<%@page import="util.SessionManager"%>
+<%@page import="dto.MemberDto"%>
 <%@page import="dao.ProductDao"%>
 <%@page import="dto.ProductDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<ProductDto> list = ProductDao.getInstance().getList();
+	MemberDto dto = SessionManager.getMember(request);
+	List<ProductDto> list = ProductDao.getInstance().getListBySellerId(dto.getMemberId());
 %>
 <!DOCTYPE html>
 <html>
@@ -23,7 +26,10 @@
 	<div class="container my-4 border flex-grow-1"><br />
 		<h1>판매자 상품 리스트</h1>
 		<hr />
-		<a href="productUploadForm.jsp">상품 추가</a>
+					
+		<a class="btn btn-primary " href="productUploadForm.jsp">상품 추가</a>	
+		
+		
 		<table class="table">
 			<thead>
 				<tr>
@@ -41,14 +47,16 @@
 			<%for(ProductDto tmp:list){ %>
 				<tr>
 					<td><%=tmp.getProductId() %></td>
-					<td><%=tmp.getThumbnail() %></td>
+					<td>
+						<img src="<%=tmp.getThumbnail() %>" alt="" height=80 width=80/>	
+					</td>
 					<td><%=tmp.getTitle() %></td>
 					<td><%=tmp.getCategory() %></td>
 					<td><%=tmp.getOrgPrice() %></td>
 					<td><%=tmp.getSalePrice() %></td>
 					<td><%=tmp.getSalesState() %></td>
 					<td><%=tmp.getDescription() %></td>
-					<td><a class="text-decoration-none" href="updateform.jsp?productId=<%=tmp.getProductId()%>">수정</a></td>
+					<td><a class="text-decoration-none" href="productUpdateForm.jsp?productId=<%=tmp.getProductId()%>">수정</a></td>
 					<td><a class="text-decoration-none" href="productDelete.jsp?productId=<%=tmp.getProductId()%>">삭제</a></td>
 					<!--   
 					<td>

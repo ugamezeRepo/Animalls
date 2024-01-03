@@ -33,6 +33,11 @@ int recentReview = 48;
 </script>
 
 </head>
+<style>
+#main-menu-cards{
+	padding:50px;
+}
+</style>
 <body class="d-flex flex-column ">
 	<jsp:include page="/include/navbar.jsp">
 		<jsp:param value="index" name="current" />
@@ -152,7 +157,7 @@ int recentReview = 48;
                                 </jsp:include>
                             </div>
     
-                            <div class="flex-grow-1 text-center my-auto">
+                            <div class="flex-grow-1 text-center my-auto" style= "line-height : 26px;">
                                 <jsp:include page="/include/components/shopblock.jsp">
                                     <jsp:param name="src"
                                         value="/Animalls/assets/shop-blocks/10.png" />
