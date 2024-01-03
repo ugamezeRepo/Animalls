@@ -6,78 +6,18 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 
+<% 
+	String currentPage = request.getParameter("page"); 
+	if (currentPage == null) {
+		currentPage = "1"; 
+	}
+%> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	#myform fieldset{
-    display: inline-block;
-    direction: rtl;
-    border:0;
-	}
-	#myform fieldset legend{
-	    text-align: right;
-	}
-	#myform input[type=radio]{
-	    display: none;
-	}
-	#myform label{
-	    font-size: 3em;
-	    color: transparent;
-	    text-shadow: 0 0 0 #f0f0f0;
-	}
 
-	#myform input[type=radio]:checked ~ label{
-	    text-shadow: 0 0 0 #ff753f;
-	}
-
-	#reviewContents {
-	    width: 100%;
-	    height: 150px;
-	    padding: 10px;
-	    box-sizing: border-box;
-	    border: solid 1.5px #D3D3D3;
-	    border-radius: 5px;
-	    font-size: 16px;
-	    resize: none;
-	}
-	/* ul 의 기본 스타일제거*/
-	.page-list{
-		margin: 0;
-		padding: 0;
-		list-style-type: none;
-	}
-	
-	.page-list li{
-		float: left; /* li 가 필요한 만큼의 폭만 차지하면서 가로로 배치 되도록 */
-		padding: 5px;
-	}
-	
-	.page-list li:hover{
-		background-color: #cecece;
-	}
-	
-	.page-list li a{
-		color: #000;
-		text-decoration: none;
-	}
-	
-	.page-list li.active a{
-		color: red;
-		text-decoration: underline;
-		font-weight: bold;
-	}
-	.paging-container {
-        margin-bottom: 75px; 
-	}
-	.fog {
-		position: aboslute; 
-		width: 100%; 
-		height: 100%;
-	}
-</style>
 <link href="/Animalls/css/common.css" rel="stylesheet" />
 <link href="/Animalls/css/bootstrap.css" rel="stylesheet" >
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
@@ -142,6 +82,18 @@
                         </div>
                     </div>
                 </div>
+            	
+            	<div class="d-flex justify-content-center">
+	            	<nav aria-label="Page navigation example">
+					  <ul class="pagination" >
+					  	<li class="page-item" :class="previousDisabledStyle"><a class="page-link" @click="handleClickPrevious">Previous</a></li>
+						<li class="page-item" v-for="p in pageGroup" :class=getPageActiveStyle(p)><a class="page-link" @click="handlePageClick(p)">{{ p }} </a></li>
+					    
+					    <li class="page-item"  :class="lastDisabledStyle"><a class="page-link" @click="handleClickNext">Next</a></li>
+					  </ul>
+					</nav>
+            	</div>
+	            
             </div>
 		</div>
         
@@ -155,9 +107,11 @@
         	el: '#review-container', 
         	data: {
         		order: 'new',
-        		page: 1,
+        		page: <%= currentPage %>,	
         		reviews: {},
-        		product: {}
+        		product: {},
+        		pageGroup: [],  
+        		total_review_stat : { "avg_review": "5", "total_count":0, "count":[0,0,0,0,0] }
         	},
         	methods: {
         		getReviewAtPage: async function(page) {
@@ -194,7 +148,45 @@
     			},
     			productUrl: function (product_id) {
     				return `/Animalls/product/productDetail.jsp?productId=\${product_id}`;
-    			}
+    			}, 
+    			getPageGroupNumber(p) {
+    				return parseInt((p + 4) / 5);
+    			}, 
+    			getPageGroup(p) {
+    				this.pageGroup = []; 
+    				
+    				const g = this.getPageGroupNumber(p); 
+					const pageStart = (g - 1) * 5 + 1; 
+					
+					const lastPage = (this.total_review_stat.total_count + 4) / 5
+					const pageEnd = Math.min(g * 5, lastPage);
+					
+				
+					for (let i = pageStart ; i <= pageEnd; i++) {
+						this.pageGroup.push(i); 
+					}
+    			},
+    			getPageActiveStyle(p) {
+    				return this.page == p ? "active" : ""; 
+    			},
+    			handlePageClick(p) {
+    				this.page = p; 
+    				
+    		 		this.getReviewAtPage(this.page);
+            		this.getPageGroup(this.page);    				
+    			}, 
+    			handleClickPrevious() {
+    				const g = this.getPageGroupNumber(this.page); 
+					this.handlePageClick((g - 1) * 5);
+    			}, 
+    			handleClickNext() {
+    				const g= this.getPageGroupNumber(this.page); 
+    				this.handlePageClick(g * 5 + 1); 
+    			},
+    			getTotalReviewStat: async function() {
+        			const resp = await fetch("/Animalls/api/review/stats");
+        			this.total_review_stat = await resp.json(); 
+        		}, 
         	},  
         	computed: {
         		activeIfNew: function() {
@@ -202,12 +194,20 @@
         		},
         		activeIfRecommend: function() {
  					return this.order === 'recommend' ? 'active' : '';       			
+        		}, 
+        		previousDisabledStyle: function() { 
+        			return this.getPageGroupNumber(this.page) == 1 ? 'disabled' : ''; 
+        		}, 
+        		lastDisabledStyle: function() { 
+					const lastPage = (this.total_review_stat.total_count + 4) / 5;
+        			return this.getPageGroupNumber(lastPage) === this.getPageGroupNumber(this.page) ? 'disabled' : '';  
         		}
         	},
-        	created: function() {
+        	created: async function() {
         		console.log('vue init');
-
-        		this.getReviewAtPage(this.page);
+        		await this.getTotalReviewStat(); 
+        		await this.getReviewAtPage(this.page);
+        		this.getPageGroup(this.page);
         	}
         });
 	</script>
