@@ -209,6 +209,7 @@ public class ProductDao {
 			String sql = "UPDATE PRODUCT"
 					+ " SET seller_id=?, category=?, title=?, description=?, org_price=?, sale_price=?, sales_state=?, thumbnail=?"
 					+ " WHERE product_id = ?";
+				
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 내용이 있으면 바인딩
 			pstmt.setString(1, dto.getSellerId());
@@ -218,8 +219,9 @@ public class ProductDao {
 			pstmt.setInt(5, dto.getOrgPrice());
 			pstmt.setInt(6, dto.getSalePrice());
 			pstmt.setString(7, dto.getSalesState());
+		
 			pstmt.setString(8, dto.getThumbnail());
-			pstmt.setInt(9, dto.getProductId());
+			pstmt.setInt(9, dto.getProductId());	
 			
 			rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
