@@ -49,5 +49,4 @@ public class ProductUploadApiServlet extends HttpServlet {
 			api.sendMessage(result, "상품등록에 실패하였습니다");
 		}
 	}
-
 }

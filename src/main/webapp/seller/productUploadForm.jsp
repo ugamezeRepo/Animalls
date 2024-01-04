@@ -30,7 +30,7 @@ input[type=number] {
 	</jsp:include>
 	<div class="container head p-3 my-4 border flex-grow-1">
 		<h3>판매자 상품 등록</h3><hr />
-		<form id="product-form" name="newProduct" action="${pageContext.request.contextPath}/seller/productUpload.jsp" method="post">
+		<form id="product-form" name="newProduct">
 			<div class="form-group row mb-2">
 				<label for="col-sm-2 thumbnail">썸네일</label>
 				<div class="col-sm-5">
