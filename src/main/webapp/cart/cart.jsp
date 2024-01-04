@@ -12,9 +12,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	//String id = (String)session.getAttribute("id");
-	String id = "dum1";
+	
 	MemberDto memberDto = SessionManager.getMember(request);
+	String id = memberDto.getMemberId();
 	List<CartItemDto> cartList =CartItemDao.getInstance().getList();
 	if(id!=null){
 		cartList = cartList.stream().filter(c->c.getBuyerId().equals(id)).collect(Collectors.toList());
@@ -54,7 +54,7 @@
             -webkit-backdrop-filter: blur( 13.5px );
             border-radius: 10px;
             border: 1px solid rgba( 255, 255, 255, 0.18 );
-            width: 400px;
+            width: 500px;
             height: 300px;
             position: fixed;
             top: 0;
@@ -97,20 +97,26 @@
         table a {
         	text-decoration: none;
         }
+        th {
+        	text-align : center;
+        }
+
+        
+       
 </style>
 </head>
 <body>
 	<jsp:include page="/include/navbar.jsp"></jsp:include>
 	<div class="container">
-        <div class="textArea">
-            <h2>장바구니</h2>
-            <p><img src="https://img.echosting.cafe24.com/skin/base_ko_KR/order/img_order_step1.gif" alt="" /></p>
+        <div class="textArea mt-5">
+            <h2 class="display-6">장바구니</h2>
+            <p><img src="https://img.echosting.cafe24.com/skin/base_ko_KR/order/img_order_step1.gif" alt=""  style="width:100%"/></p>
         </div>
         <div class="info">
         	<p><%=memberDto.getName() %> 님은, [<%=memberDto.getRank() %>] 회원이십니다</p>
         </div>
         <div class="basket">
-            <table class="table-bordered">
+            <table class="table-bordered" style="width:100%">
                 <colgroup>
                     <col style="width:27px">
                     <col style="width:92px">
@@ -121,7 +127,7 @@
                     <col style="width:110px">
                 </colgroup>
                 <thead>
-                    <tr>
+                    <tr class="table-light">
                         <th scope="col">
                             <input type="checkbox" id="checkAll">
                         </th>
@@ -143,20 +149,23 @@
                     	totalPrice += itemPrice;
                     	String uniqueButtonID = "optBtn" + i;
                     	String modalBgID = "modalBgID" + i;
+                    	String productOptionID = "productOptionID" + i;
+                    	String optionInputID = "optionInputID" + i;
+                    	
                     %>
                     
-                    <tr>
-                    	<td>
+                    <tr class="table-light">
+                    	<td class="text-center">
                         	<input type="checkbox" class="chk" onclick="check">
                         </td>
                         <td>
                         	<a href="${pageContext.request.contextPath}/product/productDetail?productId=<%=tmp.getProductId()%>"><img src="<%=productDto.getThumbnail()%>" width="100px" height="150px"></a>
                         </td>
                         <td>
-                            <ul>
+                            <ul class="list-unstyled">
                                 <li> <strong><a href="${pageContext.request.contextPath}/product/productDetail?productId=<%=tmp.getProductId()%>"><%=productDto.getTitle() %></a></strong></li>
                                 <li>옵션 : <%=optionDto.getDescription() %></li>
-                                <li><button class="optBtnClass" id="<%=uniqueButtonID %>">옵션변경</button></li>
+                                <li><button class="optBtnClass btn btn-secondary btn-sm" >옵션변경</button></li>
                             </ul>
                         </td>
                         <td>
@@ -172,13 +181,13 @@
                                 </div>
                             </span>
                         </td>
-                        <td>
+                        <td class="text-end">
                             <strong><%=itemPrice %></strong>
                         </td>
-                        <td>
+                        <td class="text-end">
                             <strong><%=itemPrice>50000 ? "무료" : 2500 %></strong>
                         </td>
-                        <td>
+                        <td class="text-center">
                             <a href="">주문하기</a>
                             <br />
                             <a href="${pageContext.request.contextPath}/cart/cartDelete.jsp?cartItemId=<%=tmp.getCartItemId()%>">삭제</a>
@@ -191,14 +200,14 @@
 				                <div class="close-area">X</div>
 				            </div>
 				            <div class="content">
-				                <ul class="prdInfo">
+				                <ul class="prdInfo list-unstyled">
 				                	<li ><%=productDto.getTitle() %></li>
 				                </ul>
 				                <div class="prdModify">
 				                    <h4>상품옵션</h4>
-					                    <ul>
+					                    <ul class="list-unstyled">
 					                        <li><span>같이구매하기</span>
-					                            <span><select  option_title="같이구매하기"  name="option" id="product_option" class="ProductOption0" option_style="select" required="true" onchange="change()">
+					                            <span><select  option_title="같이구매하기"  name="option" id="<%=productOptionID %>" class="ProductOption0" option_style="select" required="true" onchange="change(<%=i%>)">
 					                                <option value="*" >- [필수] 같이구매하기 선택 -</option>
 					                                <option disabled>---------------</option>
 					                                <%List<ProductOptionDto> optionList = ProductOptionDao.getInstance().getList();
@@ -213,8 +222,8 @@
 					           <div class="button">
 					           	<form action="${pageContext.request.contextPath}/cart/cartOptionUpdate.jsp">
 					           		<input type="hidden" name="cartItemId" value="<%=tmp.getCartItemId()%>" />
-					           		<input type="hidden" name="optionId" value="" id="optionId"/>
-					                <button type="submit" >변경</button>
+					           		<input type="hidden" name="optionId"  id="<%=optionInputID%>"/>
+					                <button type="submit" class="btn btn-secondary btn-sm">변경</button>
 					            </form>    
 					           </div>
 				        </div>
@@ -223,26 +232,26 @@
                 </tbody>
             </table>
         </div>
-        <div class="total">
-        	<h2>총계</h2>
-            <table class="table-bordered">
+        <div class="total mt-5"  >
+        	<h2 class="display-6">총계</h2>
+            <table class="table-bordered"  style="width:100%; height:80px">
                 <thead>
-                    <tr>
+                    <tr class="table-light">
                         <th>총상품금액</th>
                         <th>총배송비</th>
                         <th>결제예정금액</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><%=totalPrice %> </td>
-                        <td><%=totalPrice>50000 ? 0 : 2500%></td>
-                        <td><%=totalPrice>50000 ? totalPrice : totalPrice+2500%></td>
+                    <tr class="table-light">
+                        <td class="text-end"><%=totalPrice %> </td>
+                        <td class="text-end"><%=totalPrice>50000 ? 0 : 2500%></td>
+                        <td class="text-end"><%=totalPrice>50000 ? totalPrice : totalPrice+2500%></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="order">
+        <div class="order mt-5 mb-5" >
             <a href="">전체상품주문</a>
             <a href="">선택상품주문</a>
         </div>
@@ -292,12 +301,14 @@
             });
         });
         
+        
+        
 	 	//option변경
 	       
-        function change(){
-        	let option = document.getElementById('product_option');
+        function change(index){
+        	let option = document.getElementById('productOptionID'+index);
         	let optValue = option.options[option.selectedIndex].value;
-        	document.getElementById("optionId").value=optValue;
+        	document.getElementById("optionInputID"+index).value=optValue;
         }
 	</script>
 	<jsp:include page="/include/footer.jsp"></jsp:include>
