@@ -1,5 +1,15 @@
+<%@page import="dto.ReviewDto"%>
+<%@page import="dao.ReviewDao"%>
+<%@page import="dao.ProductDao"%>
+<%@page import="dto.ProductDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+
+	List<ProductDto> list = ProductDao.getInstance().getList().stream().limit(4).toList();
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,57 +78,31 @@
 		
 	  
 	  <div class="container mb-5">
-	  <h2>고객 Pick</h2>
+	  <h2>최신 상품</h2>
 	    <div class="row">
-	    
+
+	      <% for (ProductDto dto : list) { %>
 	      <div class="col-lg-3 mb-auto">
-		    <a class="text-center" href="#">
-		     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-			     <title>Placeholder</title>
-			     <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-		     </svg>
+		    <a class="text-center" href="/Animalls/product/productDetail.jsp?productId=<%= dto.getProductId() %>">
+		     <img src="<%= dto.getThumbnail() %>" class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" focusable="false">
+		     </img>
 		    </a>
-	        <h5 class="fw-normal mt-2 text-left">피부모질 닥터독 사료2kg</h5>
-	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto">32,500원</p>
-	        <p class="d-block mb-3">리뷰 : 3,751 | ★ 4.7</p>
+	        <h5 class="fw-normal mt-2 text-left"><%= dto.getTitle() %></h5>
+	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto"><%= dto.getSalePrice() == 0 ?  dto.getOrgPrice() : dto.getSalePrice() %>원</p>
+	        <%
+	        	List<ReviewDto> reviewList = ReviewDao.getInstance().getReviewsByProductId(dto.getProductId());
+	        	Double avg = 0.0; 
+	        	for (ReviewDto r : reviewList) {
+	        		avg += r.getRating(); 
+	        	}
+	        	avg /= reviewList.size();
+	        	if (avg.isNaN()) {
+	        		avg = 0.0; 
+	        	}
+	        %>
+	        <p class="d-block mb-3">리뷰 : <%= String.format("%,d", reviewList.size()) %>| ★ <%=String.format("%.1f",  avg ) %></p>
 	      </div>
-	      
-	      <div class="col-lg-3 mb-auto">
-		    <a class="text-center" href="#">
-		     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-			     <title>Placeholder</title>
-			     <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-		     </svg>
-		    </a>
-	        <h5 class="fw-normal mt-2 text-left">피부모질 닥터독 사료2kg</h5>
-	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto">32,500원</p>
-	        <p class="d-block mb-3">리뷰 : 3,751 | ★ 4.7</p>
-	      </div>
-	      
-	      <div class="col-lg-3 mb-auto">
-		    <a class="text-center" href="#">
-		     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-			     <title>Placeholder</title>
-			     <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-		     </svg>
-		    </a>
-	        <h5 class="fw-normal mt-2 text-left">피부모질 닥터독 사료2kg</h5>
-	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto">32,500원</p>
-	        <p class="d-block mb-3">리뷰 : 3,751 | ★ 4.7</p>
-	      </div>
-	      
-	      <div class="col-lg-3 mb-auto">
-		    <a class="text-center" href="#">
-		     <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-			     <title>Placeholder</title>
-			     <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
-		     </svg>
-		    </a>
-	        <h5 class="fw-normal mt-2 text-left">피부모질 닥터독 사료2kg</h5>
-	        <p class="h3 text-left d-inline-block font-weight-bold mb-auto">32,500원</p>
-	        <p class="d-block mb-3">리뷰 : 3,751 | ★ 4.7</p>
-	      </div>
-	      
+	      <%} %>
 	    </div>
 	  </div>
 	  

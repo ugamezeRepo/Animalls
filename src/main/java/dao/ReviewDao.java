@@ -272,8 +272,8 @@ public class ReviewDao {
 					conn.close(); //Connection 객체의 close() 메소드를 호출하면 Pool 에 반납된다.
 			} catch (Exception e) {
 			}
-			return dto;
 		}
+		return dto;
 	}
 	
 	public List<ReviewDto> getList(){
@@ -320,5 +320,51 @@ public class ReviewDao {
 		}
 		return list;
 	}
+	
+	public List<ReviewDto> getReviewsByProductId(int productId){
+		List<ReviewDto> list = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문
+			String sql = "SELECT review_id, product_id , reviewer_id, content, thumbnail, rating, like_count, created_at, updated_at"
+					+ " FROM PRODUCT_REVIEW"
+					+ " WHERE product_id = ? "
+					+ " ORDER BY review_id DESC";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productId);
+			rs = pstmt.executeQuery();
+			//반복문 돌면서 
+			while (rs.next()) {
+				ReviewDto dto =new ReviewDto();
+				dto.setReviewId(rs.getInt("review_id"));
+				dto.setProductId(rs.getInt("product_id"));
+				dto.setReviewerId(rs.getString("reviewer_id"));
+				dto.setContent(rs.getString("content"));
+				dto.setThumbnail(rs.getString("thumbnail"));
+				dto.setRating(rs.getInt("rating"));
+				dto.setLikeCount(rs.getInt("like_count"));
+				dto.setCreatedAt(rs.getString("created_at"));
+				dto.setUpdatedAt(rs.getString("updated_at"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close(); //Connection 객체의 close() 메소드를 호출하면 Pool 에 반납된다.
+			} catch (Exception e) {
+			}
+		}
+		return list;
+	}
+
 }
 

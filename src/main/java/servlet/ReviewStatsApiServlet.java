@@ -48,8 +48,11 @@ public class ReviewStatsApiServlet extends HttpServlet {
 			}
 		}
 		Map<String, Object> m = new HashMap<String, Object>(); 
-		
-		m.put("avg_review", String.format("%.1f", (double)reviewSum / totalCount)); 
+		String avgReview =  String.format("%.1f", (double)reviewSum / totalCount); 
+		if (avgReview.equals("NaN")) {
+			avgReview = "0"; 
+		}
+		m.put("avg_review", avgReview); 
 		m.put("total_count", totalCount);
 		m.put("count", count);
 		
